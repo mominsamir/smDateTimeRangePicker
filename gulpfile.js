@@ -38,9 +38,9 @@ gulp.task('clean', function () {
 //js minify task
 gulp.task('script-uglify', function() {
     gulp.src('src/js/*.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(outputFolder))        
-        .pipe(concat({path: 'sm.picker.min.js'}))
+        .pipe(concat({path: 'sm-picker-min.js'}))
         .pipe(gulp.dest(outputFolder));
 });
 
@@ -56,8 +56,8 @@ gulp.task('scss', function() {
             }))
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(rename({  basename: "picker",
-                        prefix: "sm.", 
-                        suffix: '.min' }))
+                        prefix: "sm-", 
+                        suffix: '-min' }))
         .pipe(gulp.dest(outputFolder));
 });
 

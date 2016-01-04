@@ -67,7 +67,8 @@
   text-align: center;
 }
 .gj-calender .container .body .date-container {
-  animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+  -webkit-animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+          animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
 }
 .gj-calender .container .body .date-container > .date-cell-header {
   cursor: default;
@@ -125,7 +126,8 @@
   /* approximate max height */
   width: 140px;
   padding-left: 60px;
-  animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+  -webkit-animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+          animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
 }
 .gj-calender .container .body .hour-container .hour-header {
   height: 45px;
@@ -225,7 +227,8 @@
   overflow: hidden;
 }
 .range-picker .custom-select.show-calender {
-  animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+  -webkit-animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
 }
 .range-picker .custom-select.show-calender > .tab-head {
   height: 43px;
@@ -237,74 +240,133 @@
   width: 50%;
 }
 .range-picker .custom-select.show-calender > .tab-head span.active {
-  animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+  -webkit-animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
   animation-property: border-bottom;
   color: inherit;
   border-bottom: 2px solid #FF5252;
 }
 
-@keyframes slideInLeft {
+@-webkit-keyframes slideInLeft {
   from {
-    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
     visibility: visible;
   }
   100% {
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 .slideInLeft {
-  animation-name: slideInLeft;
+  -webkit-animation-name: slideInLeft;
+          animation-name: slideInLeft;
+}
+
+@-webkit-keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes slideInRight {
   from {
-    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
     visibility: visible;
   }
   100% {
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 .slideInRight {
-  animation-name: slideInRight;
+  -webkit-animation-name: slideInRight;
+          animation-name: slideInRight;
+}
+
+@-webkit-keyframes slideInUp {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes slideInUp {
   from {
-    transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
     visibility: visible;
   }
   100% {
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 .slideInUp {
-  animation-name: slideInUp;
+  -webkit-animation-name: slideInUp;
+          animation-name: slideInUp;
+}
+
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes slideInDown {
   from {
-    transform: translate3d(0, -100%, 0);
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
     visibility: visible;
   }
   100% {
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 .slideInDown {
-  animation-name: slideInDown;
+  -webkit-animation-name: slideInDown;
+          animation-name: slideInDown;
 }
 
 @-webkit-keyframes scaleUpCal {
   0% {
-    -ms-transform: scale(0.5, 0.5);
     /* IE 9 */
     -webkit-transform: scale(0.5, 0.5);
     /* Safari */
     transform: scale(0.5, 0.5);
   }
   100% {
-    -ms-transform: scale(1, 1);
     /* IE 9 */
     -webkit-transform: scale(1, 1);
     /* Safari */
@@ -314,14 +376,12 @@
 /* Standard syntax */
 @keyframes scaleUpCal {
   0% {
-    -ms-transform: scale(0.5, 0.5);
     /* IE 9 */
     -webkit-transform: scale(0.5, 0.5);
     /* Safari */
     transform: scale(0.5, 0.5);
   }
   100% {
-    -ms-transform: scale(1, 1);
     /* IE 9 */
     -webkit-transform: scale(1, 1);
     /* Safari */
@@ -330,14 +390,12 @@
 }
 @-webkit-keyframes scaleDownCal {
   0% {
-    -ms-transform: scale(1, 1);
     /* IE 9 */
     -webkit-transform: scale(1, 1);
     /* Safari */
     transform: scale(1, 1);
   }
   100% {
-    -ms-transform: scale(0.5, 0.5);
     /* IE 9 */
     -webkit-transform: scale(0.5, 0.5);
     /* Safari */
@@ -347,14 +405,12 @@
 /* Standard syntax */
 @keyframes scaleDownCal {
   0% {
-    -ms-transform: scale(1, 1);
     /* IE 9 */
     -webkit-transform: scale(1, 1);
     /* Safari */
     transform: scale(1, 1);
   }
   100% {
-    -ms-transform: scale(0.5, 0.5);
     /* IE 9 */
     -webkit-transform: scale(0.5, 0.5);
     /* Safari */
@@ -363,14 +419,12 @@
 }
 @-webkit-keyframes moveUp {
   0% {
-    -ms-transform: top;
     /* IE 9 */
     -webkit-transform: top;
     /* Safari */
     transform: top;
   }
   100% {
-    -ms-transform: top;
     /* IE 9 */
     -webkit-transform: top;
     /* Safari */
@@ -380,14 +434,12 @@
 /* Standard syntax */
 @keyframes moveUp {
   0% {
-    -ms-transform: top;
     /* IE 9 */
     -webkit-transform: top;
     /* Safari */
     transform: top;
   }
   100% {
-    -ms-transform: top;
     /* IE 9 */
     -webkit-transform: top;
     /* Safari */

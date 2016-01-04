@@ -1,1 +1,132 @@
-!function(){"use strict";function e(){return{restrict:"E",replace:!0,require:["^ngModel","smTime"],scope:{initialTime:"@",format:"@"},controller:["$scope","$timeout",t],controllerAs:"vm",templateUrl:"picker/calender-hour.html",link:function(e,t,r,i){var o=i[0],n=i[1];n.configureNgModel(o),e.$on("$destroy",function(){t.remove()})}}}var t=function(e,t){var r=this;r.$scope=e,r.$timeout=t,r.initialDate=e.initialDate,r.format=e.format,r.hourCells=[],r.minuteCells=[],r.moveCalenderAnimation="",r.format=angular.isUndefined(r.format)?"HH:mm":r.format,r.initialDate=angular.isUndefined(r.initialDate)?moment():moment(r.initialDate,r.format),r.currentDate=r.initialDate.clone(),r.init(),e.$watch("vm.topIndex",angular.bind(this,function(e){var t=Math.floor(e/1);r.selectedYear=t}))};t.prototype.configureNgModel=function(e){this.ngModelCtrl=e;var t=this;e.$render=function(){t.ngModelCtrl.$viewValue=t.currentDate}},t.prototype.setNgModelValue=function(e){var t=this;t.ngModelCtrl.$setViewValue(e),t.ngModelCtrl.$render()},t.prototype.init=function(){var e=this;e.buidHourCells(),e.buidMinuteCells(),e.headerDispalyFormat="HH:mm"},t.prototype.buidHourCells=function(){for(var e=this,t=0;23>=t;t++){var r={hour:t,isCurrent:e.initialDate.hour()===t};e.hourCells.push(r)}},t.prototype.buidMinuteCells=function(){for(var e=this,t=0;59>=t;t++){var r={minute:t,isCurrent:e.initialDate.minute()===t};e.minuteCells.push(r)}},t.prototype.selectDate=function(e,t){var r=this;t||(r.currentDate=e,r.$scope.$emit("calender:date-selected"))},t.prototype.setHour=function(e){var t=this;t.currentDate.hour(e),t.setNgModelValue(t.currentDate.format(t.format))},t.prototype.setMinute=function(e){var t=this;t.currentDate.minute(e),t.setNgModelValue(t.currentDate.format(t.format))},t.prototype.selectedDateTime=function(){var e=this;e.setNgModelValue(e.currentDate.format(e.format)),"time"===e.mode?e.view="HOUR":e.view="DATE",e.$scope.$emit("calender:close")};var r=angular.module("dateTimePicker");r.directive("smTime",["$timeout",e])}();
+(function(){
+
+'use strict';
+
+function TimePicker(){
+	return {
+	  restrict : 'E',
+	  replace:true,
+      require: ['^ngModel', 'smTime'],
+      scope :{
+	      	initialTime : "@",
+	      	format:"@",
+	    },
+	   	controller:["$scope","$timeout",TimePickerCtrl],
+	    controllerAs : 'vm',
+	    templateUrl:"picker/calender-hour.html",
+		link : function(scope,element,att,ctrls){
+			var ngModelCtrl = ctrls[0];
+	        var calCtrl = ctrls[1];
+	        calCtrl.configureNgModel(ngModelCtrl);
+
+			scope.$on('$destroy',function(){
+			   element.remove();
+			});
+		}      
+	}
+}
+
+var TimePickerCtrl = function($scope,$timeout){
+	var self  = this;
+	self.$scope = $scope;
+	self.$timeout = $timeout;
+	self.initialDate = $scope.initialDate; 	//if calender to be  initiated with specific date 
+	self.format = $scope.format;
+	self.hourCells =[];
+	self.minuteCells =[];
+	self.moveCalenderAnimation='';
+	self.format = angular.isUndefined(self.format) ? 'HH:mm': self.format;
+	self.initialDate =	angular.isUndefined(self.initialDate)? moment() : moment(self.initialDate,self.format);
+	self.currentDate = self.initialDate.clone();
+	self.init();
+	$scope.$watch('vm.topIndex', angular.bind(this, function(topIndex) {
+          var scrollYear = Math.floor(topIndex / 1);
+          self.selectedYear = scrollYear;
+    }));
+}
+
+
+ TimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
+    this.ngModelCtrl = ngModelCtrl;
+    var self = this;
+    ngModelCtrl.$render = function() {
+      self.ngModelCtrl.$viewValue= self.currentDate;
+    };
+  };
+
+
+  TimePickerCtrl.prototype.setNgModelValue = function(date) {
+  	var self = this;
+    self.ngModelCtrl.$setViewValue(date);
+    self.ngModelCtrl.$render();
+  };
+
+TimePickerCtrl.prototype.init = function(){
+	var self = this;
+	self.buidHourCells();
+	self.buidMinuteCells();
+	self.headerDispalyFormat = "HH:mm";
+};
+
+
+TimePickerCtrl.prototype.buidHourCells = function(){
+	var self = this;
+	for (var i = 0 ; i <= 23; i++) {
+		var hour={
+			hour : i,
+			isCurrent :(self.initialDate.hour())=== i 
+		}
+		self.hourCells.push(hour);
+	};	
+};
+
+TimePickerCtrl.prototype.buidMinuteCells = function(){
+	var self = this;
+	for (var i = 0 ; i <= 59; i++) {
+		var minute = {
+			minute : i,
+			isCurrent : (self.initialDate.minute())=== i,
+		}
+		self.minuteCells.push(minute);
+	};
+};
+
+
+TimePickerCtrl.prototype.selectDate = function(d,isDisabled){
+	var self = this;
+	if (isDisabled) return;
+	self.currentDate = d;
+
+	self.$scope.$emit('calender:date-selected');
+
+}
+
+
+TimePickerCtrl.prototype.setHour = function(h){
+	var self = this;
+	self.currentDate.hour(h);
+	self.setNgModelValue(self.currentDate.format(self.format));	
+}
+
+TimePickerCtrl.prototype.setMinute = function(m){
+	var self = this;
+	self.currentDate.minute(m);
+	self.setNgModelValue(self.currentDate.format(self.format));		
+}
+
+TimePickerCtrl.prototype.selectedDateTime = function(){
+	var self = this;
+	self.setNgModelValue(self.currentDate.format(self.format));
+	if(self.mode === 'time') 
+		self.view='HOUR' 
+	else 
+		self.view='DATE';
+	self.$scope.$emit('calender:close');			
+}
+
+var app = angular.module('dateTimePicker');
+
+app.directive('smTime',['$timeout',TimePicker]);
+
+
+})();

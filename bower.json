@@ -7,8 +7,8 @@
   ],
   "description": "Material Design date/time/Range pickers built with Angular Material and Moment.js",
   "main": [
-    "dist/sm.picker.min.js",
-    "dist/sm.picker.min.css"
+    "dist/sm-picker-min.js",
+    "dist/sm-picker-min.css"
   ],
   "keywords": [
     "angular",
