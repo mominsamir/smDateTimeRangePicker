@@ -1,1 +1,78 @@
-!function(){"use strict";function e(){return{restrict:"E",require:"^ngModel",replace:!0,scope:{initialDate:"@",minDate:"=",maxDate:"=",format:"@",mode:"@",startDay:"@"},templateUrl:"picker/date-picker.html",link:function(e,t,a,i){function r(t){switch(t){case"date-time":e.view="DATE",e.headerDispalyFormat="ddd, MMM DD HH:mm";break;case"time":e.view="HOUR",e.headerDispalyFormat="HH:mm";break;default:e.view="DATE"}}r(e.mode),e.currentDate=isNaN(i.$viewValue)?moment().format(e.format):i.$modelValue,i.$viewChangeListeners.push(function(){e.currentDate=i.$modelValue}),e.selectedDateTime=function(){var t=moment(e.selectedDate,"MM-DD-YYYY");if(t.isValid()||(t=moment()),!angular.isUndefined(e.selectedTime)){var a=e.selectedTime.split(":");t.hour(a[0]).minute(a[1])}i.$setViewValue(t.format(e.format)),i.$render(),r(e.mode),e.$emit("calender:close")},e.closeDateTime=function(){e.$emit("calender:close")},e.$on("$destroy",function(){t.remove()})}}}var t=angular.module("dateTimePicker");t.directive("smDatePicker",["$timeout",e])}();
+
+(function(){
+
+'use strict';
+
+function DatePickerDir(){
+	return {
+	  restrict : 'E',
+      require: '^ngModel',
+      replace:true,
+      scope :{
+	      	initialDate : "@",
+	      	minDate:"=",
+	      	maxDate:"=",
+	      	format:"@",
+	      	mode:"@",	      	
+	      	startDay:"@"
+	    },
+	    templateUrl:"picker/date-picker.html",
+		link : function(scope,element,att,ngModelCtrl){
+			setViewMode(scope.mode)
+
+			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment().format(scope.format): ngModelCtrl.$modelValue ;
+
+			ngModelCtrl.$viewChangeListeners.push(function() {
+				scope.currentDate = ngModelCtrl.$modelValue;
+			});
+
+			function setViewMode(mode){
+				switch(mode) {
+				    case 'date-time':
+						scope.view = 'DATE'
+						scope.headerDispalyFormat = "ddd, MMM DD HH:mm";			
+				        break;
+				    case 'time':
+				        scope.view = 'HOUR';
+						scope.headerDispalyFormat = "HH:mm";
+				        break;
+				    default:
+				        scope.view = 'DATE';
+				}					
+			}
+
+			scope.selectedDateTime = function(){
+				var date = moment(scope.selectedDate,"MM-DD-YYYY");
+				if(!date.isValid()){
+					date = moment();
+				}
+				if(!angular.isUndefined(scope.selectedTime)){	
+					var timeSplit = scope.selectedTime.split(':');
+					date.hour(timeSplit[0]).minute(timeSplit[1]);
+				}
+				ngModelCtrl.$setViewValue(date.format(scope.format));
+				ngModelCtrl.$render();
+				setViewMode(scope.mode)
+				scope.$emit('calender:close');			
+			}
+
+			scope.closeDateTime = function(){
+				scope.$emit('calender:close');			
+			}
+
+			scope.$on('$destroy',function(){
+			   element.remove();
+			});
+		}      
+	}
+}
+
+
+var app = angular.module('dateTimePicker');
+
+app.directive('smDatePicker',['$timeout',DatePickerDir]);
+
+
+})();
+
+
