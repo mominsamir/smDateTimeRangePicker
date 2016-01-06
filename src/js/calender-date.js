@@ -471,7 +471,7 @@ function picker(){
 	}
 }
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smCalender',['$timeout',Calender]);
 app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','picker',DateTimePicker]);

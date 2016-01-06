@@ -68,7 +68,7 @@ function DatePickerDir(){
 }
 
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smDatePicker',['$timeout',DatePickerDir]);
 

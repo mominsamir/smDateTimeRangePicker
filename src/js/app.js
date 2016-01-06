@@ -187,7 +187,7 @@ var range-picker.html = '<div layout="column"  id="{{id}}" class="range-picker m
 
 
 angular
-  .module('dateTimePicker', [
+  .module('smDateTimeRangePicker', [
     'ngAnimate',
     'ngMaterial'
   ])

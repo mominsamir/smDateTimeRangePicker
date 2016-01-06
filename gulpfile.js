@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 
 
 var outputFolder = 'dist/';
-var moduleName = 'smdateTimePicker';
+var moduleName = 'smDateTimeRangePicker';
 
 var notifyInfo = {
     title: 'Gulp',
@@ -58,12 +58,12 @@ gulp.task('scss', function() {
                         prefix: "sm-", 
                         suffix: '-min' }))        
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-
         .pipe(gulp.dest(outputFolder));
 });
 
 
-// With concatenation.
+// With concatenation. 
+// run only when template changes and update app run block manually.
 gulp.task('htmlToString', function() {
   return gulp.src('src/template/*.html')
     .pipe(htmlToJs({concat: 'views.js'}))

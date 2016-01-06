@@ -218,7 +218,7 @@ RangePickerCtrl.prototype.cancel = function(){
   self.scope.$emit('range-picker:close');        
 }
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smRangePicker',['picker',smRangePicker]);
 app.directive('smRangePickerInput',['$document','$mdMedia','$mdUtil',RangePickerInput]);
