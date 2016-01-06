@@ -187,7 +187,7 @@ var range-picker.html = '<div layout="column"  id="{{id}}" class="range-picker m
 
 
 angular
-  .module('dateTimePicker', [
+  .module('smDateTimeRangePicker', [
     'ngAnimate',
     'ngMaterial'
   ])
@@ -666,7 +666,7 @@ function picker(){
 	}
 }
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smCalender',['$timeout',Calender]);
 app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','picker',DateTimePicker]);
@@ -799,7 +799,7 @@ TimePickerCtrl.prototype.selectedDateTime = function(){
 	self.$scope.$emit('calender:close');			
 }
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smTime',['$timeout',TimePicker]);
 
@@ -875,7 +875,7 @@ function DatePickerDir(){
 }
 
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smDatePicker',['$timeout',DatePickerDir]);
 
@@ -1104,7 +1104,7 @@ RangePickerCtrl.prototype.cancel = function(){
   self.scope.$emit('range-picker:close');        
 }
 
-var app = angular.module('dateTimePicker');
+var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smRangePicker',['picker',smRangePicker]);
 app.directive('smRangePickerInput',['$document','$mdMedia','$mdUtil',RangePickerInput]);
