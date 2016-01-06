@@ -1,6 +1,5 @@
 'use strict';
 
-
 function run($templateCache){
 
 var calender-date.html = '<div  class="date-picker">
