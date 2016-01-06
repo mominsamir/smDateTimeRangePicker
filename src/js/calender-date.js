@@ -1,6 +1,7 @@
 (function(){
-
 'use strict';
+
+
 
 function Calender(){
 	return {
@@ -19,7 +20,7 @@ function Calender(){
 	    },
 	   	controller:["$scope","$timeout",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-date.html",
+	    templateUrl:"calender-date.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
