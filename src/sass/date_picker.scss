@@ -3,9 +3,9 @@
 
 $container-height:              445px;
 $container-width:               300px;
-$date-cell-height:				30px;
-$date-cell-width:				30px;
-$date-cell-line-width:			30px;
+$date-cell-height:				40px;
+$date-cell-width:				40px;
+$date-cell-line-width:			40px;
 $calender-bg:					#fff;
 $bg-date-cell-selected:			#E0E0E0;
 $font-size:						13px;		
@@ -52,7 +52,6 @@ $disabled-date-text-color:		#ede8e8;
 					padding-top:5px;					
 				}
 			}
-					
 		}
 	}	
 }
@@ -87,6 +86,7 @@ $disabled-date-text-color:		#ede8e8;
 	}
 	.date-container{
 		.navigation{
+			height: 40px;
 			.md-button{
 				&.md-icon-button{}
 			}
@@ -102,10 +102,11 @@ $disabled-date-text-color:		#ede8e8;
 		.date-cell-row{
 			.md-button{
 				&.md-icon-button{
-					width: $date-cell-width;
+    				margin: 2px 0 2px 2px;					
+/* 					width: $date-cell-width;
 					height: $date-cell-height;
 					line-height: 15px;
-					text-align: center;
+					text-align: center; */
 					&[disabled]{
 						cursor: default;
 						background-color: transparent;
@@ -116,7 +117,7 @@ $disabled-date-text-color:		#ede8e8;
 				}							
 			}
 		}	
-		.date-cell{
+/* 		.date-cell{
 			width: $date-cell-width;
 			height: $date-cell-height;
 			line-height: $date-cell-line-width;
@@ -144,7 +145,7 @@ $disabled-date-text-color:		#ede8e8;
 					background-color: $today-border-color;
 				}
 			}
-		}
+		} */
 	}				   
 }
 
@@ -215,6 +216,7 @@ $disabled-date-text-color:		#ede8e8;
 	}				
 }
 .action{
+	height: 40px;
 	margin-bottom:0; 
 }
 .md-virtual-repeat-container .md-virtual-repeat-scroller{
