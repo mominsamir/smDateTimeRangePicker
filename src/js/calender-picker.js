@@ -16,15 +16,11 @@ function DatePickerDir(){
 	      	mode:"@",	      	
 	      	startDay:"@"
 	    },
-	    templateUrl:"date-picker.html",
+	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 
-			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment().format(scope.format): ngModelCtrl.$modelValue ;
-
-			ngModelCtrl.$viewChangeListeners.push(function() {
-				scope.currentDate = ngModelCtrl.$modelValue;
-			});
+			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment(): ngModelCtrl.$viewValue ;
 
 			function setViewMode(mode){
 				switch(mode) {
@@ -42,14 +38,16 @@ function DatePickerDir(){
 			}
 
 			scope.selectedDateTime = function(){
-				var date = moment(scope.selectedDate,"MM-DD-YYYY");
+				var date = moment(scope.selectedDate,scope.format);
 				if(!date.isValid()){
 					date = moment();
+					scope.selectedDate =date;
 				}
 				if(!angular.isUndefined(scope.selectedTime)){	
 					var timeSplit = scope.selectedTime.split(':');
 					date.hour(timeSplit[0]).minute(timeSplit[1]);
 				}
+				scope.currentDate =scope.selectedDate;
 				ngModelCtrl.$setViewValue(date.format(scope.format));
 				ngModelCtrl.$render();
 				setViewMode(scope.mode)
@@ -60,15 +58,12 @@ function DatePickerDir(){
 				scope.$emit('calender:close');			
 			}
 
-			scope.$on('$destroy',function(){
-			   element.remove();
-			});
 		}      
 	}
 }
 
 
-var app = angular.module('smDateTimeRangePicker');
+var app = angular.module('dateTimePicker');
 
 app.directive('smDatePicker',['$timeout',DatePickerDir]);
 

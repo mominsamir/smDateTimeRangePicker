@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+$range-picker-height:           500px;
+$range-picker-width:            310px;
+$picker-container-height:       465px;
 $container-height:              445px;
 $container-width:               300px;
 $date-cell-height:				40px;
@@ -11,45 +14,79 @@ $bg-date-cell-selected:			#E0E0E0;
 $font-size:						13px;		
 $today-border-color:			#106CC8;
 $disabled-date-text-color:		#ede8e8;
+$aniimation-timing-fun:			cubic-bezier(.04,1.01,.13,1.02);
+$aniimation-duration:			1s;
 
-.gj-calender-pane{
+.sm-calender-pane{
 	display:block;
 	position:fixed;
   	z-index:51;
-  	transition:all linear 0.5s;
-	&.show{
-	   -webkit-animation: scaleUpCal 1s cubic-bezier(.06,.61,.04,1.03);
-	   animation: scaleUpCal 1s cubic-bezier(.06,.61,.04,1.03);   
+  	overflow: hidden;
+  	&.hide-animate {
+   	-webkit-transition: all $aniimation-duration  $aniimation-timing-fun;
+	   -moz-transition: all $aniimation-duration  $aniimation-timing-fun;
+  		 -o-transition: all $aniimation-duration  $aniimation-timing-fun;
+  		    transition: all $aniimation-duration  $aniimation-timing-fun; 
+ 	    max-height: 0px;
+	    max-width: 0px; 
 	}
-	&.hide{
-	   -webkit-animation: scaleDownCal 1s cubic-bezier(.06,.61,.04,1.03);
-	   animation: scaleDownCal 1s cubic-bezier(.06,.61,.04,1.03);   
+	&.show {
+   	-webkit-transition: all $aniimation-duration  $aniimation-timing-fun;
+	   -moz-transition: all $aniimation-duration  $aniimation-timing-fun;
+  		 -o-transition: all $aniimation-duration  $aniimation-timing-fun;
+  		    transition: all $aniimation-duration  $aniimation-timing-fun; 
+ 	    max-height: 500px;
+	    max-width: 310px; 
 	}  	
 }
 
+@media only screen 
+  and (min-device-width: 0px) 
+  and (max-device-width: 960px)  
+ {
+	.sm-calender-pane{
+	  	overflow: hidden;
+		&.hide {
+	  	-webkit-animation: scaleDownCal $aniimation-duration  $aniimation-timing-fun;
+		   -moz-animation: scaleDownCal $aniimation-duration  $aniimation-timing-fun;
+	  		 -o-animation: scaleDownCal $aniimation-duration  $aniimation-timing-fun;
+	  		    animation: scaleDownCal $aniimation-duration  $aniimation-timing-fun;
 
+		}
+		&.show {
+	  	-webkit-animation: scaleUpCal $aniimation-duration  $aniimation-timing-fun;
+		   -moz-animation: scaleUpCal $aniimation-duration  $aniimation-timing-fun;
+	  		 -o-animation: scaleUpCal $aniimation-duration  $aniimation-timing-fun;
+	  		    animation: scaleUpCal $aniimation-duration  $aniimation-timing-fun;
+
+		}  	
+	}
+}
 
 .picker-container{
+
 	.container{
-		text-align: center;
 		width: $container-width;
- 		height: $container-height; 
+ 		height: $picker-container-height; 
 		border-radius:2px;
 		overflow: hidden;
 		md-toolbar{
 			&.md-height{
-				height: 74px;
+				height: 85px;
 				padding-left:10px;
 			}
 			.md-toolbar-tools{
 				text-align: left;
-				padding:5px;					
-				& .selected-date{
-					font-size: 25px;
+				padding:5px;	
+				& .date-time-header{				
+					font-size: 26px;
 					line-height: 8px;
 					font-weight: bold;
 					text-align: left;
-					padding-top:5px;					
+					padding-top:10px;										
+					&.date-display{
+
+					}
 				}
 			}
 		}
@@ -58,6 +95,7 @@ $disabled-date-text-color:		#ede8e8;
 
 
 .date-picker{
+	
 	padding :0 3px;
 	height: 325px;
 	.year-container{
@@ -85,9 +123,12 @@ $disabled-date-text-color:		#ede8e8;
 		}
 	}
 	.date-container{
+// 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);				
 		.navigation{
 			height: 40px;
 			.md-button{
+				text-transform: capitalize;
+				font-weight: bold;				
 				&.md-icon-button{}
 			}
 		}	
@@ -103,10 +144,6 @@ $disabled-date-text-color:		#ede8e8;
 			.md-button{
 				&.md-icon-button{
     				margin: 2px 0 2px 2px;					
-/* 					width: $date-cell-width;
-					height: $date-cell-height;
-					line-height: 15px;
-					text-align: center; */
 					&[disabled]{
 						cursor: default;
 						background-color: transparent;
@@ -117,35 +154,6 @@ $disabled-date-text-color:		#ede8e8;
 				}							
 			}
 		}	
-/* 		.date-cell{
-			width: $date-cell-width;
-			height: $date-cell-height;
-			line-height: $date-cell-line-width;
-			border-radius:50%;
-			font-size: $font-size;
-			outline: none;
-			color: rgb(34, 34, 34);
-			&.active{
-				cursor: pointer;
-			}
-			&.disabled{
-				cursor: default;
-				color: $disabled-date-text-color;
-				&:hover{
-					background-color: inherit;
-				}					
-			}
-			&.today:not(.disabled){
-				border:1px solid $today-border-color;
-			}
-			&.selected:not(.disabled){
-				background-color: $today-border-color;
-				color:$calender-bg;
-				&:hover{
-					background-color: $today-border-color;
-				}
-			}
-		} */
 	}				   
 }
 
@@ -153,21 +161,22 @@ $disabled-date-text-color:		#ede8e8;
 	.hour-container{
 		overflow-y: hidden;
 		max-height: 450px; /* approximate max height */
-		width: 140px;
-		padding-left:60px;
+		height: 325px;
+		width: 150px;
+		margin: 0 auto;
  		animation: slideInUp 1s cubic-bezier(.06,.61,.04,1.03);		
 		.hour-header{
-			height: 45px;
+			height: 24px;
+			text-align: center;
 			span{
 				color:grey;
 				font-size: 15px;
-				line-height: 45px;
 				font-weight: bold;
 			}
 		}			
 		.hour-md-repeat{
 			float: left;					
-			height: 270px;
+			height: 301px;
 			width: 70px;					
 			.md-virtual-repeat-container{
 				text-align: center;
@@ -176,6 +185,8 @@ $disabled-date-text-color:		#ede8e8;
 			.repeated-item {
 				box-sizing: border-box;
 				padding-top: 10px;
+				text-align: center;			
+				height: 43px;					
 					span{
 						outline: none;
 						border-radius: 50%;
@@ -188,7 +199,7 @@ $disabled-date-text-color:		#ede8e8;
 		}
 		.minute-md-repeat{
 			float: right;
-			height: 270px;
+			height: 301px;
 			width: 70px;					
 			.md-virtual-repeat-container{
 				text-align: center;
@@ -197,6 +208,8 @@ $disabled-date-text-color:		#ede8e8;
 			.repeated-item {
 				box-sizing: border-box;
 				padding-top: 10px;
+				text-align: center;				
+				height: 43px;
 				span{
 					outline: none;
 					border-radius: 50%;
@@ -216,8 +229,11 @@ $disabled-date-text-color:		#ede8e8;
 	}				
 }
 .action{
-	height: 40px;
-	margin-bottom:0; 
+  height: 40px;
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
 }
 .md-virtual-repeat-container .md-virtual-repeat-scroller{
 	right: -21px;
@@ -232,8 +248,8 @@ $disabled-date-text-color:		#ede8e8;
 
 
 .range-picker{
-	width: 310px;
-	height: 500px;	
+	width: $range-picker-width;
+	height: $range-picker-height;	
 	background-color:$calender-bg;
 	.header{
 		font-size:calc($font-size + 2);
@@ -254,7 +270,6 @@ $disabled-date-text-color:		#ede8e8;
 		height: 390px;
 		overflow: hidden;
 		&.show-calender{
-			animation: slideInRight 1s cubic-bezier(.06,.61,.04,1.03);		
 			>.tab-head{
 				height: 43px;
 				text-align: center;
@@ -263,10 +278,15 @@ $disabled-date-text-color:		#ede8e8;
 					color:$disabled-date-text-color;
 					width: 50%;
 					&.active{
-						animation: slideInRight 1s cubic-bezier(.06,.61,.04,1.03);								
 						animation-property:border-bottom;
 						color:inherit;
 						border-bottom:2px solid #FF5252;
+						&.moveLeft{
+							animation: slideInLeft 1s cubic-bezier(.06,.61,.04,1.03);								
+						}
+						&.moveRight{
+							animation: slideInRight 1s cubic-bezier(.06,.61,.04,1.03);								
+						}	
 					}
 				}
 			}
