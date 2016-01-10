@@ -1,41 +1,55 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
-.gj-calender-pane {
+.sm-calender-pane {
   display: block;
   position: fixed;
   z-index: 51;
-  transition: all linear 0.5s;
+  overflow: hidden;
 }
-.gj-calender-pane.show {
-  -webkit-animation: scaleUpCal 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
-  animation: scaleUpCal 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+.sm-calender-pane.hide-animate {
+  transition: all 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
+  max-height: 0px;
+  max-width: 0px;
 }
-.gj-calender-pane.hide {
-  -webkit-animation: scaleDownCal 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
-  animation: scaleDownCal 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+.sm-calender-pane.show {
+  transition: all 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
+  max-height: 500px;
+  max-width: 310px;
 }
 
+@media only screen and (min-device-width: 0px) and (max-device-width: 960px) {
+  .sm-calender-pane {
+    overflow: hidden;
+  }
+  .sm-calender-pane.hide {
+    -webkit-animation: scaleDownCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
+    animation: scaleDownCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
+  }
+  .sm-calender-pane.show {
+    -webkit-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
+    animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
+  }
+}
 .picker-container .container {
-  text-align: center;
   width: 300px;
-  height: 445px;
+  height: 465px;
   border-radius: 2px;
   overflow: hidden;
 }
 .picker-container .container md-toolbar.md-height {
-  height: 74px;
+  height: 85px;
   padding-left: 10px;
 }
 .picker-container .container md-toolbar .md-toolbar-tools {
   text-align: left;
   padding: 5px;
 }
-.picker-container .container md-toolbar .md-toolbar-tools .selected-date {
-  font-size: 25px;
+.picker-container .container md-toolbar .md-toolbar-tools .date-time-header {
+  font-size: 26px;
   line-height: 8px;
   font-weight: bold;
   text-align: left;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 .date-picker {
@@ -67,6 +81,13 @@
   font-size: 16px;
   text-align: center;
 }
+.date-picker .date-container .navigation {
+  height: 40px;
+}
+.date-picker .date-container .navigation .md-button {
+  text-transform: capitalize;
+  font-weight: bold;
+}
 .date-picker .date-container > .date-cell-header {
   cursor: default;
 }
@@ -74,10 +95,7 @@
   opacity: 1;
 }
 .date-picker .date-container .date-cell-row .md-button.md-icon-button {
-  width: 30px;
-  height: 30px;
-  line-height: 15px;
-  text-align: center;
+  margin: 2px 0 2px 2px;
 }
 .date-picker .date-container .date-cell-row .md-button.md-icon-button[disabled] {
   cursor: default;
@@ -86,57 +104,29 @@
 .date-picker .date-container .date-cell-row .md-button.md-icon-button:hover:not(.disabled):not(.selected) {
   background-color: #E0E0E0;
 }
-.date-picker .date-container .date-cell {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 50%;
-  font-size: 13px;
-  outline: none;
-  color: #222222;
-}
-.date-picker .date-container .date-cell.active {
-  cursor: pointer;
-}
-.date-picker .date-container .date-cell.disabled {
-  cursor: default;
-  color: #ede8e8;
-}
-.date-picker .date-container .date-cell.disabled:hover {
-  background-color: inherit;
-}
-.date-picker .date-container .date-cell.today:not(.disabled) {
-  border: 1px solid #106CC8;
-}
-.date-picker .date-container .date-cell.selected:not(.disabled) {
-  background-color: #106CC8;
-  color: #fff;
-}
-.date-picker .date-container .date-cell.selected:not(.disabled):hover {
-  background-color: #106CC8;
-}
 
 .hour-picker .hour-container {
   overflow-y: hidden;
   max-height: 450px;
   /* approximate max height */
-  width: 140px;
-  padding-left: 60px;
+  height: 325px;
+  width: 150px;
+  margin: 0 auto;
   -webkit-animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
           animation: slideInUp 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
 }
 .hour-picker .hour-container .hour-header {
-  height: 45px;
+  height: 24px;
+  text-align: center;
 }
 .hour-picker .hour-container .hour-header span {
   color: grey;
   font-size: 15px;
-  line-height: 45px;
   font-weight: bold;
 }
 .hour-picker .hour-container .hour-md-repeat {
   float: left;
-  height: 270px;
+  height: 301px;
   width: 70px;
 }
 .hour-picker .hour-container .hour-md-repeat .md-virtual-repeat-container {
@@ -146,6 +136,8 @@
 .hour-picker .hour-container .hour-md-repeat .repeated-item {
   box-sizing: border-box;
   padding-top: 10px;
+  text-align: center;
+  height: 43px;
 }
 .hour-picker .hour-container .hour-md-repeat .repeated-item span {
   outline: none;
@@ -157,7 +149,7 @@
 }
 .hour-picker .hour-container .minute-md-repeat {
   float: right;
-  height: 270px;
+  height: 301px;
   width: 70px;
 }
 .hour-picker .hour-container .minute-md-repeat .md-virtual-repeat-container {
@@ -167,6 +159,8 @@
 .hour-picker .hour-container .minute-md-repeat .repeated-item {
   box-sizing: border-box;
   padding-top: 10px;
+  text-align: center;
+  height: 43px;
 }
 .hour-picker .hour-container .minute-md-repeat .repeated-item span {
   outline: none;
@@ -184,7 +178,11 @@
 }
 
 .action {
+  height: 40px;
   margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .md-virtual-repeat-container .md-virtual-repeat-scroller {
@@ -226,10 +224,6 @@
   height: 390px;
   overflow: hidden;
 }
-.range-picker .custom-select.show-calender {
-  -webkit-animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
-          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
-}
 .range-picker .custom-select.show-calender > .tab-head {
   height: 43px;
   text-align: center;
@@ -240,11 +234,17 @@
   width: 50%;
 }
 .range-picker .custom-select.show-calender > .tab-head span.active {
-  -webkit-animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
-          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
   animation-property: border-bottom;
   color: inherit;
   border-bottom: 2px solid #FF5252;
+}
+.range-picker .custom-select.show-calender > .tab-head span.active.moveLeft {
+  -webkit-animation: slideInLeft 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+          animation: slideInLeft 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+}
+.range-picker .custom-select.show-calender > .tab-head span.active.moveRight {
+  -webkit-animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
 }
 
 @-webkit-keyframes slideInLeft {
