@@ -208,7 +208,7 @@ function Calender(){
       scope :{
 	      	initialDate : "@",
 	      	minDate:"=",
-	      	maxDate:"=",
+	      	maxDate:"=",		
 	      	format:"@",
 	      	mode:"@",
 	      	startView:"@",	      	
@@ -217,7 +217,7 @@ function Calender(){
 	    },
 	   	controller:["$scope","$timeout",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-date.html",
+	    templateUrl:"calender-date.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
@@ -688,7 +688,7 @@ function TimePicker(){
 	    },
 	   	controller:["$scope","$timeout",TimePickerCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-hour.html",
+	    templateUrl:"calender-hour.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
@@ -823,7 +823,7 @@ function DatePickerDir(){
 	      	mode:"@",	      	
 	      	startDay:"@"
 	    },
-	    templateUrl:"picker/date-picker.html",
+	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 
@@ -1001,7 +1001,7 @@ function smRangePicker (picker){
     },
     controller: ['$scope',RangePickerCtrl],
     controllerAs : 'vm',
-    templateUrl : 'picker/range-picker.html',
+    templateUrl : 'range-picker.html',
     link : function(scope,element,att,ctrls){
       var ngModelCtrl = ctrls[0];
       var calCtrl = ctrls[1];
