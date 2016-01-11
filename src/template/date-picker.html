@@ -21,7 +21,8 @@
 				id="{{fname}}Picker" 
 				data-mode="{{mode}}" 
 				data-min-date="minDate" 
-				data-max-date="maxDate"  
+				data-max-date="maxDate" 
+				close-on-select="{{closeOnSelect}}"				 
 				data-format="{{format}}"  
 				data-start-day="{{weekStartDay}}">
 			</sm-calender>
@@ -32,7 +33,7 @@
 				data-format="HH:mm">
 			</sm-time>
 		</div>		
-		<div class="action" layout="row" layout-align="end center">
+		<div class="action" layout="row" layout-align="end center" ng-hide="closeOnSelect && (mode!=='date-time' || mode!=='time')">
 				<div ng-show="mode==='date-time'">
 					<md-button class="md-icon-button" ng-show="view==='DATE'" ng-click="view='HOUR'">
 						<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>

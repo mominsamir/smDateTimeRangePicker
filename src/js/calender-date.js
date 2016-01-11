@@ -10,7 +10,7 @@ function Calender(){
       scope :{
 	      	initialDate : "@",
 	      	minDate:"=",
-	      	maxDate:"=",		
+	      	maxDate:"=",
 	      	format:"@",
 	      	mode:"@",
 	      	startView:"@",	      	
@@ -244,6 +244,7 @@ CalenderCtrl.prototype.selectDate = function(d,isDisabled){
 	if (isDisabled) return;
 	self.currentDate = d;
 	self.setNgModelValue(d);
+
 	self.$scope.$emit('calender:date-selected');
 
 }
@@ -346,7 +347,8 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
         lable : "@",
         isRequired : '@',
         disable : '=',
-        form : '='
+        form : '=',
+	    closeOnSelect:"@"
       },
       template: '  <md-input-container  >'
                 +'    <label for="{{fname}}">{{lable }}</label>'
@@ -363,6 +365,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
                 +'              ng-model="value" '
                 +'				initial-date="{{value}}"'
                 +'              mode="{{mode}}" '
+                +'				close-on-select="{{closeOnSelect}}"'
                 +'              start-view="{{startView}}" '  
                 +'              data-min-date="minDate" '
                 +'              data-max-date="maxDate"  '

@@ -1,5 +1,5 @@
 <div  class="date-picker">
-	<div ng-show="vm.view==='YEAR_MONTH'" ng-class="{'year-container' : vm.view==='YEAR_MONTH'}"> 
+			<div ng-show="vm.view==='YEAR_MONTH'" ng-class="{'year-container' : vm.view==='YEAR_MONTH'}"> 
 				<md-virtual-repeat-container id="year-container" class="year-md-repeat" md-top-index="vm.topIndex">
 				      <div md-virtual-repeat="yr in vm.yearCells" class="repeated-item" flex>
 						<md-button class="md-button" 
@@ -10,8 +10,8 @@
 						</md-button>				          
 				      </div>
 				</md-virtual-repeat-container>		     
-	</div>				
-	<div ng-show="vm.view==='DATE'" ng-class="{'date-container' : vm.view==='DATE'}">
+			</div>				
+			<div ng-show="vm.view==='DATE'" ng-class="{'date-container' : vm.view==='DATE'}">
 				<div layout="row" class="navigation" layout-align="space-between center">
 						<md-button 
 							ng-disabled="vm.stopScrollPrevious" 
@@ -55,5 +55,5 @@
 						</md-button>
 					</div>
 				</div>
-	</div>
+			</div>
 </div>

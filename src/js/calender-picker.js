@@ -14,7 +14,8 @@ function DatePickerDir(){
 	      	maxDate:"=",
 	      	format:"@",
 	      	mode:"@",	      	
-	      	startDay:"@"
+	      	startDay:"@",
+	      	closeOnSelect:"@"
 	    },
 	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
@@ -37,6 +38,26 @@ function DatePickerDir(){
 				}					
 			}
 
+			scope.$on('calender:date-selected',function(){
+				if(scope.closeOnSelect && (scope.mode!=='date-time' || scope.mode!=='time')){
+					var date = moment(scope.selectedDate,scope.format);
+					if(!date.isValid()){
+						date = moment();
+						scope.selectedDate =date;
+					}
+					if(!angular.isUndefined(scope.selectedTime)){	
+						var timeSplit = scope.selectedTime.split(':');
+						date.hour(timeSplit[0]).minute(timeSplit[1]);
+					}
+					scope.currentDate =scope.selectedDate;
+					ngModelCtrl.$setViewValue(date.format(scope.format));
+					ngModelCtrl.$render();
+					setViewMode(scope.mode)
+					scope.$emit('calender:close');			
+
+				}
+			})
+
 			scope.selectedDateTime = function(){
 				var date = moment(scope.selectedDate,scope.format);
 				if(!date.isValid()){
@@ -53,6 +74,7 @@ function DatePickerDir(){
 				setViewMode(scope.mode)
 				scope.$emit('calender:close');			
 			}
+
 
 			scope.closeDateTime = function(){
 				scope.$emit('calender:close');			
