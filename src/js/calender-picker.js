@@ -16,7 +16,7 @@ function DatePickerDir(){
 	      	mode:"@",	      	
 	      	startDay:"@"
 	    },
-	    templateUrl:"picker/date-picker.html",
+	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 

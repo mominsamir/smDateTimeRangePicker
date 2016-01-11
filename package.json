@@ -1,6 +1,6 @@
 {
   "name": "smDateAndRangePicker",
-  "version": "0.0.1",
+  "version": "0.0.7b",
   "description": "Material Design date/time pickers for Angular Material",
   "main": "gulpfile.js",
   "scripts": {
