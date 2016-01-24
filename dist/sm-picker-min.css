@@ -5,6 +5,7 @@
   position: fixed;
   z-index: 51;
   overflow: hidden;
+  border-radius: 2px;
 }
 .sm-calender-pane.hide-animate {
   transition: all 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
@@ -29,6 +30,9 @@
     -webkit-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
     animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
   }
+}
+.picker-container {
+  border-radius: 2px;
 }
 .picker-container .container {
   width: 300px;
@@ -57,8 +61,10 @@
   height: 325px;
 }
 .date-picker .year-container {
+  height: 325px;
   -webkit-animation: slideInDown 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
           animation: slideInDown 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
+  margin-top: 40px;
 }
 .date-picker .year-container .year-md-repeat {
   height: 300px;
@@ -80,6 +86,9 @@
   font-weight: bold;
   font-size: 16px;
   text-align: center;
+}
+.date-picker .year-container .year-md-repeat .repeated-item .selected-year {
+  font-size: 20px;
 }
 .date-picker .date-container .navigation {
   height: 40px;
@@ -219,6 +228,9 @@
 }
 .range-picker .pre-select {
   height: 390px;
+}
+.range-picker .pre-select .md-button {
+  padding: 0;
 }
 .range-picker .custom-select {
   height: 390px;

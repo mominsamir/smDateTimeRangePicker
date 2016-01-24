@@ -39,10 +39,7 @@ var TimePickerCtrl = function($scope,$timeout){
 	self.initialDate =	angular.isUndefined(self.initialDate)? moment() : moment(self.initialDate,self.format);
 	self.currentDate = self.initialDate.clone();
 	self.init();
-	$scope.$watch('vm.topIndex', angular.bind(this, function(topIndex) {
-          var scrollYear = Math.floor(topIndex / 1);
-          self.selectedYear = scrollYear;
-    }));
+	self.show=true;
 }
 
 

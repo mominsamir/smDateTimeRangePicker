@@ -22,6 +22,7 @@ $aniimation-duration:			1s;
 	position:fixed;
   	z-index:51;
   	overflow: hidden;
+	border-radius:2px;  	
   	&.hide-animate {
    	-webkit-transition: all $aniimation-duration  $aniimation-timing-fun;
 	   -moz-transition: all $aniimation-duration  $aniimation-timing-fun;
@@ -64,7 +65,7 @@ $aniimation-duration:			1s;
 }
 
 .picker-container{
-
+	border-radius:2px;
 	.container{
 		width: $container-width;
  		height: $picker-container-height; 
@@ -99,7 +100,9 @@ $aniimation-duration:			1s;
 	padding :0 3px;
 	height: 325px;
 	.year-container{
+		height: 325px;		
 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);
+		margin-top: 40px;
 		.year-md-repeat{
 			height: 300px;
 			width:$container-width;
@@ -118,6 +121,9 @@ $aniimation-duration:			1s;
 					font-weight: bold;
 					font-size: 16px;
 					text-align: center;							  
+				}
+				.selected-year{
+					font-size: 20px;
 				}
 			}
 		}
@@ -265,6 +271,9 @@ $aniimation-duration:			1s;
 	}
 	.pre-select{
 		height: 390px;
+		.md-button{
+			padding:0;
+		}
 	}
 	.custom-select{
 		height: 390px;

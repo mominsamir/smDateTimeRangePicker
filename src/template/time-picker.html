@@ -15,19 +15,7 @@
 				</div>
 			</div>	
 		</md-toolbar>
-		<div ng-show="view==='DATE'" >
-			<sm-calender 
-				ng-model="selectedDate"
-				id="{{fname}}Picker" 
-				data-mode="{{mode}}" 
-				data-min-date="minDate" 
-				data-max-date="maxDate" 
-				close-on-select="{{closeOnSelect}}"				 
-				data-format="{{format}}"  
-				data-start-day="{{weekStartDay}}">
-			</sm-calender>
-		</div>
-		<div ng-show="view==='HOUR'">
+		<div >
 			<sm-time
 				ng-model="selectedTime"
 				data-format="HH:mm">
@@ -43,7 +31,7 @@
 					</md-button>
 				</div>												
 				<span flex></span>
-				<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancelLabel}}</md-button>
+				<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancleLabel}}</md-button>
 				<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>
 		</div>
 	</md-content>	

@@ -2,7 +2,7 @@
 
 'use strict';
 
-function RangePickerInput($document,$mdMedia,$mdUtil){
+function RangePickerInput($document,$mdMedia,$mdUtil,picker){
     return {
       restrict : 'EA',
       replace: true,
@@ -118,7 +118,7 @@ function smRangePicker (picker){
       format:'@',
       divider: '@'
     },
-    controller: ['$scope',RangePickerCtrl],
+    controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
     templateUrl : 'range-picker.html',
     link : function(scope,element,att,ctrls){
@@ -130,16 +130,26 @@ function smRangePicker (picker){
   }
 }
 
-var RangePickerCtrl = function($scope){
+var RangePickerCtrl = function($scope,picker){
   var self = this;
   self.scope = $scope;
   self.clickedButton = 0;
-  self.divider = angular.isUndefined($scope.divider)? "To":self.scope.divider;
   self.format = angular.isUndefined($scope.format) ? 'MM-DD-YYYY': $scope.format;
   self.showCustom=false;
   self.startDate = moment();
   self.endDate = moment();
+  console.log(picker.rangeDivider );
+  self.divider = angular.isUndefined(self.scope.divider) || self.scope.divider ===''? picker.rangeDivider : $scope.divider;
+  console.log(self.divider);  
+  self.okLabel = picker.okLabel;
+  self.cancelLabel = picker.cancelLabel;
+  self.rangeDefaultList = picker.rangeDefaultList;
+  self.rangeCustomStartEnd = picker.rangeCustomStartEnd;
+
+//  console.log(rangeDefaultList);
+
   self.selectedTabIndex = $scope.selectedTabIndex;
+
   self.scope.$on('calender:date-selected',function(){
     self.selectedTabIndex =1;
   });        
@@ -221,6 +231,6 @@ RangePickerCtrl.prototype.cancel = function(){
 var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smRangePicker',['picker',smRangePicker]);
-app.directive('smRangePickerInput',['$document','$mdMedia','$mdUtil',RangePickerInput]);
+app.directive('smRangePickerInput',['$document','$mdMedia','$mdUtil','picker',RangePickerInput]);
 
 })();

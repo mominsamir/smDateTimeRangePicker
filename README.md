@@ -33,6 +33,41 @@ Picker are design to be used with Angular Material.
 ```sh
   angular.module('Your App',["ngMaterial","smDateTimeRangePicker"]); 
 ```
+
+### Configuration
+
+```sh
+  angular.module('Your App',["ngMaterial","smDateTimeRangePicker"])
+    .config(function ($mdThemingProvider,pickerProvider) {
+        pickerProvider.setOkLabel('Save');    
+        pickerProvider.setCancelLabel('Close');    
+        //  Over ride day names by changing here
+        pickerProvider.setDayHeader('single');  //Options 'single','shortName', 'fullName'
+        picker.setDaysNames([
+             {'single':'S','shortName':'Su','fullName':'Sunday'}, 
+             {'single':'M','shortName':'Mo','fullName':'MonDay'}, 
+             {'single':'T','shortName':'Tu','fullName':'TuesDay'}, 
+             {'single':'W','shortName':'We','fullName':'Wednesday'}, 
+             {'single':'T','shortName':'Th','fullName':'Thursday'}, 
+             {'single':'F','shortName':'Fr','fullName':'Friday'}, 
+             {'single':'S','shortName':'Sa','fullName':'Saturday'}
+         ]);
+         // Range Picker Configuration
+         picker.setDivider('To');
+         picker.setMonthNames(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+         picker.setRangeDefaultList(['Today',
+                        'Last 7 Days',
+                        'This Month',
+                        'Last Month',
+                        'This Quarter',
+                        'Year To Date',
+                        'This Year', 
+                        'Custome Range']);
+        picker.setRangeCustomStartEnd(['Start Date', 'End Date']);      
+    }
+```
+
+
 ####  DateTime Picker
 ```sh
 
@@ -86,6 +121,7 @@ Picker are design to be used with Angular Material.
 	        </sm-range-picker-input>
 	    </div>
 ```
+
 
 
 ###License
