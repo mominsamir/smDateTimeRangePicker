@@ -18,7 +18,7 @@ function DatePickerDir($timeout,picker,$mdMedia){
 	      	closeOnSelect:"@",
 	      	weekStartDay:"@"
 	    },
-	    templateUrl:"picker/date-picker.html",
+	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 			scope.okLabel = picker.okLabel;

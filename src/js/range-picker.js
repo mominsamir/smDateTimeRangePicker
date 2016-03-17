@@ -120,7 +120,7 @@ function smRangePicker (picker){
     },
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
-    templateUrl : 'picker/range-picker.html',
+    templateUrl : 'range-picker.html',
     link : function(scope,element,att,ctrls){
       var ngModelCtrl = ctrls[0];
       var calCtrl = ctrls[1];

@@ -18,7 +18,7 @@ function Calender($timeout,picker){
 	    },
 	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-date.html",
+	    templateUrl:"calender-date.html",
 		link : function(scope,element,att,ctrls){
 
 			var ngModelCtrl = ctrls[0];
