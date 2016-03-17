@@ -2,54 +2,75 @@
 
 function run($templateCache){
     var datepickerhtml = '<div class="picker-container  md-whiteframe-15dp">'+
-	'	<md-content  class="container" >'+
-	'		<md-toolbar class="md-height">			'+
-	'			<div class="md-toolbar-tools">'+
-	'				<div layout="column" flex="100" class="">'+
-	'					<span flex ng-hide="mode===\'time\'" class="md-subhead">{{currentDate.format(\'YYYY\')}}</span>'+
-	'					<div class="date-time-header">'+
-	'							{{currentDate.format(\'ddd, MMM DD\')}}			'+
-	'						</span>'+
-	'						<span  class="time-display" ng-show="mode===\'date-time\' || mode===\'time\'">'+
-	'							{{currentDate.format(\'HH:mm\')}}			'+
-	'						</span>'+
-	'					</div>					'+
-	'				</div>'+
-	'			</div>	'+
-	'		</md-toolbar>'+
-	'		<div ng-show="view===\'DATE\'" >'+
-	'			<sm-calender '+
-	'				ng-model="selectedDate"'+
-	'				id="{{fname}}Picker" '+
-	'				data-mode="{{mode}}" '+
-	'				data-min-date="minDate" '+
-	'				data-max-date="maxDate" '+
-	'				close-on-select="{{closeOnSelect}}"				 '+
-	'				data-format="{{format}}"  '+
-	'				data-start-day="{{weekStartDay}}">'+
-	'			</sm-calender>'+
-	'		</div>'+
-	'		<div ng-show="view===\'HOUR\'">'+
-	'			<sm-time'+
-	'				ng-model="selectedTime"'+
-	'				data-format="HH:mm">'+
-	'			</sm-time>'+
-	'		</div>		'+
-	'		<div class="action" layout="row" layout-align="end center" ng-hide="closeOnSelect && (mode!==\'date-time\' || mode!==\'time\')">'+
-	'				<div ng-show="mode===\'date-time\'">'+
-	'					<md-button class="md-icon-button" ng-show="view===\'DATE\'" ng-click="view=\'HOUR\'">'+
-	'						<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>'+
-	'					</md-button>				'+
-	'					<md-button class="md-icon-button" ng-show="view===\'HOUR\'" ng-click="view=\'DATE\'">'+
-	'						<md-icon md-font-icon="material-icons md-primary">date_range</md-icon>'+
-	'					</md-button>'+
-	'				</div>												'+
-	'				<span flex></span>'+
-	'				<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancelLabel}}</md-button>'+
-	'				<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>'+
-	'		</div>'+
-	'	</md-content>	'+
-	'</div>';
+'	<md-content  layout-xs="column" layout="row"  class="container" >'+
+'		<md-toolbar class="md-height" ng-class="{\'portrait\': viewModeSmall}"  layout="row" layout-xs="column">			'+
+'			<div class="md-toolbar-tools" ng-show="viewModeSmall">'+
+'				<div layout="column">'+
+'					<div layout="row" class="md-subhead year-header" ng-hide="mode===\'time\'" > '+
+'						{{currentDate.format(\'YYYY\')}}'+
+'					</div>	'+
+'					<div class="date-time-header">'+
+'						<span flex class="date-display" ng-hide="mode===\'time\'">'+
+'							{{currentDate.format(\'ddd, MMM DD\')}}	 	'+
+'						</span>'+
+'						<span  class="time-display" ng-show="mode===\'date-time\' || mode===\'time\'">'+
+'							{{currentDate.format(\'HH:mm\')}}			'+
+'						</span>'+
+'					</div>					'+
+'				</div>'+
+'			</div>	'+
+'			<div ng-show="!viewModeSmall" style="width:130px;">'+
+'				<div layout="column" >'+
+'					<div layout="row" class="year-header" ng-hide="mode===\'time\'" > '+
+'						{{currentDate.format(\'YYYY\')}}'+
+'					</div>'+
+'					<div layout="row" class="date-time-header" ng-hide="mode===\'time\'"> '+
+'						{{currentDate.format(\'ddd\')}}'+
+'					</div>'+
+'					<div layout="row" class="date-time-header" ng-hide="mode===\'time\'"> '+
+'						{{currentDate.format(\'MMM, DD\')}}											'+
+'					</div>'+
+'					<div layout="row" class="date-time-header" ng-show="mode===\'date-time\' || mode===\'time\'"> '+
+'						{{currentDate.format(\'HH:mm\')}}			'+
+'					</div>'+
+'				</div>					'+
+'			</div>				'+
+'		</md-toolbar>'+
+'		<div layout="column" class="picker-container" >'+
+'			<div ng-show="view===\'DATE\'" >'+
+'				<sm-calender '+
+'					ng-model="selectedDate"'+
+'					id="{{fname}}Picker" '+
+'					data-mode="{{mode}}" '+
+'					data-min-date="minDate" '+
+'					data-max-date="maxDate" '+
+'					close-on-select="{{closeOnSelect}}"				 '+
+'					data-format="{{format}}"  '+
+'					data-week-start-day="{{weekStartDay}}">'+
+'				</sm-calender>'+
+'			</div>'+
+'			<div ng-show="view===\'HOUR\'">'+
+'				<sm-time'+
+'					ng-model="selectedTime"'+
+'					data-format="HH:mm">'+
+'				</sm-time>'+
+'			</div>		'+
+'			<div layout="row" ng-hide="closeOnSelect && (mode!==\'date-time\' || mode!==\'time\')">'+
+'					<div ng-show="mode===\'date-time\'">'+
+'						<md-button class="md-icon-button" ng-show="view===\'DATE\'" ng-click="view=\'HOUR\'">'+
+'							<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>'+
+'						</md-button>				'+
+'						<md-button class="md-icon-button" ng-show="view===\'HOUR\'" ng-click="view=\'DATE\'">'+
+'							<md-icon md-font-icon="material-icons md-primary">date_range</md-icon>'+
+'						</md-button>'+
+'					</div>												'+
+'					<span flex></span>'+
+'					<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancelLabel}}</md-button>'+
+'					<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>'+
+'			</div>'+
+'		</div>'+
+'	</md-content>	'+
+'</div>';
 
     var calenderdatehtml = '<div  class="date-picker">'+
 '			<div ng-if="vm.view===\'YEAR_MONTH\'" ng-class="{\'year-container\' : vm.view===\'YEAR_MONTH\'}"> '+
@@ -259,12 +280,13 @@ function Calender($timeout,picker){
 	      	format:"@",
 	      	mode:"@",
 	      	startView:"@",	      	
-	      	startDay:"@"
+	      	weekStartDay:"@"
 	    },
-	   	controller:["$scope","$timeout","picker",CalenderCtrl],
+	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"calender-date.html",
+	    templateUrl:"picker/calender-date.html",
 		link : function(scope,element,att,ctrls){
+
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
@@ -276,15 +298,18 @@ function Calender($timeout,picker){
 	}
 }
 
-var CalenderCtrl = function($scope,$timeout,picker){
+var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	var self  = this;
 
 	self.$scope = $scope;
 	self.$timeout = $timeout;
     self.picker = picker;
     self.dayHeader = self.picker.dayHeader;
-	self.initialDate = $scope.initialDate; 	//if calender to be  initiated with specific date 
-	self.startDay = angular.isUndefined($scope.startDay) || $scope.startDay==='' ? 'Sunday' : $scope.startDay ;	   	//if calender to be start on specific day default is sunday
+    //if calender to be  initiated with specific date       
+	self.initialDate = $scope.initialDate; 	
+    self.viewModeSmall = $mdMedia('xs');
+    //if calender to be start on specific day default is sunday
+	self.startDay = angular.isUndefined($scope.weekStartDay) || $scope.weekStartDay==='' ? 'Sunday' : $scope.weekStartDay ;	   	
 	self.minDate = $scope.minDate;			//Minimum date 
 	self.maxDate = $scope.maxDate;			//Maximum date 
 	self.mode = angular.isUndefined($scope.mode) ? 'DATE' : $scope.mode;
@@ -582,14 +607,13 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
                 +'              start-view="{{startView}}" '  
                 +'              data-min-date="minDate" '
                 +'              data-max-date="maxDate"  '
-                +'              format="{{format}}"  '
-                +'          	start-day="{{weekStartDay}}" > '
+                +'              data-format="{{format}}"  '
+                +'          	data-week-start-day="{{weekStartDay}}" > '
                 +'			</sm-date-picker>'
                 +'    	</div>'                
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
 
-        console.log(picker.massagePath)
 
         var inputPane = $element[0].querySelector('.sm-input-container');
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
@@ -877,7 +901,7 @@ var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smCalender',['$timeout','picker',Calender]);
 app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','$timeout','picker',DateTimePicker]);
-app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
+//app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
 
 app.provider('picker',[picker]);
 
@@ -897,7 +921,7 @@ function TimePicker(){
 	    },
 	   	controller:["$scope","$timeout",TimePickerCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"calender-hour.html",
+	    templateUrl:"picker/calender-hour.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
@@ -1016,7 +1040,7 @@ app.directive('smTime',['$timeout',TimePicker]);
 
 'use strict';
 
-function DatePickerDir($timeout,picker){
+function DatePickerDir($timeout,picker,$mdMedia){
 	return {
 	  restrict : 'E',
       require: '^ngModel',
@@ -1028,16 +1052,16 @@ function DatePickerDir($timeout,picker){
 	      	format:"@",
 	      	mode:"@",	      	
 	      	startDay:"@",
-	      	closeOnSelect:"@"
+	      	closeOnSelect:"@",
+	      	weekStartDay:"@"
 	    },
-	    templateUrl:"date-picker.html",
+	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
-			console.log(picker.okLabel);
 			scope.okLabel = picker.okLabel;
 			scope.cancelLabel = picker.cancelLabel;			
 
-
+			scope.viewModeSmall = $mdMedia('xs');
 			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment(): ngModelCtrl.$viewValue ;
 
 			function setViewMode(mode){
@@ -1113,7 +1137,7 @@ function TimePickerDir1($timeout,picker){
 	      	startDay:"@",
 	      	closeOnSelect:"@"
 	    },
-	    templateUrl:"date-picker.html",
+	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 		    
@@ -1186,7 +1210,7 @@ function TimePickerDir1($timeout,picker){
 
 var app = angular.module('smDateTimeRangePicker');
 
-app.directive('smDatePicker',['$timeout','picker',DatePickerDir]);
+app.directive('smDatePicker',['$timeout','picker','$mdMedia',DatePickerDir]);
 app.directive('smTimePickern',['$timeout','picker',TimePickerDir1]);
 
 
@@ -1316,7 +1340,7 @@ function smRangePicker (picker){
     },
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
-    templateUrl : 'range-picker.html',
+    templateUrl : 'picker/range-picker.html',
     link : function(scope,element,att,ctrls){
       var ngModelCtrl = ctrls[0];
       var calCtrl = ctrls[1];

@@ -37,7 +37,7 @@ $aniimation-duration:			1s;
   		 -o-transition: all $aniimation-duration  $aniimation-timing-fun;
   		    transition: all $aniimation-duration  $aniimation-timing-fun; 
  	    max-height: 500px;
-	    max-width: 310px; 
+	    max-width: 450px; 
 	}  	
 }
 
@@ -67,29 +67,57 @@ $aniimation-duration:			1s;
 .picker-container{
 	border-radius:2px;
 	.container{
-		width: $container-width;
+/* 		width: $container-width;
  		height: $picker-container-height; 
-		border-radius:2px;
+ */		border-radius:2px;
 		overflow: hidden;
 		md-toolbar{
-			&.md-height{
-				height: 85px;
-				padding-left:10px;
+			&.md-height:not(.portrait){
+				padding: 20px 0 10px 0;
+				.year-header{
+					margin:10px;
+					font-size: 16px;
+				}
+				 .date-time-header{
+					font-size: 32px;
+					line-height: 8px;
+					font-weight: bold;
+					text-align: left;
+					margin:10px 0 15px 10px;
+				}
 			}
-			.md-toolbar-tools{
+			&.md-height{
+				padding: 20px 0 10px 0;
+				&.portrait{
+					height: 85px;
+					padding: 5px 0 10px 0;
+					.year-header{
+						margin:10px 0;
+						font-size: 16px;
+					}
+					 .date-time-header{
+						font-size: 32px;
+						line-height: 8px;
+						font-weight: bold;
+						text-align: left;
+					}
+
+				}
+			}				
+/* 			.md-toolbar-tools{
 				text-align: left;
-				padding:5px;	
+				padding:5px;
+				margin-top: 5px;	
 				& .date-time-header{				
 					font-size: 26px;
 					line-height: 8px;
 					font-weight: bold;
 					text-align: left;
-					padding-top:10px;										
 					&.date-display{
 
 					}
 				}
-			}
+			} */
 		}
 	}	
 }
@@ -98,7 +126,7 @@ $aniimation-duration:			1s;
 .date-picker{
 	
 	padding :0 3px;
-	height: 325px;
+//	height: 325px;
 	.year-container{
 		height: 325px;		
 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);
@@ -135,7 +163,9 @@ $aniimation-duration:			1s;
 			.md-button{
 				text-transform: capitalize;
 				font-weight: bold;				
-				&.md-icon-button{}
+				&.md-icon-button{
+					
+				}
 			}
 		}	
 		> .date-cell-header{
@@ -143,6 +173,7 @@ $aniimation-duration:			1s;
 			> .md-button{
 				&.md-icon-button{
 					opacity: 1;
+    				margin: 2px 0 2px 2px;					
 				}
 			}
 		}

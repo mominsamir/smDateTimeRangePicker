@@ -3,7 +3,7 @@
 
 'use strict';
 
-function DatePickerDir($timeout,picker){
+function DatePickerDir($timeout,picker,$mdMedia){
 	return {
 	  restrict : 'E',
       require: '^ngModel',
@@ -15,16 +15,16 @@ function DatePickerDir($timeout,picker){
 	      	format:"@",
 	      	mode:"@",	      	
 	      	startDay:"@",
-	      	closeOnSelect:"@"
+	      	closeOnSelect:"@",
+	      	weekStartDay:"@"
 	    },
-	    templateUrl:"date-picker.html",
+	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
-			console.log(picker.okLabel);
 			scope.okLabel = picker.okLabel;
 			scope.cancelLabel = picker.cancelLabel;			
 
-
+			scope.viewModeSmall = $mdMedia('xs');
 			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment(): ngModelCtrl.$viewValue ;
 
 			function setViewMode(mode){
@@ -100,7 +100,7 @@ function TimePickerDir1($timeout,picker){
 	      	startDay:"@",
 	      	closeOnSelect:"@"
 	    },
-	    templateUrl:"date-picker.html",
+	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 		    
@@ -173,7 +173,7 @@ function TimePickerDir1($timeout,picker){
 
 var app = angular.module('smDateTimeRangePicker');
 
-app.directive('smDatePicker',['$timeout','picker',DatePickerDir]);
+app.directive('smDatePicker',['$timeout','picker','$mdMedia',DatePickerDir]);
 app.directive('smTimePickern',['$timeout','picker',TimePickerDir1]);
 
 

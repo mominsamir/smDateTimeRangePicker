@@ -14,12 +14,13 @@ function Calender($timeout,picker){
 	      	format:"@",
 	      	mode:"@",
 	      	startView:"@",	      	
-	      	startDay:"@"
+	      	weekStartDay:"@"
 	    },
-	   	controller:["$scope","$timeout","picker",CalenderCtrl],
+	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"calender-date.html",
+	    templateUrl:"picker/calender-date.html",
 		link : function(scope,element,att,ctrls){
+
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
@@ -31,15 +32,18 @@ function Calender($timeout,picker){
 	}
 }
 
-var CalenderCtrl = function($scope,$timeout,picker){
+var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	var self  = this;
 
 	self.$scope = $scope;
 	self.$timeout = $timeout;
     self.picker = picker;
     self.dayHeader = self.picker.dayHeader;
-	self.initialDate = $scope.initialDate; 	//if calender to be  initiated with specific date 
-	self.startDay = angular.isUndefined($scope.startDay) || $scope.startDay==='' ? 'Sunday' : $scope.startDay ;	   	//if calender to be start on specific day default is sunday
+    //if calender to be  initiated with specific date       
+	self.initialDate = $scope.initialDate; 	
+    self.viewModeSmall = $mdMedia('xs');
+    //if calender to be start on specific day default is sunday
+	self.startDay = angular.isUndefined($scope.weekStartDay) || $scope.weekStartDay==='' ? 'Sunday' : $scope.weekStartDay ;	   	
 	self.minDate = $scope.minDate;			//Minimum date 
 	self.maxDate = $scope.maxDate;			//Maximum date 
 	self.mode = angular.isUndefined($scope.mode) ? 'DATE' : $scope.mode;
@@ -337,14 +341,13 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
                 +'              start-view="{{startView}}" '  
                 +'              data-min-date="minDate" '
                 +'              data-max-date="maxDate"  '
-                +'              format="{{format}}"  '
-                +'          	start-day="{{weekStartDay}}" > '
+                +'              data-format="{{format}}"  '
+                +'          	data-week-start-day="{{weekStartDay}}" > '
                 +'			</sm-date-picker>'
                 +'    	</div>'                
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
 
-        console.log(picker.massagePath)
 
         var inputPane = $element[0].querySelector('.sm-input-container');
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
@@ -632,7 +635,7 @@ var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smCalender',['$timeout','picker',Calender]);
 app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','$timeout','picker',DateTimePicker]);
-app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
+//app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
 
 app.provider('picker',[picker]);
 

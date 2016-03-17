@@ -1,12 +1,14 @@
 <div class="picker-container  md-whiteframe-15dp">
-	<md-content  class="container" >
-		<md-toolbar class="md-height">			
-			<div class="md-toolbar-tools">
-				<div layout="column" flex="100" class="">
-					<span flex ng-hide="mode==='time'" class="md-subhead">{{currentDate.format('YYYY')}}</span>
+	<md-content  layout-xs="column" layout="row"  class="container" >
+		<md-toolbar class="md-height" ng-class="{'portrait': viewModeSmall}"  layout="row" layout-xs="column">			
+			<div class="md-toolbar-tools" ng-show="viewModeSmall">
+				<div layout="column">
+					<div layout="row" class="md-subhead year-header" ng-hide="mode==='time'" > 
+						{{currentDate.format('YYYY')}}
+					</div>	
 					<div class="date-time-header">
 						<span flex class="date-display" ng-hide="mode==='time'">
-							{{currentDate.format('ddd, MMM DD')}}			
+							{{currentDate.format('ddd, MMM DD')}}	 	
 						</span>
 						<span  class="time-display" ng-show="mode==='date-time' || mode==='time'">
 							{{currentDate.format('HH:mm')}}			
@@ -14,37 +16,55 @@
 					</div>					
 				</div>
 			</div>	
+			<div ng-show="!viewModeSmall" style="width:130px;">
+				<div layout="column" >
+					<div layout="row" class="year-header" ng-hide="mode==='time'" > 
+						{{currentDate.format('YYYY')}}
+					</div>
+					<div layout="row" class="date-time-header" ng-hide="mode==='time'"> 
+						{{currentDate.format('ddd')}}
+					</div>
+					<div layout="row" class="date-time-header" ng-hide="mode==='time'"> 
+						{{currentDate.format('MMM, DD')}}											
+					</div>
+					<div layout="row" class="date-time-header" ng-show="mode==='date-time' || mode==='time'"> 
+						{{currentDate.format('HH:mm')}}			
+					</div>
+				</div>					
+			</div>				
 		</md-toolbar>
-		<div ng-show="view==='DATE'" >
-			<sm-calender 
-				ng-model="selectedDate"
-				id="{{fname}}Picker" 
-				data-mode="{{mode}}" 
-				data-min-date="minDate" 
-				data-max-date="maxDate" 
-				close-on-select="{{closeOnSelect}}"				 
-				data-format="{{format}}"  
-				data-start-day="{{weekStartDay}}">
-			</sm-calender>
-		</div>
-		<div ng-show="view==='HOUR'">
-			<sm-time
-				ng-model="selectedTime"
-				data-format="HH:mm">
-			</sm-time>
-		</div>		
-		<div class="action" layout="row" layout-align="end center" ng-hide="closeOnSelect && (mode!=='date-time' || mode!=='time')">
-				<div ng-show="mode==='date-time'">
-					<md-button class="md-icon-button" ng-show="view==='DATE'" ng-click="view='HOUR'">
-						<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>
-					</md-button>				
-					<md-button class="md-icon-button" ng-show="view==='HOUR'" ng-click="view='DATE'">
-						<md-icon md-font-icon="material-icons md-primary">date_range</md-icon>
-					</md-button>
-				</div>												
-				<span flex></span>
-				<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancelLabel}}</md-button>
-				<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>
+		<div layout="column" class="picker-container" >
+			<div ng-show="view==='DATE'" >
+				<sm-calender 
+					ng-model="selectedDate"
+					id="{{fname}}Picker" 
+					data-mode="{{mode}}" 
+					data-min-date="minDate" 
+					data-max-date="maxDate" 
+					close-on-select="{{closeOnSelect}}"				 
+					data-format="{{format}}"  
+					data-week-start-day="{{weekStartDay}}">
+				</sm-calender>
+			</div>
+			<div ng-show="view==='HOUR'">
+				<sm-time
+					ng-model="selectedTime"
+					data-format="HH:mm">
+				</sm-time>
+			</div>		
+			<div layout="row" ng-hide="closeOnSelect && (mode!=='date-time' || mode!=='time')">
+					<div ng-show="mode==='date-time'">
+						<md-button class="md-icon-button" ng-show="view==='DATE'" ng-click="view='HOUR'">
+							<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>
+						</md-button>				
+						<md-button class="md-icon-button" ng-show="view==='HOUR'" ng-click="view='DATE'">
+							<md-icon md-font-icon="material-icons md-primary">date_range</md-icon>
+						</md-button>
+					</div>												
+					<span flex></span>
+					<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancelLabel}}</md-button>
+					<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>
+			</div>
 		</div>
 	</md-content>	
 </div>
