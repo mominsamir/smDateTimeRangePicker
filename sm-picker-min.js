@@ -284,7 +284,7 @@ function Calender($timeout,picker){
 	    },
 	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-date.html",
+	    templateUrl:"calender-date.html",
 		link : function(scope,element,att,ctrls){
 
 			var ngModelCtrl = ctrls[0];
@@ -921,7 +921,7 @@ function TimePicker(){
 	    },
 	   	controller:["$scope","$timeout",TimePickerCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-hour.html",
+	    templateUrl:"calender-hour.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
@@ -1055,7 +1055,7 @@ function DatePickerDir($timeout,picker,$mdMedia){
 	      	closeOnSelect:"@",
 	      	weekStartDay:"@"
 	    },
-	    templateUrl:"picker/date-picker.html",
+	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 			scope.okLabel = picker.okLabel;
@@ -1340,7 +1340,7 @@ function smRangePicker (picker){
     },
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
-    templateUrl : 'picker/range-picker.html',
+    templateUrl : 'range-picker.html',
     link : function(scope,element,att,ctrls){
       var ngModelCtrl = ctrls[0];
       var calCtrl = ctrls[1];
