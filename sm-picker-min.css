@@ -15,7 +15,7 @@
 .sm-calender-pane.show {
   transition: all 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
   max-height: 500px;
-  max-width: 310px;
+  max-width: 450px;
 }
 
 @media only screen and (min-device-width: 0px) and (max-device-width: 960px) {
@@ -35,30 +35,62 @@
   border-radius: 2px;
 }
 .picker-container .container {
-  width: 300px;
-  height: 465px;
+  /* 		width: $container-width;
+   		height: $picker-container-height; 
+   */
   border-radius: 2px;
   overflow: hidden;
 }
-.picker-container .container md-toolbar.md-height {
-  height: 85px;
-  padding-left: 10px;
+.picker-container .container md-toolbar {
+  /* 			.md-toolbar-tools{
+  				text-align: left;
+  				padding:5px;
+  				margin-top: 5px;	
+  				& .date-time-header{				
+  					font-size: 26px;
+  					line-height: 8px;
+  					font-weight: bold;
+  					text-align: left;
+  					&.date-display{
+  
+  					}
+  				}
+  			} */
 }
-.picker-container .container md-toolbar .md-toolbar-tools {
-  text-align: left;
-  padding: 5px;
+.picker-container .container md-toolbar.md-height:not(.portrait) {
+  padding: 20px 0 10px 0;
 }
-.picker-container .container md-toolbar .md-toolbar-tools .date-time-header {
-  font-size: 26px;
+.picker-container .container md-toolbar.md-height:not(.portrait) .year-header {
+  margin: 10px;
+  font-size: 16px;
+}
+.picker-container .container md-toolbar.md-height:not(.portrait) .date-time-header {
+  font-size: 32px;
   line-height: 8px;
   font-weight: bold;
   text-align: left;
-  padding-top: 10px;
+  margin: 10px 0 15px 10px;
+}
+.picker-container .container md-toolbar.md-height {
+  padding: 20px 0 10px 0;
+}
+.picker-container .container md-toolbar.md-height.portrait {
+  height: 85px;
+  padding: 5px 0 10px 0;
+}
+.picker-container .container md-toolbar.md-height.portrait .year-header {
+  margin: 10px 0;
+  font-size: 16px;
+}
+.picker-container .container md-toolbar.md-height.portrait .date-time-header {
+  font-size: 32px;
+  line-height: 8px;
+  font-weight: bold;
+  text-align: left;
 }
 
 .date-picker {
   padding: 0 3px;
-  height: 325px;
 }
 .date-picker .year-container {
   height: 325px;
@@ -102,6 +134,7 @@
 }
 .date-picker .date-container > .date-cell-header > .md-button.md-icon-button {
   opacity: 1;
+  margin: 2px 0 2px 2px;
 }
 .date-picker .date-container .date-cell-row .md-button.md-icon-button {
   margin: 2px 0 2px 2px;
