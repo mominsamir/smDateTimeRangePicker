@@ -1,0 +1,185 @@
+/* menu css  */
+$background-color:#106CC8;
+$font-color: rgba(255,255,255,1);
+$font-icon-color: rgba(255,255,255,0.7);
+$profile-height:200px;
+$border-top-color:#267ED5;
+
+md-sidenav {
+  background-color:$background-color;
+}
+
+.bg-profile {
+    height: $profile-height;
+    background-color: $background-color;
+    background: linear-gradient(#185694, $background-color);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #185694), color-stop(1, $background-color));
+    background: -webkit-linear-gradient(top, #185694 0%, $background-color 100%);
+    background: -moz-linear-gradient(top, #185694 0%, $background-color 100%);
+    background: linear-gradient(top, #185694 0%, $background-color 100%);
+    border-bottom: 1px solid $border-top-color;
+    flex-shrink: 0;
+    z-index: 2;
+ }
+
+
+.profile{
+    color: $font-color;
+    & .profile-img{
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid rgba(6,55,102,.5);
+    margin-top: 15px;
+    width: auto;
+    transform-origin: 50% 0;
+    transform: scale(1.1); 
+   }
+   & .profile-name{
+      font-size: 24px;
+      text-align: center;
+      padding : 5px;
+   }
+   & .material-icons{
+      outline: none;
+      cursor: pointer;      
+      -webkit-transition: -webkit-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out;    
+   }
+   & .show{
+      font-size: 24px;
+      transform: rotateZ(180deg);
+      -webkit-transform: rotateZ(180deg);        
+    }
+   & .profile-details{
+      text-align: center;
+      transition: height 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94)      
+    }
+   & .detail-show{
+      height: 100%;
+      overflow: hidden;
+      position: relative;      
+      transition: height 1s cubic-bezier(0.17, 0.04, 0.03, 0.94)
+   } 
+   &.profile-email{
+        color: $font-color;
+        text-align: center;
+        font-size: 13px;
+        padding : 2px 5px 0px 5px;
+    }
+}
+
+.side-menu, .side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  font-size: 16px;
+}
+
+$menu-height : 48px;
+
+.side-menu .md-button {
+  background-color:$background-color;
+  border-radius: 0;
+  color: $font-color;
+  cursor: pointer;
+  font-size: 16px; 
+  line-height: $menu-height;
+  margin: 0;
+  max-height: $menu-height;
+  overflow: hidden;
+  padding-left: 0px;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  width: 100%;
+  md-icon{
+    padding: 0px 16px;
+    color:$font-icon-color;
+  }
+
+}
+
+
+
+.side-menu .menu-toggle-list a.md-button {
+  display: block;
+  font-weight:bold;
+  padding: 0 16px 0 32px;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
+  height: 48px;
+}
+
+.side-menu .menu-toggle-list .md-button {
+  display: block;
+  padding: 0 16px 0 60px;
+  text-transform: none;
+}
+.side-menu > li {
+  border-top: 1px solid $border-top-color;/* rgba(0, 0, 0, 0.12) */;
+
+} 
+.md-button-toggle .md-toggle-icon.toggled {
+  transform: rotateZ(180deg);
+  -webkit-transform: rotateZ(180deg);
+}
+
+.side-menu .md-button-toggle .md-toggle-icon {
+  background-size: 100% auto;
+  float:right;
+  display: inline-block;
+  margin: auto 0 auto 0;
+  color: $font-icon-color;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+}
+
+.menu-toggle-list.ng-hide {
+  max-height: 0;
+}
+
+
+.side-menu .md-button:hover {
+  background-color:#267ED5;
+}
+
+.menu-toggle-list {
+  background: $background-color;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -webkit-transition-property: max-height;
+  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  -moz-transition-property: max-height;
+  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: max-height;
+}
+
+
+.side-menu menu-toggle span{
+   padding-top: 12px; 
+  padding-bottom: 12px; 
+}
+
+.toogle {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+.toogle.ng-hide {
+  opacity:0;
+}
+
+.header-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+

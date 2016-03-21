@@ -1,0 +1,35 @@
+<form name="empForm">
+<md-content  class="md-whiteframe-z2" layout-padding>
+    <div layout="row">
+            View 12 Hour Mode Time    
+    </div>
+    <div  layout="row"> 
+                <sm-time-picker-new 
+                    fname="Date of Pay" 
+                    lable="Date of Pay"
+                    form="empForm"
+                    value="vm.employee.timeselect12" 
+                    flex-size="50"
+                    mode="time"                         
+                    is-required="true" 
+                    format="hh:mm a">
+                </sm-time-picker-new>        
+        </div>   
+    <div layout="row">
+            View 24 Hour Mode Time    
+    </div>
+    <div  layout="row"> 
+                <sm-time-picker-new 
+                    fname="Date of Pay" 
+                    lable="Date of Pay"
+                    form="empForm"
+                    value="vm.employee.timeselect24" 
+                    flex-size="50"
+                    mode="time"                         
+                    is-required="true" 
+                    format="HH:mm">
+                </sm-time-picker-new>        
+        </div>   
+
+    </md-content>
+</form>

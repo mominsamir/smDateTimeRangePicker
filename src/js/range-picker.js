@@ -140,7 +140,6 @@ var RangePickerCtrl = function($scope,picker){
   self.endDate = moment();
   console.log(picker.rangeDivider );
   self.divider = angular.isUndefined(self.scope.divider) || self.scope.divider ===''? picker.rangeDivider : $scope.divider;
-  console.log(self.divider);  
   self.okLabel = picker.okLabel;
   self.cancelLabel = picker.cancelLabel;
   self.rangeDefaultList = picker.rangeDefaultList;

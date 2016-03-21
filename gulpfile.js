@@ -12,7 +12,18 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     path = require('path'),
     clean = require('gulp-clean'),
+    connect = require('gulp-connect')    ,
     htmlToJs = require('gulp-html-to-js');
+
+
+
+
+gulp.task('connect', function () {
+  connect.server({
+    root: './',
+    port: 8888
+  });
+});
 
 
 var outputFolder = 'dist/';
@@ -47,6 +58,20 @@ gulp.task('script-uglify', function() {
 
 
 //scss minify task
+gulp.task('demo-scss', function() {
+    return gulp.src(['demo/styles/main.scss'])
+        .pipe(plumber(plumberErrorHandler))
+        .pipe(compass({
+              config_file: './config.rb',
+              sass: 'demo/styles'
+            }))
+        //.pipe(rename({ basename: "main"}))        
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+        .pipe(gulp.dest('demo/styles/'));
+});
+
+
+//scss minify task
 gulp.task('scss', function() {
     return gulp.src(['src/sass/date_picker.scss'])
         .pipe(plumber(plumberErrorHandler))
@@ -54,7 +79,7 @@ gulp.task('scss', function() {
               config_file: './config.rb',
               sass: 'src/sass'
             }))
-        .pipe(rename({  basename: "picker",
+        .pipe(rename({  basename: "main",
                         prefix: "sm-", 
                         suffix: '-min' }))        
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
@@ -72,3 +97,7 @@ gulp.task('htmlToString', function() {
 
 
 gulp.task('default', ['clean','script-uglify','scss']);
+
+gulp.task('start',
+  ['demo-scss', 'connect']
+);
