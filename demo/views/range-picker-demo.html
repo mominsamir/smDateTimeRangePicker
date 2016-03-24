@@ -4,7 +4,27 @@
     	<h2 class="md-title">Demo For Date Range Picker</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
-	                fname="Date of Pay" 
+	        md-no-float 
+	        class="md-block" 
+			fname="dayOfPay" 
+			lable="date range"
+			form="empForm"
+			value="vm.employee.dateOfPay" 
+			is-required="{{true}}" 
+			format="DD-MM-YYYY"
+			mode="date-time" 
+			week-start-day="Monday"
+			flex="100">
+	        </sm-range-picker-input>
+	    </div>
+
+    </div>
+</md-content>    	
+</form>
+
+
+			
+<!-- 	                fname="Date of Pay" 
 	                lable="Date of Pay"
 	                form="test"
 	                min-date="11-10-2015" 
@@ -13,10 +33,4 @@
 	                is-required="{{true}}" 
 	                format="DD/MM/YYYY"
 	                divider=":"
-	                week-start-day="Sunday">
-	        </sm-range-picker-input>
-	    </div>
-
-    </div>
-</md-content>    	
-</form>
+	                week-start-day="Sunday" -->
