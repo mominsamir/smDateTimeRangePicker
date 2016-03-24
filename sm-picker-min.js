@@ -119,6 +119,7 @@ function run($templateCache){
 '					<div layout="row" ng-repeat="w in vm.dateCells" >'+
 '						<md-button'+
 '							ng-repeat="d in w"'+
+'             aria-label="d.date" ' +
 '							class="md-icon-button"'+
 '							ng-click="vm.selectDate(d.date,d.isDisabledDate)"'+
 '							ng-disabled="d.isDisabledDate"'+
@@ -190,14 +191,16 @@ function run($templateCache){
 '		</div>'+
 '		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >'+
 '			<sm-calender '+
-'				week-start-day="Sunday">'+
+'				week-start-day="Sunday"'+
+'       		format="{{vm.format}}">'+
 '			</sm-calender>'+
 '		</div>'+
 '		<div ng-if="vm.selectedTabIndex===1" ng-model="vm.endDate" >'+
 '			<sm-calender '+
 '				initial-date="{{vm.startDate.format(format)}}"'+
 '				min-date="vm.startDate"'+
-'				week-start-day="Sunday">'+
+'				week-start-day="Sunday"'+
+'       format="{{vm.format}}">'+
 '			</sm-calender>'+
 '		</div>								'+
 '	</div>'+
@@ -1360,7 +1363,6 @@ var RangePickerCtrl = function($scope,picker){
   self.endDate = moment();
   console.log(picker.rangeDivider );
   self.divider = angular.isUndefined(self.scope.divider) || self.scope.divider ===''? picker.rangeDivider : $scope.divider;
-  console.log(self.divider);  
   self.okLabel = picker.okLabel;
   self.cancelLabel = picker.cancelLabel;
   self.rangeDefaultList = picker.rangeDefaultList;
