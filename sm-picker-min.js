@@ -192,7 +192,7 @@ function run($templateCache){
 '		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >'+
 '			<sm-calender '+
 '				week-start-day="Sunday"'+
-'       		format="{{vm.format}}">'+
+'       format="{{vm.format}}">'+
 '			</sm-calender>'+
 '		</div>'+
 '		<div ng-if="vm.selectedTabIndex===1" ng-model="vm.endDate" >'+
