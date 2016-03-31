@@ -41,8 +41,7 @@ function run($templateCache){
 '     </div>'+
 '   </div>'+
 ' </md-content> '+
-'</div>'+
-;
+'</div>';
 
     var calenderdatehtml = '<div  class="date-picker">'+
 '     <div ng-show="vm.view===\'YEAR_MONTH\'" ng-class="{\'year-container\' : vm.view===\'YEAR_MONTH\'}"> '+
@@ -105,8 +104,7 @@ function run($templateCache){
 '         </div>'+
 '       </div>'+
 '     </div>'+
-'</div>'+
-;
+'</div>';
 
     var calenderhourhtml = '<div  class="time-picker" layout="row" layout-align="center center">'+
 ' <div>'+
@@ -137,8 +135,7 @@ function run($templateCache){
 '     </md-virtual-repeat-container>         '+
 '   </div>  '+
 ' </div>'+
-'</div>'+
-;
+'</div>';
 
     var rangepickerhtml = '<md-content layout="column"  id="{{id}}" class="range-picker md-whiteframe-2dp" >'+
 '    <md-toolbar layout="row"  class="md-primary" >'+
@@ -181,8 +178,7 @@ function run($templateCache){
 '   <md-button type="button" class="md-primary" ng-click="vm.cancel()">{{vm.cancelLabel}}</md-button>           '+
 '   <md-button type="button" class="md-primary" ng-click="vm.dateRangeSelected()">{{vm.okLabel}}</md-button>  '+
 ' </div>  '+
-'</md-content>'+
-;
+'</md-content>';
 
     var timePicker = '<div class="picker-container  md-whiteframe-15dp">'+
 ' <md-content  class="container" >'+
@@ -221,8 +217,7 @@ function run($templateCache){
 '       <md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>'+
 '   </div>'+
 ' </md-content> '+
-'</div>'+
-;
+'</div>';
 
     var datepickerServicehtml = '<md-dialog class="picker-container  md-whiteframe-15dp" aria-label="picker">'+
 ' <md-content  layout-xs="column" layout="row"  class="container" >'+
@@ -264,8 +259,7 @@ function run($templateCache){
 '     </div>'+
 '   </div>'+
 ' </md-content> '+
-'</md-dialog>'+
-;
+'</md-dialog>';
 	$templateCache.put('calender-date.html',calenderdatehtml);			
 	$templateCache.put('calender-hour.html',calenderhourhtml);			
 	$templateCache.put('date-picker.html',datepickerhtml);					
@@ -303,7 +297,7 @@ function Calender($timeout,picker){
 	    },
 	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-date.html",
+	    templateUrl:"calender-date.html",
 		link : function(scope,element,att,ctrls){
 
 			var ngModelCtrl = ctrls[0];
@@ -946,7 +940,7 @@ function TimePicker(){
 	    },
 	   	controller:["$scope","$timeout",TimePickerCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"picker/calender-hour.html",
+	    templateUrl:"calender-hour.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
@@ -1080,7 +1074,7 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 	      	closeOnSelect:"@",
 	      	weekStartDay:"@"
 	    },
-	    templateUrl:"picker/date-picker.html",
+	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 
 			setViewMode(scope.mode);
@@ -1169,7 +1163,7 @@ function TimePickerDir1($timeout,picker){
 	      	startDay:"@",
 	      	closeOnSelect:"@"
 	    },
-	    templateUrl:"picker/date-picker.html",
+	    templateUrl:"date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 		    
@@ -1323,7 +1317,7 @@ app.provider("$smDateTimePicker", function() {
                 bindToController: true,
                 clickOutsideToClose: true,
                 targetEvent: options.targetEvent,
-                templateUrl: "picker/date-picker-service.html",
+                templateUrl: "date-picker-service.html",
                 locals: {
                     initialDate: initialDate,
                     options: options
@@ -1474,7 +1468,7 @@ function smRangePicker (picker){
     },
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
-    templateUrl : 'picker/range-picker.html',
+    templateUrl : 'range-picker.html',
     link : function(scope,element,att,ctrls){
       console.log(scope.customToHome)
       var ngModelCtrl = ctrls[0];
