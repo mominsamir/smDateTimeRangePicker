@@ -3,6 +3,7 @@
 				<md-virtual-repeat-container id="year-container" class="year-md-repeat" md-top-index="vm.yearTopIndex">
 				      <div md-virtual-repeat="yr in vm.yearItems"  md-on-demand  class="repeated-item" flex>
 						<md-button class="md-button" 
+							aria-label="year"
 							ng-click="vm.changeYear(yr)" 							
 							ng-class="{'md-primary': yr === vm.currentDate.year(),
 										'md-primary md-raised' :yr ===vvm.currentDate.year(),
@@ -21,7 +22,7 @@
 							ng-click="vm.changePeriod('p')">
 								<md-icon md-font-icon="material-icons">keyboard_arrow_left</md-icon>					
 						</md-button>
-						<md-button class="md-button" ng-class="vm.moveCalenderAnimation" ng-click="vm.changeView('YEAR_MONTH');vm.showYear()">
+						<md-button class="md-button" ng-class="vm.moveCalenderAnimation" ng-click="vm.changeView('YEAR_MONTH')">
 							{{vm.monthList[vm.initialDate.month()]}}{{' '}}{{vm.initialDate.year()}}
 						</md-button>			
 						<md-button  

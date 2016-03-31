@@ -98,11 +98,12 @@ CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
 CalenderCtrl.prototype.init = function(){
 	var self = this;
-/*	self.buildYearCells();*/
 	self.buildDateCells();
 	self.buildDateCellHeader();
 	self.buildMonthCells();
 	self.setView()
+    self.showYear();
+
 
 };
 
@@ -251,6 +252,9 @@ CalenderCtrl.prototype.buildDateCellHeader = function(startFrom){
 CalenderCtrl.prototype.changeView = function(view){
 	var self = this;
 	self.view =view;
+    if(self.view==='YEAR_MONTH'){
+        self.showYear();
+    }
 }
 
 /*
@@ -637,7 +641,7 @@ var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smCalender',['$timeout','picker',Calender]);
 app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','$timeout','picker',DateTimePicker]);
-//app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
+app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
 
 app.provider('picker',[picker]);
 

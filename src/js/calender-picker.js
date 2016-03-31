@@ -20,19 +20,21 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 	    },
 	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
-			setViewMode(scope.mode)
+
+			setViewMode(scope.mode);
+
 			scope.okLabel = picker.okLabel;
 			scope.cancelLabel = picker.cancelLabel;			
 
+			scope.$mdMedia =$mdMedia;
 			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment(): ngModelCtrl.$viewValue ;
 			
-			scope.viewModeSmall = $mdMedia('xs');
-
- 			$window.addEventListener("resize", function(){
-				scope.viewModeSmall = $mdMedia('xs');
-			});
 			function setViewMode(mode){
 				switch(mode) {
+				    case 'date':
+				        scope.view = 'DATE';
+						scope.headerDispalyFormat = "ddd, MMM DD ";				        
+				        break;
 				    case 'date-time':
 						scope.view = 'DATE'
 						scope.headerDispalyFormat = "ddd, MMM DD HH:mm";			
@@ -42,6 +44,7 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 						scope.headerDispalyFormat = "HH:mm";
 				        break;
 				    default:
+						scope.headerDispalyFormat = "ddd, MMM DD ";
 				        scope.view = 'DATE';
 				}					
 			}

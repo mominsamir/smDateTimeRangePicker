@@ -9,6 +9,7 @@ function DatePickerServiceCtrl( $mdDialog, $mdMedia, $timeout){
     var self = this;
     self.currentDate = self.initialDate;
     self.view = 'DATE';
+    self.$mdMedia = $mdMedia;
 
     if(!angular.isUndefined(self.options) && (angular.isObject(self.options))){
         self.mode = isExist(self.options.mode,self.mode); 
@@ -19,9 +20,27 @@ function DatePickerServiceCtrl( $mdDialog, $mdMedia, $timeout){
         self.closeOnSelect =isExist(self.options.closeOnSelect,false);
     }
 
+    setViewMode(self.mode);
+
     function isExist(val,def){
-        console.log('opt Value ==>', val,'def value ==>',def);
         return angular.isUndefined(val)? def:val;
+    }
+
+
+    function setViewMode(mode){
+        switch(mode) {
+            case 'date':
+                self.headerDispalyFormat = "ddd, MMM DD ";                     
+            break;
+            case 'date-time':
+                self.headerDispalyFormat = "ddd, MMM DD HH:mm";            
+            break;
+            case 'time':
+                self.headerDispalyFormat = "HH:mm";
+            break;
+            default:
+                self.headerDispalyFormat = "ddd, MMM DD ";
+        }                   
     }
 
     self.closeDateTime = function(){

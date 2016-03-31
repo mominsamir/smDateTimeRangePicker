@@ -67,37 +67,36 @@ $aniimation-duration:			1s;
 .picker-container{
 	border-radius:2px;
 	.container{
-/* 		width: $container-width;
- 		height: $picker-container-height; 
- */		border-radius:2px;
+		border-radius:2px;
 		overflow: hidden;
 		md-toolbar{
-			&.md-height:not(.portrait){
+			word-wrap: break-word;			
+			&.md-height{
 				padding: 20px 0 10px 0;
-				.year-header{
-					margin:10px;
-					font-size: 16px;
-				}
-				 .date-time-header{
-					font-size: 32px;
-					line-height: 8px;
-					font-weight: bold;
-					text-align: left;
-					margin:10px 0 15px 10px;
+				&.landscape{
+					width : 130px;
+					.year-header{
+						margin:10px;
+						font-size: 16px;
+					}
+					 .date-time-header{
+						font-size: 28px;
+						font-weight: bold;
+						text-align: left;
+						margin:0px 0 15px 10px;
+					}
 				}
 			}
 			&.md-height{
-				padding: 20px 0 10px 0;
+				padding: 5px 10px;
 				&.portrait{
 					height: 85px;
-					padding: 5px 0 10px 0;
 					.year-header{
 						margin:10px 0;
 						font-size: 16px;
 					}
 					 .date-time-header{
 						font-size: 32px;
-						line-height: 8px;
 						font-weight: bold;
 						text-align: left;
 					}
