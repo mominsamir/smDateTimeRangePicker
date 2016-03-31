@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import '_date_picker.scss';
+
 @import '_side_menu.scss';
 /* @import '_time_picker.scss';
  */
 $body-bg : #e2e0e0;
-
 
 *{
   margin :0px;
@@ -13,17 +12,17 @@ $body-bg : #e2e0e0;
   font-family: 'Roboto', sans-serif;
 }
 
+
 .body-bg{
   background : $body-bg;
 }
-
-
 .md-sidenav-left{
   height:100vh;
   min-height: 100vh;
   overflow-y:auto;
   overflow-x:hidden;
 }
+
 
 .right-container{
   min-height:100vh;

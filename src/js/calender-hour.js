@@ -13,7 +13,7 @@ function TimePicker(){
 	    },
 	   	controller:["$scope","$timeout",TimePickerCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"calender-hour.html",
+	    templateUrl:"picker/calender-hour.html",
 		link : function(scope,element,att,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];

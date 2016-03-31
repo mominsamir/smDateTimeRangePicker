@@ -6,8 +6,8 @@ $range-picker-width:            310px;
 $picker-container-height:       465px;
 $container-height:              445px;
 $container-width:               300px;
-$date-cell-height:				40px;
-$date-cell-width:				40px;
+$date-cell-height:				30px;
+$date-cell-width:				30px;
 $date-cell-line-width:			40px;
 $calender-bg:					#fff;
 $bg-date-cell-selected:			#E0E0E0;
@@ -104,60 +104,44 @@ $aniimation-duration:			1s;
 
 				}
 			}				
-/* 			.md-toolbar-tools{
-				text-align: left;
-				padding:5px;
-				margin-top: 5px;	
-				& .date-time-header{				
-					font-size: 26px;
-					line-height: 8px;
-					font-weight: bold;
-					text-align: left;
-					&.date-display{
-
-					}
-				}
-			} */
 		}
 	}	
 }
 
 
 .date-picker{
-	
-	padding :0 3px;
-//	height: 325px;
+	width: 300px;	
 	.year-container{
-		height: 325px;		
+		width:300px;
 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);
-		margin-top: 40px;
+		margin-top: 20px;
 		.year-md-repeat{
-			height: 300px;
-			width:$container-width;
+			height: 245px;
 			.md-virtual-repeat-container{
 				text-align: center;
 				width: 240px;
-				height: 300px;
+				height: 239px;
 			}				
 			.repeated-item {
 				box-sizing: border-box;
-				height: 45px;
+				height: 35px;
 				margin: 0 100px;
 				.md-button{
+					height: 30px;
+					width: 30px;
 					outline: none;
 					cursor: pointer;
 					font-weight: bold;
-					font-size: 16px;
+					font-size: 14px;
 					text-align: center;							  
 				}
 				.selected-year{
-					font-size: 20px;
+					font-size: 18px;
 				}
 			}
 		}
 	}
 	.date-container{
-// 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);				
 		.navigation{
 			height: 40px;
 			.md-button{
@@ -180,7 +164,11 @@ $aniimation-duration:			1s;
 		.date-cell-row{
 			.md-button{
 				&.md-icon-button{
-    				margin: 2px 0 2px 2px;					
+					height: $date-cell-height;
+					width: $date-cell-width;
+					min-height: $date-cell-height;
+					padding:0px;
+					font-size: 13px;
 					&[disabled]{
 						cursor: default;
 						background-color: transparent;
@@ -194,79 +182,41 @@ $aniimation-duration:			1s;
 	}				   
 }
 
-.hour-picker{
-	.hour-container{
-		overflow-y: hidden;
-		max-height: 450px; /* approximate max height */
-		height: 325px;
-		width: 150px;
-		margin: 0 auto;
- 		animation: slideInUp 1s cubic-bezier(.06,.61,.04,1.03);		
-		.hour-header{
-			height: 24px;
-			text-align: center;
-			span{
-				color:grey;
-				font-size: 15px;
-				font-weight: bold;
-			}
-		}			
-		.hour-md-repeat{
-			float: left;					
-			height: 301px;
-			width: 70px;					
-			.md-virtual-repeat-container{
-				text-align: center;
-				height: $container-height;
-			}				
-			.repeated-item {
-				box-sizing: border-box;
-				padding-top: 10px;
-				text-align: center;			
-				height: 43px;					
-					span{
-						outline: none;
-						border-radius: 50%;
-						cursor: pointer;
-						font-weight: bold;
-						font-size: 20px;
-						text-align: center;
-					}
+.time-picker{
+	width: 300px;
+	.navigation{
+		height: 25px;
+		.md-button{
+			text-transform: capitalize;
+			font-weight: bold;
+			margin:0;				
+			&.md-icon-button{
+					
 			}
 		}
-		.minute-md-repeat{
-			float: right;
-			height: 301px;
-			width: 70px;					
-			.md-virtual-repeat-container{
-				text-align: center;
-				height: $container-height;
-			}				
-			.repeated-item {
-				box-sizing: border-box;
-				padding-top: 10px;
-				text-align: center;				
-				height: 43px;
-				span{
-					outline: none;
-					border-radius: 50%;
-					cursor: pointer;
-					font-weight: bold;
-					font-size: 20px;
-					text-align: center;
-					&.current{
-						border-color:$today-border-color;
-					}						  
-					&.selected{
-						color:$today-border-color;;
-					}						  							  
+	}
+	.time-md-repeat{
+		width: 70px;
+		height: 239px;
+		.repeated-item{
+			width: 34px;
+			margin:0 auto;
+			> .md-button{
+				margin: 2px;	
+				&.md-icon-button{
+					height: $date-cell-height;
+					width: $date-cell-width;
+					min-height: $date-cell-height;
+					padding:0px;
+					font-size: 13px;
 				}
-			}
-		}				
-	}				
+			}			
+		}
+	}		
+
 }
 .action{
-  height: 40px;
+  height: 30px;
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
@@ -286,7 +236,6 @@ $aniimation-duration:			1s;
 
 .range-picker{
 	width: $range-picker-width;
-	height: $range-picker-height;	
 	background-color:$calender-bg;
 	.header{
 		font-size:calc($font-size + 2);
@@ -301,14 +250,15 @@ $aniimation-duration:			1s;
 		}		
 	}
 	.pre-select{
-		height: 390px;
+		height: 307px;
 		.md-button{
-			padding:0;
+			padding:3px;
+			margin:0;
 		}
 	}
 	.custom-select{
-		height: 390px;
-		overflow: hidden;
+/* 		height: 390px;
+		overflow: hidden; */
 		&.show-calender{
 			>.tab-head{
 				height: 43px;

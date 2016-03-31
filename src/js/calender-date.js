@@ -18,7 +18,7 @@ function Calender($timeout,picker){
 	    },
 	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
-	    templateUrl:"calender-date.html",
+	    templateUrl:"picker/calender-date.html",
 		link : function(scope,element,att,ctrls){
 
 			var ngModelCtrl = ctrls[0];
@@ -383,7 +383,8 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
 
           cElement.removeClass('hide');
           if($mdMedia('sm') ||  $mdMedia('xs')){
-            calenderPane.style.left = (bodyRect.width-282)/2+'px';
+            console.log(bodyRect.width);
+            calenderPane.style.left = (bodyRect.width-300)/2+'px';
             calenderPane.style.top =  (bodyRect.height-450)/2+ 'px';
           }else{
             var rect = getVisibleViewPort(elementRect,bodyRect);
@@ -506,7 +507,8 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
 
           cElement.removeClass('hide');
           if($mdMedia('sm') ||  $mdMedia('xs')){
-            calenderPane.style.left = (bodyRect.width-282)/2+'px';
+            console.log(bodyRect.width);
+            calenderPane.style.left = (bodyRect.width-300)/2+'px';
             calenderPane.style.top =  (bodyRect.height-450)/2+ 'px';
           }else{
             var rect = getVisibleViewPort(elementRect,bodyRect);
