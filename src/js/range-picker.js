@@ -124,7 +124,7 @@ function smRangePicker (picker){
     },
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
-    templateUrl : 'picker/range-picker.html',
+    templateUrl : 'range-picker.html',
     link : function(scope,element,att,ctrls){
       console.log(scope.customToHome)
       var ngModelCtrl = ctrls[0];

@@ -41,8 +41,7 @@ function run($templateCache){
 '     </div>'+
 '   </div>'+
 ' </md-content> '+
-'</div>'+
-;
+'</div>';
 
     var calenderdatehtml = '<div  class="date-picker">'+
 '     <div ng-show="vm.view===\'YEAR_MONTH\'" ng-class="{\'year-container\' : vm.view===\'YEAR_MONTH\'}"> '+
@@ -105,8 +104,7 @@ function run($templateCache){
 '         </div>'+
 '       </div>'+
 '     </div>'+
-'</div>'+
-;
+'</div>';
 
     var calenderhourhtml = '<div  class="time-picker" layout="row" layout-align="center center">'+
 ' <div>'+
@@ -137,8 +135,7 @@ function run($templateCache){
 '     </md-virtual-repeat-container>         '+
 '   </div>  '+
 ' </div>'+
-'</div>'+
-;
+'</div>';
 
     var rangepickerhtml = '<md-content layout="column"  id="{{id}}" class="range-picker md-whiteframe-2dp" >'+
 '    <md-toolbar layout="row"  class="md-primary" >'+
@@ -181,8 +178,7 @@ function run($templateCache){
 '   <md-button type="button" class="md-primary" ng-click="vm.cancel()">{{vm.cancelLabel}}</md-button>           '+
 '   <md-button type="button" class="md-primary" ng-click="vm.dateRangeSelected()">{{vm.okLabel}}</md-button>  '+
 ' </div>  '+
-'</md-content>'+
-;
+'</md-content>';
 
     var timePicker = '<div class="picker-container  md-whiteframe-15dp">'+
 ' <md-content  class="container" >'+
@@ -221,8 +217,7 @@ function run($templateCache){
 '       <md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>'+
 '   </div>'+
 ' </md-content> '+
-'</div>'+
-;
+'</div>';
 
     var datepickerServicehtml = '<md-dialog class="picker-container  md-whiteframe-15dp" aria-label="picker">'+
 ' <md-content  layout-xs="column" layout="row"  class="container" >'+
@@ -264,8 +259,7 @@ function run($templateCache){
 '     </div>'+
 '   </div>'+
 ' </md-content> '+
-'</md-dialog>'+
-;
+'</md-dialog>';
 	$templateCache.put('calender-date.html',calenderdatehtml);			
 	$templateCache.put('calender-hour.html',calenderhourhtml);			
 	$templateCache.put('date-picker.html',datepickerhtml);					

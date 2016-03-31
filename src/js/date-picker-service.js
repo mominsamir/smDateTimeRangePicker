@@ -71,7 +71,7 @@ app.provider("$smDateTimePicker", function() {
                 bindToController: true,
                 clickOutsideToClose: true,
                 targetEvent: options.targetEvent,
-                templateUrl: "picker/date-picker-service.html",
+                templateUrl: "date-picker-service.html",
                 locals: {
                     initialDate: initialDate,
                     options: options
