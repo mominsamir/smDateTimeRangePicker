@@ -156,6 +156,7 @@ $aniimation-duration:			1s;
 			}
 		}
 	}
+	
 	.date-container{
 // 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);				
 		.navigation{
@@ -172,6 +173,10 @@ $aniimation-duration:			1s;
 			cursor: default;
 			> .md-button{
 				&.md-icon-button{
+					height: 30px;
+					width: 30px;
+					min-height: 30px;
+					padding:0;					
 					opacity: 1;
     				margin: 2px 0 2px 2px;					
 				}

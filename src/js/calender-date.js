@@ -98,11 +98,12 @@ CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
 CalenderCtrl.prototype.init = function(){
 	var self = this;
-/*	self.buildYearCells();*/
 	self.buildDateCells();
 	self.buildDateCellHeader();
 	self.buildMonthCells();
 	self.setView()
+    self.showYear();
+
 
 };
 
@@ -251,6 +252,9 @@ CalenderCtrl.prototype.buildDateCellHeader = function(startFrom){
 CalenderCtrl.prototype.changeView = function(view){
 	var self = this;
 	self.view =view;
+    if(self.view==='YEAR_MONTH'){
+        self.showYear();
+    }
 }
 
 /*
@@ -383,7 +387,8 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
 
           cElement.removeClass('hide');
           if($mdMedia('sm') ||  $mdMedia('xs')){
-            calenderPane.style.left = (bodyRect.width-282)/2+'px';
+            console.log(bodyRect.width);
+            calenderPane.style.left = (bodyRect.width-300)/2+'px';
             calenderPane.style.top =  (bodyRect.height-450)/2+ 'px';
           }else{
             var rect = getVisibleViewPort(elementRect,bodyRect);
@@ -506,7 +511,8 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
 
           cElement.removeClass('hide');
           if($mdMedia('sm') ||  $mdMedia('xs')){
-            calenderPane.style.left = (bodyRect.width-282)/2+'px';
+            console.log(bodyRect.width);
+            calenderPane.style.left = (bodyRect.width-300)/2+'px';
             calenderPane.style.top =  (bodyRect.height-450)/2+ 'px';
           }else{
             var rect = getVisibleViewPort(elementRect,bodyRect);
@@ -635,7 +641,7 @@ var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smCalender',['$timeout','picker',Calender]);
 app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','$timeout','picker',DateTimePicker]);
-//app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
+app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
 
 app.provider('picker',[picker]);
 

@@ -13,14 +13,20 @@ var gulp = require('gulp'),
     path = require('path'),
     clean = require('gulp-clean'),
     connect = require('gulp-connect')    ,
-    htmlToJs = require('gulp-html-to-js');
+    htmlToJs = require('gulp-html-to-js'),
+    watch = require('gulp-watch');
 
+
+var basePath ={
+    index : "/demo/index.html",
+    demo_js : "demo/scripts/**/*.js"
+}
 
 
 
 gulp.task('connect', function () {
   connect.server({
-    root: './',
+    root: '/demo',
     port: 8888
   });
 });
@@ -56,10 +62,8 @@ gulp.task('script-uglify', function() {
         .pipe(gulp.dest(outputFolder));
 });
 
-
-//scss minify task
-gulp.task('demo-scss', function() {
-    return gulp.src(['demo/styles/main.scss'])
+function demoScss() {
+    return function(){ gulp.src(['demo/styles/*.scss'])
         .pipe(plumber(plumberErrorHandler))
         .pipe(compass({
               config_file: './config.rb',
@@ -68,12 +72,16 @@ gulp.task('demo-scss', function() {
         //.pipe(rename({ basename: "main"}))        
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(gulp.dest('demo/styles/'));
-});
+    }
+}
+
+//scss minify task
+gulp.task('demo-scss', demoScss());
 
 
 //scss minify task
 gulp.task('scss', function() {
-    return gulp.src(['src/sass/date_picker.scss'])
+    return gulp.src(['src/sass/*.scss',])
         .pipe(plumber(plumberErrorHandler))
         .pipe(compass({
               config_file: './config.rb',
@@ -87,17 +95,15 @@ gulp.task('scss', function() {
 });
 
 
-// With concatenation. 
-// run only when template changes and update app run block manually.
-gulp.task('htmlToString', function() {
-  return gulp.src('src/template/*.html')
-    .pipe(htmlToJs({concat: 'views.js'}))
-    .pipe(gulp.dest(outputFolder));
+gulp.task('watch',function(){
+    return gulp.watch(['demo/styles/*.scss'],['demo-scss']);
+
 });
+
 
 
 gulp.task('default', ['clean','script-uglify','scss']);
 
 gulp.task('start',
-  ['demo-scss', 'connect']
+  ['demo-scss', 'connect','watch']
 );
