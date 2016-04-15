@@ -1,0 +1,42 @@
+<md-content layout="column"  id="{{id}}" class="range-picker md-whiteframe-2dp" >
+    <md-toolbar layout="row"  class="md-primary" >
+      	<div class="md-toolbar-tools"  layout-align="space-around center">
+			<div  class="date-display"><span>{{vm.startDate.format(vm.format)}}</span></div>
+			<div   class="date-display"><span>{{vm.endDate.format(vm.format)}}</span></div>
+		</div>
+	</md-toolbar>
+	<div  layout="column" class="pre-select"  role="button" ng-show="!vm.showCustom">
+		<md-button  ng-class="{'md-primary': vm.clickedButton===1}" ng-click="vm.preDefineDate(1)">{{vm.rangeDefaultList[0]}}</md-button>
+		<md-button ng-class="{'md-primary': vm.clickedButton===2}" ng-click="vm.preDefineDate(2)">{{vm.rangeDefaultList[1]}}</md-button>		
+		<md-button ng-class="{'md-primary': vm.clickedButton===3}"  ng-click="vm.preDefineDate(3)">{{vm.rangeDefaultList[2]}}</md-button>
+		<md-button ng-class="{'md-primary': vm.clickedButton===4}"  ng-click="vm.preDefineDate(4)">{{vm.rangeDefaultList[3]}}</md-button>
+		<md-button ng-class="{'md-primary': vm.clickedButton===5}"  ng-click="vm.preDefineDate(5)">{{vm.rangeDefaultList[4]}}</md-button>	
+		<md-button ng-class="{'md-primary': vm.clickedButton===8}" ng-click="vm.preDefineDate(8)">{{vm.rangeDefaultList[5]}}</md-button>		
+		<md-button ng-class="{'md-primary': vm.clickedButton===6}"  ng-click="vm.preDefineDate(6)">{{vm.rangeDefaultList[6]}}</md-button>	
+		<md-button ng-class="{'md-primary': vm.clickedButton===7}"  ng-click="vm.preDefineDate(7)">{{vm.rangeDefaultList[7]}}</md-button>
+	</div>
+	<div layout="column" layout-sm="column" class="custom-select" flex ng-show="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
+		<div layout="row"   class="tab-head">
+			<span layout="column" class="md-ink-ripple" ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>
+			<span layout="column" class="md-ink-ripple" ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>			
+		</div>
+		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >
+			<sm-calender 
+				week-start-day="{{weekStartDay}}"
+				format="{{format}}">
+			</sm-calender>
+		</div>
+		<div ng-if="vm.selectedTabIndex===1" ng-model="vm.endDate" >
+			<sm-calender 
+				format="{{format}}"
+				initial-date="{{vm.startDate.format(format)}}"
+				min-date="vm.startDate"
+				week-start-day="{{weekStartDay}}">
+			</sm-calender>
+		</div>								
+	</div>
+	<div layout="row" layout-align="end center">
+		<md-button type="button" class="md-primary" ng-click="vm.cancel()">{{vm.cancelLabel}}</md-button>						
+		<md-button type="button" class="md-primary" ng-click="vm.dateRangeSelected()">{{vm.okLabel}}</md-button>	
+	</div>	
+</md-content>
