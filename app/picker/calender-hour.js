@@ -102,18 +102,18 @@ TimePickerCtrl.prototype.selectDate = function(d,isDisabled){
 TimePickerCtrl.prototype.setHour = function(h){
 	var self = this;
 	self.currentDate.hour(h);
-	self.setNgModelValue(self.currentDate.format(self.format));	
+	self.setNgModelValue(self.currentDate);	
 }
 
 TimePickerCtrl.prototype.setMinute = function(m){
 	var self = this;
 	self.currentDate.minute(m);
-	self.setNgModelValue(self.currentDate.format(self.format));		
+	self.setNgModelValue(self.currentDate);		
 }
 
 TimePickerCtrl.prototype.selectedDateTime = function(){
 	var self = this;
-	self.setNgModelValue(self.currentDate.format(self.format));
+	self.setNgModelValue(self.currentDate);
 	if(self.mode === 'time') 
 		self.view='HOUR' 
 	else 

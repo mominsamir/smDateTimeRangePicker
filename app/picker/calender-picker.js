@@ -57,8 +57,7 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 						scope.selectedDate =date;
 					}
 					if(!angular.isUndefined(scope.selectedTime)){	
-						var timeSplit = scope.selectedTime.split(':');
-						date.hour(timeSplit[0]).minute(timeSplit[1]);
+						date.hour(scope.selectedTime.hour()).minute(scope.selectedTime.minute());
 					}
 					scope.currentDate =scope.selectedDate;
 					ngModelCtrl.$setViewValue(date.format(scope.format));
@@ -75,9 +74,8 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 					date = moment();
 					scope.selectedDate =date;
 				}
-				if(!angular.isUndefined(scope.selectedTime)){	
-					var timeSplit = scope.selectedTime.split(':');
-					date.hour(timeSplit[0]).minute(timeSplit[1]);
+				if(!angular.isUndefined(scope.selectedTime)){
+					date.hour(scope.selectedTime.hour()).minute(scope.selectedTime.minute());
 				}
 				scope.currentDate =scope.selectedDate;
 				ngModelCtrl.$setViewValue(date.format(scope.format));

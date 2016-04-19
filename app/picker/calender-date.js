@@ -328,7 +328,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
 	    closeOnSelect:"@"
       },
       template: '  <md-input-container>'
-                +'    <label for="{{fname}}">{{lable }}</label>'
+                +'    <label for="{{fname}}" ng-if="noFloat">{{lable }}</label>'
                 +'    <input name="{{fname}}" ng-model="value" ng-readonly="true"'
                 +'             type="text" placeholde="{{lable}}"'
                 +'             aria-label="{{fname}}" data-ng-required="isRequired" ng-disabled="disable"'
@@ -357,6 +357,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
         var cElement = angular.element(calenderPane);
 
+        scope.noFloat = 'no-float' in attr;
 
         scope.ngMassagedTempaltePath =picker.massagePath;
         // check if Pre defined format is supplied
@@ -593,7 +594,7 @@ function picker(){
             'This Quarter',
             'Year To Date',
             'This Year', 
-            'Custome Range'];
+            'Custom Range'];
 
     var rangeCustomStartEnd =['Start Date','End Date'];            
 
