@@ -34,7 +34,7 @@
 						</md-button>				
 				</div>			
 				<div layout="row" class="date-cell-header">
-					<md-button class="md-icon-button" ng-disabled="true" ng-repeat="dHead in vm.dateCellHeader">
+					<md-button class="md-icon-button" md-autofocus ng-disabled="true" ng-repeat="dHead in vm.dateCellHeader">
 						{{dHead[vm.dayHeader]}}
 					</md-button>
 				</div>		
@@ -50,7 +50,7 @@
 							class="md-icon-button"
 							ng-click="vm.selectDate(d.date,d.isDisabledDate)"
 							ng-disabled="d.isDisabledDate"
-							ng-class="{'md-primary' : d.today,
+							ng-class="{'md-primary sm-today' : d.today,
 								'active':d.isCurrentMonth,
 								'md-primary md-raised selected' :d.date.isSame(vm.currentDate),
 								'disabled':d.isDisabledDate}">
