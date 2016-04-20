@@ -307,7 +307,7 @@ CalenderCtrl.prototype.closeDateTime = function(){
 
 
 
-function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
+function DateTimePicker($mdUtil,$mdMedia,$document,picker){
     return {
       restrict : 'E',
       replace:true,
@@ -327,12 +327,12 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
         form : '=',
 	    closeOnSelect:"@"
       },
-      template: '  <md-input-container>'
-                +'    <label for="{{fname}}" ng-if="noFloat">{{lable }}</label>'
-                +'    <input name="{{fname}}" ng-model="value" ng-readonly="true"'
+      template: '  <md-input-container md-no-float>'
+                +'    <label for="{{fname}}" >{{lable }}</label>'
+                +'    <input name="{{fname}}" ng-model="value" '
                 +'             type="text" placeholde="{{lable}}"'
-                +'             aria-label="{{fname}}" data-ng-required="isRequired" ng-disabled="disable"'
-                +'             ng-focus="show()" server-error class="sm-input-container">'
+                +'             aria-label="{{fname}}" ng-focus="show()" data-ng-required="isRequired" ng-disabled="disable"'
+                +'              server-error class="sm-input-container">'
                 +'    <div ng-messages="form[fname].$error" ng-if="form[fname].$touched">'
                 +'    		<div ng-messages-include="{{ngMassagedTempaltePath}}"></div>'
                 +'    </div>'
@@ -357,7 +357,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
         var cElement = angular.element(calenderPane);
 
-        scope.noFloat = 'no-float' in attr;
+        scope.noFloat = 'noFloat' in attr;
 
         scope.ngMassagedTempaltePath =picker.massagePath;
         // check if Pre defined format is supplied
@@ -401,6 +401,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
           document.body.appendChild(calenderPane);
           $mdUtil.disableScrollAround(calenderPane);
           cElement.addClass('show');
+/*          calenderPane.querySelector('.sm-today').focus();*/
         }
 
         // calculate visible port to display calender
@@ -420,11 +421,10 @@ function DateTimePicker($mdUtil,$mdMedia,$document,$timeout,picker){
         }
 
         function hideElement(){
-			cElement.addClass('hide-animate');
+            cElement.addClass('hide-animate');
         	cElement.removeClass('show');
-          	 //this is only for animation
-            //calenderPane.parentNode.removeChild(calenderPane);          
             $mdUtil.enableScrolling();
+
         }
         //listen to emit for closing calender
         scope.$on('calender:close',function(){
@@ -454,7 +454,7 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
         form : '=',
 	    closeOnSelect:"@"
       },
-      template: '  <md-input-container  >'
+      template: '  <md-input-container >'
                 +'    <label for="{{fname}}">{{lable }}</label>'
                 +'    <input name="{{fname}}" ng-model="value" ng-readonly="true"'
                 +'             type="text" placeholde="{{lable}}"'
@@ -514,7 +514,6 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
 
           cElement.removeClass('hide');
           if($mdMedia('sm') ||  $mdMedia('xs')){
-            console.log(bodyRect.width);
             calenderPane.style.left = (bodyRect.width-300)/2+'px';
             calenderPane.style.top =  (bodyRect.height-450)/2+ 'px';
           }else{
@@ -660,7 +659,7 @@ function picker(){
 var app = angular.module('smDateTimeRangePicker',[]);
 
 app.directive('smCalender',['$timeout','picker',Calender]);
-app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','$timeout','picker',DateTimePicker]);
+app.directive('smDateTimePicker',['$mdUtil','$mdMedia','$document','picker',DateTimePicker]);
 app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
 
 app.provider('picker',[picker]);

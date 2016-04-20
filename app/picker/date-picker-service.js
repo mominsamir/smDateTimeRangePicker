@@ -5,7 +5,7 @@
 var app = angular.module('smDateTimeRangePicker');
 
 
-function DatePickerServiceCtrl( $mdDialog, $mdMedia, $timeout,$mdUtil){
+function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil){
     var self = this;
     self.currentDate = self.initialDate;
     self.view = 'DATE';
@@ -44,16 +44,31 @@ function DatePickerServiceCtrl( $mdDialog, $mdMedia, $timeout,$mdUtil){
         }                   
     }
 
+    $scope.$on('calender:date-selected',function(){
+        if(self.closeOnSelect && (self.mode!=='date-time' || self.mode!=='time')){        
+            if(angular.isUndefined(self.selectedDate)){
+             self.selectedDate= self.currentDate;   
+            }
+            removeMask();            
+            $mdDialog.hide(self.selectedDate.format(self.format));
+        }    
+    });
+
     self.closeDateTime = function(){
         $mdDialog.cancel();
+        removeMask();
     }
     self.selectedDateTime = function(){
         if(angular.isUndefined(self.selectedDate)){
          self.selectedDate= self.currentDate;   
         }
         $mdDialog.hide(self.selectedDate.format(self.format));
+        removeMask();
     }
 
+    function removeMask(){
+
+    }
 
 }
 
@@ -69,7 +84,7 @@ app.provider("smDateTimePicker", function() {
             if (!angular.isObject(options)) options = {};
             
             return $mdDialog.show({
-                controller:  ['$mdDialog', '$mdMedia', '$timeout','$mdUtil', DatePickerServiceCtrl],
+                controller:  ['$scope','$mdDialog', '$mdMedia', '$timeout','$mdUtil', DatePickerServiceCtrl],
                 controllerAs: 'vm',
                 bindToController: true,
                 clickOutsideToClose: true,

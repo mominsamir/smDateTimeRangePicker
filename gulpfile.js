@@ -2,12 +2,11 @@ var gulp = require('gulp'),
  sass = require('gulp-sass'),
  connect = require('gulp-connect'),
  watch = require('gulp-watch'),
- clean = require('gulp-clean'),
+ clean = require('del'),
  concat = require('gulp-concat'),
  rename = require('gulp-rename'),
  addStream = require('add-stream'),
  templateCache = require('gulp-angular-templatecache'),
- wiredep = require('wiredep').stream,
  replaceName = require('gulp-html-replace'),
  mainBowerFiles = require('main-bower-files'),
  order = require("gulp-order");
@@ -29,21 +28,6 @@ gulp.task('connect', function () {
     }    
   });
 });
-
-/*
-  not required as of now
-*/
-gulp.task('inject',function(){
-  var options = {
-    bowerJson :require("./bower.json"),
-    directory : '/bower_components'
-  }
-
- return gulp.src('app/index.html')
-    .pipe(wiredep())
-    .pipe(gulp.dest('dist/'));
-})
-
 
  gulp.task('replaceName', function() {
       gulp.src('app/index.html')
@@ -75,12 +59,6 @@ gulp.task('copyjs', function () {
     .pipe(connect.reload());
 });
 
-gulp.task('vendorJs', function(){  
-  gulp.src(mainBowerFiles('**/*.js'))
-//  .pipe(uglify())
-  .pipe(concat('vendor.min.js'))
-  .pipe(gulp.dest('dist/scripts/'));
-});
 
 gulp.task('styles', function() {
    gulp.src('app/styles/*.scss')
@@ -90,23 +68,40 @@ gulp.task('styles', function() {
     	.pipe(connect.reload());
 });
 
-gulp.task('vendorCss', function(){  
-  gulp.src(mainBowerFiles('**/*.css'))
+// build vendor js and styles
+
+gulp.task('vendorJs', function(){  
+
+  gulp.src(mainBowerFiles('**/*.js'))
 //  .pipe(uglify())
-  .pipe(concat('vendor.min.css'))
-  .pipe(gulp.dest('dist/styles/'));
+  .pipe(concat('vendor.min.js'))
+  .pipe(gulp.dest('dist/scripts/'));
+
+
 });
 
+
+gulp.task('vendorCss', function(){  
+  gulp.src(mainBowerFiles('**/*.css'))
+  .pipe(concat('vendor.min.css'))
+  .pipe(gulp.dest('dist/styles/'));
+
+});
+
+
+// watch task
 gulp.task('watch', function() {
     gulp.watch('app/**/*.html',['html']);
     gulp.watch('app/**/*.js',['copyjs']);
     gulp.watch('app/styles/*.scss',['styles']);        
 });
 
-gulp.task('clean',function(){
-return gulp.src('dist/*', {read: false})
-		.pipe(clean());
-})
+// clean task
+
+gulp.task('clean', function() {
+  return clean(['dist/**/*']);
+});
+
 
 
 
@@ -127,7 +122,6 @@ function prepareTemplates() {
       {
         module:'smDateTimeRangePicker',
         transformUrl: function(url) {
-          console.log('picker/'+url);
           return 'picker/'+url;
         }
   }));
@@ -152,15 +146,14 @@ gulp.task('pickerJs', function () {
     .pipe(gulp.dest('src/'));
 });
 
+gulp.task('cleanSrc', function() {
+  return clean(['src/']);
+});
 
-gulp.task('cleanSrc',function(){
-return gulp.src('src/*', {read: false})
-    .pipe(clean());
-})
 
 
 //Watch task
-gulp.task('default',['clean','copyjs','vendorJs','html','styles','vendorCss','watch','connect']);
+gulp.task('default',['clean','html','vendorCss','vendorJs','styles','copyjs','watch','connect']);
 
 gulp.task('build',['cleanSrc','pickerJs','stylePicker']);
  

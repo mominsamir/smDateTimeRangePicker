@@ -18,10 +18,9 @@
   "homepage": "https://github.com/mominsamir/smDateTimeRangePicker#readme",
   "devDependencies": {
     "add-stream": "^1.0.0",
-    "browserify": "^13.0.0",
+    "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
-    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^3.2.2",
     "gulp-html-replace": "^1.5.5",
@@ -30,8 +29,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-watch": "^4.3.5",
-    "main-bower-files": "^2.11.1",
-    "vinyl-source-stream": "^1.1.0",
-    "wiredep": "^4.0.0"
+    "main-bower-files": "^2.11.1"
   }
 }

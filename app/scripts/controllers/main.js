@@ -9,22 +9,47 @@
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
         vm.currentDate = moment();  
-        var o = {
+        var options = {
           mode : 'date-time',
           view : 'DATE',
           format : 'MM-DD-YYYY',
           minDate : '03-10-2016',
           maxDate : null,    
           weekStartDay :'Sunday',
-          closeOnSelect : false
+          closeOnSelect : true
         }
 
+        vm.currentDate1 = moment();  
+        var options1 = {
+          mode : 'date-time',
+          view : 'DATE',
+          format : 'MM-DD-YYYY',
+          minDate : '03-10-2016',
+          maxDate : null,    
+          weekStartDay :'Sunday'
+        }        
+
         vm.showCalander = function(ev){
-          o.targetEvent = ev;
-          smDateTimePicker(vm.currentDate,o).then(function(selectedDate) {
+          options.targetEvent = ev;
+          smDateTimePicker(vm.currentDate,options).then(function(selectedDate) {
             vm.currentDate = selectedDate;
+            var ele = document.getElementsByClassName("md-scroll-mask");
+            if(ele.length!==0){ 
+                angular.element(ele).remove();
+            }            
           });          
         }
+
+        vm.showCalander1 = function(ev){
+          options1.targetEvent = ev;
+          smDateTimePicker(vm.currentDate1,options1).then(function(selectedDate) {
+            vm.currentDate1 = selectedDate;
+            var ele = document.getElementsByClassName("md-scroll-mask");
+            if(ele.length!==0){ 
+                angular.element(ele).remove();
+            }            
+          });          
+        }        
 
         vm.logout = function(ev){
           var confirm = $mdDialog.confirm()
