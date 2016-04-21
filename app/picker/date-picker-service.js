@@ -5,12 +5,16 @@
 var app = angular.module('smDateTimeRangePicker');
 
 
-function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil){
+function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil,picker){
     var self = this;
     self.currentDate = self.initialDate;
     self.view = 'DATE';
     self.$mdMedia = $mdMedia;
     self.$mdUtil = $mdUtil;
+
+    self.okLabel = picker.okLabel;
+    self.cancelLabel = picker.cancelLabel;         
+
 
     if(!angular.isUndefined(self.options) && (angular.isObject(self.options))){
         self.mode = isExist(self.options.mode,self.mode); 
@@ -84,7 +88,7 @@ app.provider("smDateTimePicker", function() {
             if (!angular.isObject(options)) options = {};
             
             return $mdDialog.show({
-                controller:  ['$scope','$mdDialog', '$mdMedia', '$timeout','$mdUtil', DatePickerServiceCtrl],
+                controller:  ['$scope','$mdDialog', '$mdMedia', '$timeout','$mdUtil','picker', DatePickerServiceCtrl],
                 controllerAs: 'vm',
                 bindToController: true,
                 clickOutsideToClose: true,

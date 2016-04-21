@@ -21,6 +21,8 @@ angular
     pickerProvider.setMassagePath("error-messages");
 
     pickerProvider.setDayHeader('single');
+
+    pickerProvider.setOkLabel('Save');
     
     $urlRouterProvider.otherwise('/home');
 
