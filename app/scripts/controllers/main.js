@@ -1,6 +1,6 @@
 'use strict';
 
-     function MainCtrl($timeout, $mdSidenav, $mdUtil, $log,$state,smDateTimePicker) {
+     function MainCtrl($timeout, $mdSidenav, $mdUtil, $log,$state,$mdDialog,smDateTimePicker) {
         var vm = this;
         vm.minDate = moment().subtract(1,'M').format('MM-DD-YYYY');
         vm.maxDate = moment().add(1,'M').format('MM-DD-YYYY');
@@ -40,6 +40,8 @@
           });          
         }
 
+
+
         vm.showCalander1 = function(ev){
           options1.targetEvent = ev;
           smDateTimePicker(vm.currentDate1,options1).then(function(selectedDate) {
@@ -50,6 +52,16 @@
             }            
           });          
         }        
+
+        vm.showDailog = function(ev){
+          $mdDialog.show({
+            templateUrl: 'views/dailog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: false
+          });          
+        }
 
         vm.logout = function(ev){
           var confirm = $mdDialog.confirm()
@@ -94,5 +106,5 @@
 
 
 angular.module('demoApp')
-.controller('MainCtrl',['$timeout', '$mdSidenav', '$mdUtil', '$log','$state','smDateTimePicker',MainCtrl])
+.controller('MainCtrl',['$timeout', '$mdSidenav', '$mdUtil', '$log','$state', '$mdDialog','smDateTimePicker',MainCtrl])
 .controller('LeftCtrl', ['$timeout', '$mdSidenav', '$mdUtil', '$log',LeftCtrl]);

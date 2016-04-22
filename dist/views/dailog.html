@@ -1,0 +1,31 @@
+<md-dialog aria-label="Mango"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Date picker</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>date Picekr within md Dailog</h2>
+        <p>
+            <div  layout="row"> 
+            <sm-date-time-picker 
+                fname="field" 
+                lable="Date of Birth"
+                form="empForm" 
+                value="vm.employee.dateOfBirth" 
+                flex="50"
+                flex-sm="100"
+                flex-xs="100"                          
+                is-required="{{true}}" 
+                format="MM-DD-YYYY HH:mm"
+                mode="date-time" 
+                week-start-day="Monday">
+            </sm-date-time-picker>
+      </div>
+        </p>
+    </md-dialog-content>
+  </form>
+</md-dialog>
