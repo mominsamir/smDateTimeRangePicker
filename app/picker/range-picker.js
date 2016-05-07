@@ -24,7 +24,9 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
                 +'             type="text" placeholde="{{lable}}"'
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
                 +'             ng-focus="show()">'
-                +'    <sm-range-picker class="sm-calender-pane md-whiteframe-15dp" custom-to-home="{{customToHome}}"  week-start-day="{{weekStartDay}}" ng-model="value" divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
+                +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp">'                
+                +'    <sm-range-picker custom-to-home="{{customToHome}}"  week-start-day="{{weekStartDay}}" ng-model="value" divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
+                +'   </div> '  
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
 
@@ -47,14 +49,13 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         angular.element(inputPane).on('keydown', function (e) {
             if(e.which===9){
               hideElement();
-              //angular.element(inputPane).focus();
             }
         });
 
         scope.show= function(){
           var elementRect = inputPane.getBoundingClientRect();
           var bodyRect = document.body.getBoundingClientRect();
-          cElement.removeClass('hide');
+           cElement.removeClass('hide');
           if($mdMedia('sm') ||  $mdMedia('xs')){
             calenderPane.style.left = (bodyRect.width-296)/2+'px';
             calenderPane.style.top =  (bodyRect.height-450)/2+ 'px';

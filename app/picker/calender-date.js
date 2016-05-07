@@ -401,7 +401,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
           document.body.appendChild(calenderPane);
           $mdUtil.disableScrollAround(calenderPane);
           cElement.addClass('show');
-/*          calenderPane.querySelector('.sm-today').focus();*/
+
         }
 
         // calculate visible port to display calender
