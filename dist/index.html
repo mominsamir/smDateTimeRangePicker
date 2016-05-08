@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Date Time Picker</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="styles/vendor.min.css">
+    <link rel="stylesheet" href="styles/picker.min.css">
+
+  </head>
+  <body ng-app="demoApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+      <md-content class="container main" layout="row" ng-init="toogle = false" ng-controller="MainCtrl as vm">
+              <md-sidenav 
+          layout="column" 
+          class="main-left-menu md-sidenav-left"
+          md-component-id="left" 
+          md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar layout="center center" layout="row" class="left-menu-header md-whiteframe-1dp">
+                <div layout-align="center center" class="logo" layout="row">
+                    <span class="logo-image">D</span>
+                    <span class="logo-text">Date Picker</span>
+                                    {{$state.$current.data.title}}
+                </div>
+                <div layout-align="center center" layout>
+                    <md-button class="md-icon-button" ng-click="vm.toggleMenuMinimize()">
+                        <md-icon class="material-icons fold-toggle">play_circle_filled</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>          
+            <ul class="side-menu" ng-controller="MenuCtrl as vm" >
+                <li ng-repeat="section in vm.menu.sections" class="parent-list-item"
+                    ng-class="{'parentActive' : vm.isSectionSelected(section)}">
+                    <h2 class="menu-heading" ng-if="section.type === 'heading'" id="heading_{{ section.name | nospace }}">
+                        {{section}}
+                    </h2>
+                    <menu-link section="section" ng-if="section.type === 'link' " ></menu-link>
+                    <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+                </li>
+            </ul>
+
+
+        </md-sidenav>
+        <md-content layout="column" layout-fill class="right-container">
+          <md-toolbar layout="row"  class="md-whiteframe-z2 animated fadeInDown md-accent" >
+            <div class="md-toolbar-tools" >
+              <span class="md-headline">Date Time Picker</span>
+              <md-button aria-label="Open Sidebar" hide-gt-md class="md-icon-button" ng-click="vm.toggleLeft()">
+                  <md-icon md-menu-align-target md-font-icon="material-icons" >menu</md-icon>
+              </md-button>        
+              <span flex></span>
+              <md-button class="md-icon-button" aria-label="log out" target="_blank" href="https://github.com/mominsamir/smDateTimeRangePicker/" >
+                  <md-icon md-menu-align-target md-font-icon="material-icons" >open_in_new</md-icon>
+              </md-button>
+            </div>
+          </md-toolbar>
+          <md-content layout="column" class="main-container animated fadeInUpBig" flex >
+                <div ui-view></div>             
+          </md-content>
+        </md-content>
+      </md-content>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+-->
+        <!-- bower:js -->
+        <!-- endbower -->
+
+        <script src="scripts/vendor.min.js"></script>
+        <script src="scripts/script.min.js"></script>
+
+</body>
+</html>

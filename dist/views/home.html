@@ -1,0 +1,62 @@
+<md-content class="md-whiteframe-z2" layout-padding>
+	<div layout="row" > 
+		<h2 class="md-headline">Wel Come to Date Time Picker</h2>
+	</div>	
+	<div layout="column" > 
+		<p style="font-size:16px;">
+			smPicker allows you to pick date and time and Range .  				
+		</p>
+	</div>		
+	<div  layout="column" >
+		<h2 class="md-headline">How to Install</h2>
+		<code ><p>bower install --save smDateTimeRangePicker</p></code>
+	</div>
+	<div  layout="column" >
+		<h2 class="md-headline">How to Use</h2>
+		<code><p>angular.module('Your App',["ngMaterial","smDateTimeRangePicker"]);</p></code>
+	</div>	
+	<div  layout="column" >
+		<h2 class="md-headline">How to configure</h2>
+		<code>
+
+			<p>angular.module('Your App',["ngMaterial","smDateTimeRangePicker"]);
+			  </br>&nbsp;&nbsp;&nbsp;.config(function ($mdThemingProvider,pickerProvider) {
+			  </br>	
+    		   </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pickerProvider.setOkLabel('Save');    
+    		   </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pickerProvider.setCancelLabel('Close');    
+				</p>
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Over ride day names by changing here
+
+    		   <p>
+			   </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pickerProvider.setDayHeader('single');  //Options 'single','shortName', 'fullName'
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setDaysNames([
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'S','shortName':'Su','fullName':'Sunday'}, 
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'M','shortName':'Mo','fullName':'MonDay'}, 
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'T','shortName':'Tu','fullName':'TuesDay'}, 
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'W','shortName':'We','fullName':'Wednesday'}, 
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'T','shortName':'Th','fullName':'Thursday'}, 
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'F','shortName':'Fr','fullName':'Friday'}, 
+        		</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'single':'S','shortName':'Sa','fullName':'Saturday'}
+            	</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]);
+            	</p>
+            	</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Range Picker Configuration
+            	<p>
+
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setDivider('To');
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setMonthNames(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setRangeDefaultList(['Today',
+            'Last 7 Days',
+            'This Month',
+            'Last Month',
+            'This Quarter',
+            'Year To Date',
+            'This Year', 
+            'Custome Range']);
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setRangeCustomStartEnd(['Start Date', 'End Date']);      
+				</br>&nbsp;&nbsp;&nbsp;}
+		</p>
+
+		</code>
+	</div>		
+
+</md-content>		

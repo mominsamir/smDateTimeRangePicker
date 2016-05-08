@@ -1,109 +1,159 @@
-"use strict";
-
 var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
-    less = require('gulp-ruby-sass'),
-    compass  = require('gulp-compass'),
-    rename = require('gulp-rename'),
-    minify = require('gulp-minify-css'),
-    concat = require('gulp-concat'),
-    notify = require('gulp-notify'),    
-    plumber = require('gulp-plumber'),    
-    autoprefixer = require('gulp-autoprefixer'),
-    path = require('path'),
-    clean = require('gulp-clean'),
-    connect = require('gulp-connect')    ,
-    htmlToJs = require('gulp-html-to-js'),
-    watch = require('gulp-watch');
+ sass = require('gulp-sass'),
+ connect = require('gulp-connect'),
+ watch = require('gulp-watch'),
+ clean = require('del'),
+ concat = require('gulp-concat'),
+ rename = require('gulp-rename'),
+ addStream = require('add-stream'),
+ templateCache = require('gulp-angular-templatecache'),
+ replaceName = require('gulp-html-replace'),
+ mainBowerFiles = require('main-bower-files'),
+ order = require("gulp-order");
 
-
-var basePath ={
-    index : "/demo/index.html",
-    demo_js : "demo/scripts/**/*.js"
-}
-
+var appConfig = {
+    app:  'app',
+    dist: 'dist',
+    src : 'src'
+};
 
 
 gulp.task('connect', function () {
   connect.server({
-    root: '/demo',
-    port: 8888
+    root: 'dist',
+    port: 8080,
+    livereload: true,
+	  middleware: function (connect) {
+      return [connect().use("/bower_components", connect.static("bower_components"))];
+    }    
   });
 });
 
-
-var outputFolder = 'dist/';
-var moduleName = 'smDateTimeRangePicker';
-
-var notifyInfo = {
-    title: 'Gulp',
-    icon: path.join(__dirname, 'gulp.png')
-};
-
-var plumberErrorHandler = { errorHandler: notify.onError({
-        title: notifyInfo.title,
-        icon: notifyInfo.icon,
-        message: "Error: <%= error.message %>"
-    })
-};
-
-//clean dist folder
-gulp.task('clean', function () {
-  return gulp.src('dist/*.*', {read: false})
-    .pipe(clean());
-})
-
-//js minify task
-gulp.task('script-uglify', function() {
-    gulp.src('src/js/*.js')
-        //.pipe(uglify())
-        //.pipe(gulp.dest(outputFolder))        
-        .pipe(concat({path: 'sm-picker-min.js'}))
-        .pipe(gulp.dest(outputFolder));
+ gulp.task('replaceName', function() {
+      gulp.src('app/index.html')
+        .pipe(gulp.dest('dist/'));
 });
 
-function demoScss() {
-    return function(){ gulp.src(['demo/styles/*.scss'])
-        .pipe(plumber(plumberErrorHandler))
-        .pipe(compass({
-              config_file: './config.rb',
-              sass: 'demo/styles'
-            }))
-        //.pipe(rename({ basename: "main"}))        
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('demo/styles/'));
-    }
+
+gulp.task('html', function () {
+  gulp.src('app/**/*.html')
+    .pipe(replaceName({
+            'css': ['styles/vendor.min.css','styles/picker.min.css'],
+            'js': ['scripts/vendor.min.js','scripts/script.min.js']
+    }))
+    .pipe(gulp.dest('dist/'))    
+    .pipe(connect.reload())
+});
+
+
+gulp.task('copyjs', function () {
+  gulp.src([
+        'app/scripts/app.js',
+        'app/scripts/**/*.js',
+        'app/picker/**/*.js',
+        'app/menu/**/*.js',                        
+      ])
+     //.pipe(order())
+    .pipe(concat('script.min.js'))
+    .pipe(gulp.dest('dist/scripts/'))
+    .pipe(connect.reload());
+});
+
+
+gulp.task('styles', function() {
+   gulp.src('app/styles/*.scss')
+      .pipe(sass())
+      .pipe(concat('picker.min.css'))
+      .pipe(gulp.dest('dist/styles/'))
+    	.pipe(connect.reload());
+});
+
+// build vendor js and styles
+
+gulp.task('vendorJs', function(){  
+
+  gulp.src(mainBowerFiles('**/*.js'))
+//  .pipe(uglify())
+  .pipe(concat('vendor.min.js'))
+  .pipe(gulp.dest('dist/scripts/'));
+
+
+});
+
+
+gulp.task('vendorCss', function(){  
+  gulp.src(mainBowerFiles('**/*.css'))
+  .pipe(concat('vendor.min.css'))
+  .pipe(gulp.dest('dist/styles/'));
+
+});
+
+
+// watch task
+gulp.task('watch', function() {
+    gulp.watch('app/**/*.html',['html']);
+    gulp.watch('app/**/*.js',['copyjs']);
+    gulp.watch('app/styles/*.scss',['styles']);        
+});
+
+// clean task
+
+gulp.task('clean', function() {
+  return clean(['dist/**/*']);
+});
+
+
+
+
+
+
+
+
+
+/*
+
+  buid task for distribution
+
+*/
+
+function prepareTemplates() {
+  return gulp.src('app/picker/*.html')
+    .pipe(templateCache(
+      {
+        module:'smDateTimeRangePicker',
+        transformUrl: function(url) {
+          return 'picker/'+url;
+        }
+  }));
 }
 
-//scss minify task
-gulp.task('demo-scss', demoScss());
 
 
-//scss minify task
-gulp.task('scss', function() {
-    return gulp.src(['src/sass/*.scss',])
-        .pipe(plumber(plumberErrorHandler))
-        .pipe(compass({
-              config_file: './config.rb',
-              sass: 'src/sass'
-            }))
-        .pipe(rename({  basename: "picker",
-                        prefix: "sm-", 
-                        suffix: '-min' }))        
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest(outputFolder));
+
+
+gulp.task('stylePicker', function() {
+   gulp.src('app/styles/date_picker.scss')
+      .pipe(sass())
+      .pipe(rename('picker.css'))
+      .pipe(gulp.dest('src/'));
 });
 
 
-gulp.task('watch',function(){
-    return gulp.watch(['demo/styles/*.scss'],['demo-scss']);
+gulp.task('pickerJs', function () {
+  gulp.src('app/picker/*.js')
+    .pipe(addStream.obj(prepareTemplates()))
+    .pipe(concat('picker.js'))
+    .pipe(gulp.dest('src/'));
+});
 
+gulp.task('cleanSrc', function() {
+  return clean(['src/']);
 });
 
 
 
-gulp.task('default', ['clean','script-uglify','scss']);
+//Watch task
+gulp.task('default',['clean','html','vendorCss','vendorJs','styles','copyjs','watch','connect']);
 
-gulp.task('start',
-  ['demo-scss', 'connect','watch']
-);
+gulp.task('build',['cleanSrc','pickerJs','stylePicker']);
+ 

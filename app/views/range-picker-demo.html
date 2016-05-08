@@ -1,0 +1,62 @@
+<form name="test">
+<md-content  class="md-whiteframe-z2" layout-padding>
+    <div> 
+    	<h2 class="md-title">Demo For Date Range Picker</h2>	
+	    <div layout="row">
+	        <sm-range-picker-input
+	                fname="Date of Pay" 
+	                lable="Date of Pay"
+	                form="test"
+	                min-date="11-10-2015" 
+	                value="vm.employee.dateOfPay" 
+	                flex="50"                         
+	                is-required="{{true}}" 
+	                format="DD-MM-YYYY"
+	                divider="To"
+	                week-start-day="Monday"
+	                custom-to-home="{{true}}">
+	        </sm-range-picker-input>
+	    </div>
+
+    </div>
+
+      <md-grid-list md-cols="1" md-row-height="2:1">
+        <md-grid-tile class="gray" md-rowspan="1" md-colspan="1">
+          <md-grid-tile-header>
+            <h3>tile header</h3>
+          </md-grid-tile-header>
+	        <sm-range-picker-input
+	                fname="Date of Pay" 
+	                lable="Date of Pay"
+	                form="test"
+	                min-date="11-10-2015" 
+	                value="vm.employee.dateOfPay" 
+	                flex="50"                         
+	                is-required="{{true}}" 
+	                format="DD-MM-YYYY"
+	                divider="To"
+	                week-start-day="Monday"
+	                custom-to-home="{{true}}">
+	        </sm-range-picker-input>
+                <sm-date-time-picker 
+                    fname="field" 
+                    lable="Date of Birth"
+                    form="empForm" 
+                    value="vm.employee.dateOfBirth"
+                    no-float 
+                    flex="50"
+                    flex-sm="100"
+                    flex-xs="100"                          
+                    is-required="true" 
+                    format="MM-DD-YYYY HH:mm"
+                    mode="date-time" 
+                    week-start-day="Monday">
+                </sm-date-time-picker>
+
+          <md-grid-tile-footer>
+            <h3>tile footer</h3>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+     </md-grid-list>    
+</md-content>    	
+</form>

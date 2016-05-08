@@ -1,0 +1,306 @@
+$font-list: (
+    '\'Roboto\', sans-serif',
+    '\'Montserrat\', sans-serif',
+    '\'Open Sans\', sans-serif'
+);
+
+$directions: (left,right,top,bottom);
+
+@function my-get-font($index) {
+    @return unquote(nth($font-list, $index));
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+// generic transform
+@mixin transform($transforms) {
+       -moz-transform: $transforms;
+         -o-transform: $transforms;
+        -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+ 
+// scale
+@mixin scale($scale) {
+     @include transform(scale($scale));
+} 
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+         -o-transform-origin: $origin;
+        -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+@for $var from 0 through 12  {
+    $i: $var * 4;
+    .margin-#{$i} {
+        margin: #{$i}px;
+    }
+    .padding-#{$i} {
+        padding: #{$i}px;
+    }
+    .material-icons.md-#{$i} {
+            font-size: #{$i}px;
+    }
+    @each $d in $directions {
+        .margin-#{$d}-#{$i} {
+            margin-#{$d}: #{$i}px;
+        }
+        .padding-#{$d}-#{$i} {
+            padding-#{$d}: #{$i}px;
+        }
+    }
+}
+
+@each $d in $directions {
+    .align-#{$d} {
+        text-align: #{$d};
+    }
+}
+
+
+$menu-bg-color: #2d323e;
+$active-menu-color: #282c37;
+$menu-font-color: rgba(255,255,255, 0.7);
+$menu-height: 48px;
+$menu-width: 256px;
+$menu-minimized-width: 52px;
+$menu-minimized-submenu-width: 176px;
+$animation: all ease-in-out 0.5s;
+
+md-sidenav {
+    width: $menu-width;
+    @include transition($animation);
+    flex-shrink: 0;
+    z-index: 999;
+    min-height: 100vh;
+
+    &.menu-minimized {
+        width: $menu-minimized-width;
+
+        &.main-left-menu {
+            overflow: visible;
+
+            .left-menu-header {
+                .logo {
+                    opacity: 0;
+                    width: 0;
+                }
+                .fold-toggle {
+                    @include rotate(0);
+                }
+            }
+
+            .side-menu {
+                > li {
+                    position: relative;
+                    > menu-link > a,
+                    > menu-toggle > a {
+                        > .menu-text-container {
+                            width: 0;
+                            opacity: 0;
+                        }
+
+                    }
+                }
+
+                li {
+                    .menu-toggle-list {
+                        position: absolute;
+                        top: 0;
+                        left: $menu-minimized-width;
+                        width: $menu-minimized-submenu-width;
+                        padding: 0;
+
+                        .menu-text-container {
+                            opacity: 1;
+                            width: initial;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.main-left-menu {
+        color: $menu-font-color;
+        max-width: $menu-width;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $menu-bg-color;
+        @include transition($animation);
+
+        .side-menu {
+            margin: 0;
+            padding: 0;
+            margin-top: 16px;
+            @include transition($animation);
+
+            li {
+                display: block;
+                margin: 0;
+
+                &.parentActive {
+                    background-color: $active-menu-color;
+                }
+
+                .menu-toggle-list {
+                    max-height: 400px;
+                    opacity: 1;
+                    @include transition($animation);
+                    background-color: $active-menu-color;
+
+                    &.ng-hide {
+                        max-height: 0px;
+                        opacity: 0;
+                    }
+
+                    li {
+                        a {
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                a {
+                    margin: 0;
+                    display: flex;
+                    flex-direction: row wrap;
+                    height: $menu-height;
+                    line-height: $menu-height;
+                    padding-left: 16px;
+                    padding-right: 16px;
+                    color: $menu-font-color;
+                    font-family: my-get-font(3);
+                    font-size: 14px;
+
+                    md-icon {
+                        color: rgba(255,255,255, 0.7);
+                        font-size: 18px;
+                        flex: 0 1 40px;
+                        &.menu-toggle-icon {
+                            float: right;
+                            margin-top: 12px;
+                            @include transition($animation);
+                            &.toggled {
+                                @include rotate(90);
+                                margin-right: 7px;
+                            }
+                        }
+                    }
+
+                    .menu-text-container {
+                        flex: 1 1;
+                        opacity: 1;
+                        @include transition($animation);
+                    }
+                }
+            }
+        }
+
+        .left-menu-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: $menu-font-color;
+            max-height: $menu-height;
+            max-width: 100%;
+
+            .logo {
+                width: 75%;
+                @include transition($animation);
+                opacity: 1;
+
+                .logo-image {
+                    display: block;
+                    background: material-color("blue", "500");
+                    width: 32px;
+                    height: 32px;
+                    line-height: 32px;
+                    text-align: center;
+                    border-radius: 2px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: $menu-font-color;
+                }
+                .logo-text {
+                    margin-left: 16px;
+                    font-size: 20px;
+                    font-family: my-get-font(2);
+                    color: $menu-font-color;
+                }
+            }
+            .fold-toggle {
+                @include rotate(180);
+            }
+        }
+    }
+
+}
+@media screen and (min-width: 0px)  and (max-width: 1280px) {
+    //hide toogle button on sidenav toolbar
+   md-sidenav {
+        &.main-left-menu{
+            .left-menu-header {
+                .fold-toggle {
+                    display:none !important;
+                }
+            }
+        }
+    }
+}
+
+.menu-minimized-backdrop {
+    z-index: 995;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+

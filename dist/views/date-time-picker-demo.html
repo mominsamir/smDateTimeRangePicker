@@ -1,0 +1,148 @@
+<form name="empForm" >
+    <md-content   layout-padding class="md-whiteframe-z2" >
+        <div layout="row">
+            DateTime picker, week start date is Monday    
+        </div>
+        <div  layout="row"> 
+                <sm-date-time-picker 
+                    fname="field" 
+                    lable="Date of Birth"
+                    form="empForm" 
+                    value="vm.employee.dateOfBirth"
+                    no-float 
+                    flex="50"
+                    flex-sm="100"
+                    flex-xs="100"                          
+                    is-required="true" 
+                    format="MM-DD-YYYY HH:mm"
+                    mode="date-time" 
+                    week-start-day="Monday">
+                </sm-date-time-picker>
+        </div>
+
+        <div layout="row">
+            Date picker, Close on date select only works with &nbsp;<b> Date Picker </b>&nbsp; mode with attribute &nbsp;<b> close-on-select="true"</b>
+        </div>
+        <div   layout="row">
+                <sm-date-time-picker 
+                    fname="exitDate" 
+                    lable="Date of Exit"
+                    form="empForm" 
+                    value="vm.employee.exitDate" 
+                    flex="50"
+                    flex-sm="100"
+                    flex-xs="100"                          
+                    close-on-select="true"  
+                    format="MM-DD-YYYY" 
+                    week-start-day="Monday">
+                </sm-date-time-picker>
+        </div>    
+        <div layout="row">
+            Min date set to {{vm.minDate}}    => <b>min-date="{{vm.minDate}}"</b>
+        </div>
+        <div   layout="row">
+                <sm-date-time-picker 
+                    fname="Date of Pay" 
+                    lable="Date of Pay"
+                    form="empForm"
+                    min-date="{{vm.minDate}}" 
+                    value="vm.employee.dateOfPay" 
+                    flex="50"                         
+                    is-required="{{true}}" 
+                    format="MM-DD-YYYY HH:mm"
+                    mode="date-time" 
+                    week-start-day="Sunday">
+                </sm-date-time-picker>        
+        </div>   
+        <div layout="row">
+            Date picker => <b> disable="true"</b>
+        </div>
+        <div   layout="row">
+                <sm-date-time-picker 
+                    fname="exitDate" 
+                    lable="Date of Exit"
+                    form="empForm" 
+                    value="vm.employee.exitDate" 
+                    flex="50"
+                    flex-sm="100"
+                    flex-xs="100"                          
+                    close-on-select="true"                                                          
+                    is-required="{{true}}"
+                    disable="true"                 
+                    format="MM-DD-YYYY" 
+                    week-start-day="Monday">
+                </sm-date-time-picker>
+        </div>        
+        <div layout="row">
+            Date picker, Max date  <b>&nbsp;max-date="{{vm.maxDate}}"</b>&nbsp; and &nbsp;<b>week-start-day="Sunday"</b>   
+        </div>
+        <div   layout="row">
+                <sm-date-time-picker 
+                    fname="joiningDate" 
+                    lable="Date of Joining"
+                    form="empForm" 
+                    value="vm.employee.joiningDate" 
+                    data-start-date="10-15-2015"
+                    flex="50"
+                    flex-sm="100"
+                    flex-xs="100"                          
+                    max-date="{{vm.maxDate}}"
+                    is-required="{{true}}" 
+                    format="MM-DD-YYYY" 
+                    week-start-day="Sunday">
+                </sm-date-time-picker>
+        </div>
+        <div layout="row">
+            Date picker as service, click on calender icon</b>   
+        </div>
+
+      <div layout="row">
+            <md-input-container flex="50" flex-sm="100" flex-xs="100">
+                <label for="servicePicker">Service Picker</label>
+                <input type="text" name="servicePicker" ng-model="vm.currentDate"></input>
+                <md-icon md-font-icon="material-icons" style="display:inline-block;cursor: pointer;outline: none;" ng-click="vm.showCalander($event)">date_range</md-icon>               
+            </md-input-container>
+
+        </div> 
+        <div layout="row">
+            Date picker as service, click on calender icon</b>   
+        </div>
+        <div layout="row">
+            calender inline  selected date : {{selectedDate1}}</b>   
+        </div>
+      <div layout="row">
+            <md-input-container flex="50" flex-sm="100" flex-xs="100">
+                <label for="servicePicker">Service Picker</label>
+                <input type="text" name="servicePicker" ng-model="vm.currentDate1"></input>
+                <md-icon md-font-icon="material-icons" style="display:inline-block;cursor: pointer;outline: none;" ng-click="vm.showCalander1($event)">date_range</md-icon>               
+            </md-input-container>
+
+        </div> 
+
+        <div layout="row">
+            <md-button class="md-primary" ng-click="vm.showDailog($event)">Show Dialog</md-button>       
+        </div>
+
+        
+        <div layout="row">
+            calender inline  selected date : {{selectedDate}}</b>   
+        </div>
+
+
+        <div layout="column"  class="picker-container" style="width:315px;">
+            <div  class="container md-whiteframe-z2" style="background: #84ffff;">  
+                <sm-calender 
+                    ng-model="selectedDate"
+                    data-mode="{{mode}}" 
+                    data-min-date="minDate" 
+                    data-max-date="maxDate" 
+                    close-on-select="{{closeOnSelect}}"              
+                    data-format="{{format}}"  
+                    data-week-start-day="{{weekStartDay}}">
+                </sm-calender>
+            </div>                
+        </div>
+        
+
+    </md-content>
+</form>
