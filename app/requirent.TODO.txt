@@ -1,0 +1,10 @@
+1. refector code base
+2. reduce html used 
+3. create files per components
+4. close all issue from git hub 
+5. remove button to navigate between time and date 
+6. allow to set month, year
+7. allow to pick year range, year month, date and date time. 
+8. three ways to initialize date picker, on foucs, inline button click and via service.
+9. keep all functionality from existing picker.
+10.Improve documantation  

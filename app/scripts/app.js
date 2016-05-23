@@ -96,6 +96,6 @@ angular
 
 
     $mdThemingProvider.theme('default')
-        .primaryPalette('red').accentPalette('green');
+        .primaryPalette('indigo');
   });
     

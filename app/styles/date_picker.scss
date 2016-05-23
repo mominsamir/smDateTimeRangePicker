@@ -236,11 +236,12 @@ $aniimation-duration:			1s;
 .range-picker{
 	width: $range-picker-width;
 	background-color:$calender-bg;
-	.header{
+	.md-toolbar-tools{
 		font-size:calc($font-size + 2);
 		.date-display{
 			width: 130px;
 			padding: 2px; 
+			text-align: center;			
 		}
 		.divider-display{
 			width: 20px;

@@ -15,24 +15,38 @@
 		<md-button ng-class="{'md-primary': vm.clickedButton===6}"  ng-click="vm.preDefineDate(6)">{{vm.rangeDefaultList[6]}}</md-button>	
 		<md-button ng-class="{'md-primary': vm.clickedButton===7}"  ng-click="vm.preDefineDate(7)">{{vm.rangeDefaultList[7]}}</md-button>
 	</div>
-	<div layout="column" layout-sm="column" class="custom-select" flex ng-show="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
+	<div layout="column" class="custom-select" ng-show="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
 		<div layout="row"   class="tab-head">
-			<span layout="column" class="md-ink-ripple" ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>
-			<span layout="column" class="md-ink-ripple" ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>			
+			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>
+			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>			
 		</div>
 		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >
 			<sm-calender 
+				ng-show="vm.view==='DATE'"
 				week-start-day="{{weekStartDay}}"
-				format="{{format}}">
+				format="{{format}}"
+				date-select-call="vm.startDateSelected(date)">
 			</sm-calender>
+			<sm-time
+				ng-show="vm.view==='TIME'"
+				ng-model="selectedStartTime"
+				time-select-call="vm.startTimeSelected(time)">
+			</sm-time>
 		</div>
 		<div ng-if="vm.selectedTabIndex===1" ng-model="vm.endDate" >
 			<sm-calender 
 				format="{{format}}"
+				ng-show="vm.view==='DATE'"
 				initial-date="{{vm.startDate.format(format)}}"
 				min-date="vm.startDate"
-				week-start-day="{{weekStartDay}}">
+				week-start-day="{{weekStartDay}}"
+				date-select-call="vm.endDateSelected(date)">
 			</sm-calender>
+			<sm-time
+				ng-show="vm.view==='TIME'"
+				ng-model="selectedEndTime"
+				time-select-call="vm.endTimeSelected(time)">
+			</sm-time>
 		</div>								
 	</div>
 	<div layout="row" layout-align="end center">
