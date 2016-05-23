@@ -157,12 +157,13 @@
 .range-picker {
   width: 310px;
   background-color: #fff; }
-  .range-picker .header {
+  .range-picker .md-toolbar-tools {
     font-size: calc($font-size + 2); }
-    .range-picker .header .date-display {
+    .range-picker .md-toolbar-tools .date-display {
       width: 130px;
-      padding: 2px; }
-    .range-picker .header .divider-display {
+      padding: 2px;
+      text-align: center; }
+    .range-picker .md-toolbar-tools .divider-display {
       width: 20px;
       font-size: 13px;
       padding: 2px; }
@@ -478,12 +479,13 @@
 .range-picker {
   width: 310px;
   background-color: #fff; }
-  .range-picker .header {
+  .range-picker .md-toolbar-tools {
     font-size: calc($font-size + 2); }
-    .range-picker .header .date-display {
+    .range-picker .md-toolbar-tools .date-display {
       width: 130px;
-      padding: 2px; }
-    .range-picker .header .divider-display {
+      padding: 2px;
+      text-align: center; }
+    .range-picker .md-toolbar-tools .divider-display {
       width: 20px;
       font-size: 13px;
       padding: 2px; }

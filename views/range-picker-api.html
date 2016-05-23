@@ -33,6 +33,11 @@
 					<td>ng-Model value here</td>				
 				</tr>
 				<tr>
+					<td>mode</td>
+					<td>select mode either date or dateTime</td>
+					<td>date or date-time</td>				
+				</tr>		
+				<tr>
 					<td>format</td>
 					<td>date format</td>
 					<td>Moment Js accepted date format</td>				
@@ -46,7 +51,20 @@
 					<td>is-required</td>
 					<td>is field is required</td>
 					<td>True or false</td>				
-				</tr>								
+				</tr>		
+				<tr>
+					<td>show-custom	</td>
+					<td>start range picker with custome date mode</td>
+					<td>True or false</td>				
+				</tr>		
+				<tr>
+					<td>custom-to-home</td>
+					<td>Go back to Defualt view from Custom view</td>
+					<td>True or false</td>				
+				</tr>		
+
+
+
 			</tbody>
 		</table>
 	</div>
@@ -65,6 +83,25 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is-required="{{true}}" </br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;format="MM-DD-YYYY" </br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divider="To"&gt;</br>
+            &lt;/sm-range-picker-input&gt;</br>
+            </p>
+		</code>
+	</div>
+	<div>
+		<code>
+			<p>
+			&lt;sm-range-picker-input</br> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fname="joiningDate"</br> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lable="Date of Joining"</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;form="empForm" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value="vm.employee.joiningDate" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-size="100"</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is-required="{{true}}" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;format="MM-DD-YYYY" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;custom-to-home="'true'" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show-custom="'true'"</br>                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divider="To"&gt;</br>
+
             &lt;/sm-range-picker-input&gt;</br>
             </p>
 		</code>

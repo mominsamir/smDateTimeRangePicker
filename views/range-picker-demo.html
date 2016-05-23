@@ -1,7 +1,27 @@
 <form name="test">
 <md-content  class="md-whiteframe-z2" layout-padding>
     <div> 
-    	<h2 class="md-title">Demo For Date Range Picker</h2>	
+    	<h2 class="md-title">Demo For Default Date Range Picker</h2>	
+	    <div layout="row">
+	        <sm-range-picker-input
+	                fname="Date of Pay" 
+	                lable="Date of Pay"
+	                form="test"
+	                min-date="11-10-2015" 
+	                value="vm.employee.default" 
+	                flex="50"                         
+	                is-required="true" 
+	                format="DD-MM-YYYY"
+	                divider="To"
+	                
+	                week-start-day="Monday"
+	                custom-to-home="'true'">
+	        </sm-range-picker-input>
+	    </div>
+
+    </div>
+    <div> 
+    	<h2 class="md-title">Custom view</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
 	                fname="Date of Pay" 
@@ -10,15 +30,38 @@
 	                min-date="11-10-2015" 
 	                value="vm.employee.dateOfPay" 
 	                flex="50"                         
-	                is-required="{{true}}" 
+	                is-required="true" 
 	                format="DD-MM-YYYY"
 	                divider="To"
+	                mode="date"
 	                week-start-day="Monday"
-	                custom-to-home="{{true}}">
+	                custom-to-home="'true'"
+	                show-custom="'true'">
 	        </sm-range-picker-input>
 	    </div>
 
     </div>
+    <div> 
+    	<h2 class="md-title">Date-Time Range Picker</h2>	
+	    <div layout="row">
+	        <sm-range-picker-input
+	                fname="dayOfPay" 
+	                lable="Date of Pay"
+	                form="test"
+	                min-date="11-10-2015" 
+	                value="vm.employee.dateOfPay1" 
+	                flex="50"                         
+	                is-required="true" 
+	                format="DD-MM-YYYY HH:mm"
+	                divider="To"
+	                mode="date-time"
+	                week-start-day="Monday"
+	                custom-to-home="'true'"
+	                show-custom="'true'">
+	        </sm-range-picker-input>
+	    </div>
+
+    </div>    
 
       <md-grid-list md-cols="1" md-row-height="2:1">
         <md-grid-tile class="gray" md-rowspan="1" md-colspan="1">
