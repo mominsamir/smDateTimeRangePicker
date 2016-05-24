@@ -9,6 +9,7 @@
 			<div ng-show="view==='DATE'" >
 				<sm-calender 
 					ng-model="selectedDate"
+					initial-date="{{selectedDate}}"					
 					id="{{fname}}Picker" 
 					data-mode="{{mode}}" 
 					data-min-date="minDate" 
