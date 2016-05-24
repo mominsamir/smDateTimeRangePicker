@@ -7,7 +7,25 @@ var app = angular.module('smDateTimeRangePicker');
 
 function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil,picker){
     var self = this;
+
+    if(!angular.isUndefined(self.options) && (angular.isObject(self.options))){
+        self.mode = isExist(self.options.mode,self.mode); 
+        self.format = isExist(self.options.format,'MM-DD-YYYY');
+        self.minDate = isExist(self.options.minDate,undefined);
+        self.maxDate = isExist(self.options.maxDate,undefined);
+        self.weekStartDay = isExist(self.options.weekStartDay,'Sunday');
+        self.closeOnSelect =isExist(self.options.closeOnSelect,false);
+    }
+
+    console.log(self.format);
+    if(!angular.isObject(self.initialDate)){
+        self.initialDate = moment(self.initialDate,self.format);
+        self.selectedDate = self.initialDate;                  
+    }
+
     self.currentDate = self.initialDate;
+    self.viewDate = self.currentDate;
+
     self.view = 'DATE';
     self.$mdMedia = $mdMedia;
     self.$mdUtil = $mdUtil;
@@ -16,14 +34,6 @@ function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil,pic
     self.cancelLabel = picker.cancelLabel;         
 
 
-    if(!angular.isUndefined(self.options) && (angular.isObject(self.options))){
-        self.mode = isExist(self.options.mode,self.mode); 
-        self.format = isExist(self.options.format,self.format);
-        self.minDate = isExist(self.options.minDate,undefined);
-        self.maxDate = isExist(self.options.maxDate,undefined);
-        self.weekStartDay = isExist(self.options.weekStartDay,'Sunday');
-        self.closeOnSelect =isExist(self.options.closeOnSelect,false);
-    }
 
     setViewMode(self.mode);
 
@@ -48,15 +58,30 @@ function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil,pic
         }                   
     }
 
-    $scope.$on('calender:date-selected',function(){
-        if(self.closeOnSelect && (self.mode!=='date-time' || self.mode!=='time')){        
+    self.autoClosePicker = function(){
+        if(self.closeOnSelect){        
             if(angular.isUndefined(self.selectedDate)){
-             self.selectedDate= self.currentDate;   
+              self.selectedDate = self.initialDate;
             }
-            removeMask();            
+            //removeMask();            
             $mdDialog.hide(self.selectedDate.format(self.format));
         }    
-    });
+    }
+
+    self.dateSelected = function(date){
+        self.selectedDate = date;
+        self.viewDate = date;
+        if(self.mode==='date-time')  
+            self.view = 'HOUR';
+        else
+            self.autoClosePicker();
+    }
+
+    self.timeSelected = function(time){
+        self.selectedDate.hour(time.hour()).minute(time.minute());        
+        self.viewDate = self.selectedDate;
+        self.autoClosePicker();                
+    }    
 
     self.closeDateTime = function(){
         $mdDialog.cancel();
@@ -71,7 +96,10 @@ function DatePickerServiceCtrl($scope, $mdDialog, $mdMedia, $timeout,$mdUtil,pic
     }
 
     function removeMask(){
-
+        var ele = document.getElementsByClassName("md-scroll-mask");
+        if(ele.length!==0){ 
+            angular.element(ele).remove();
+        }            
     }
 
 }
@@ -84,7 +112,9 @@ app.provider("smDateTimePicker", function() {
         var datePicker = function(initialDate, options) {
 
 
-            if (!angular.isUndefined(initialDate)) initialDate = moment();
+            if (angular.isUndefined(initialDate)) initialDate = moment();
+
+
             if (!angular.isObject(options)) options = {};
             
             return $mdDialog.show({
@@ -108,10 +138,6 @@ app.provider("smDateTimePicker", function() {
 
 
 })();
-
-
-;
-
 
 
 

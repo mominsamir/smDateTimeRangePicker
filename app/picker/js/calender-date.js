@@ -9,9 +9,9 @@ function Calender($timeout,picker){
 	  replace:true,
       require: ['^ngModel', 'smCalender'],
       scope :{
-	      	initialDate : "@",
 	      	minDate:"=",
 	      	maxDate:"=",
+	      	initialDate : "@",
 	      	format:"@",
 	      	mode:"@",
 	      	startView:"@",	      	
@@ -26,10 +26,6 @@ function Calender($timeout,picker){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
-
-			scope.$on('$destroy',function(){
-			   element.remove();
-			});
 		}      
 	}
 }
@@ -41,10 +37,8 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.$timeout = $timeout;
     self.picker = picker;
     self.dayHeader = self.picker.dayHeader;
-    //if calender to be  initiated with specific date       
 	self.initialDate = $scope.initialDate; 	
     self.viewModeSmall = $mdMedia('xs');
-    //if calender to be start on specific day default is sunday
 	self.startDay = angular.isUndefined($scope.weekStartDay) || $scope.weekStartDay==='' ? 'Sunday' : $scope.weekStartDay ;	   	
 	self.minDate = $scope.minDate;			//Minimum date 
 	self.maxDate = $scope.maxDate;			//Maximum date 
@@ -59,9 +53,12 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.dateCells = [];
 	self.monthList = picker.monthNames;
 	self.moveCalenderAnimation='';
+
 	self.format = angular.isUndefined(self.format) ? 'MM-DD-YYYY': self.format;
-	self.initialDate =	angular.isUndefined(self.initialDate)? moment() : moment(self.initialDate,self.format);
+	self.initialDate =	angular.isUndefined(self.initialDate) ? moment() : moment(self.initialDate,self.format);
+
 	self.currentDate = self.initialDate.clone();
+
 	if(self.restrictToMinDate) 
 		self.minDate = moment(self.minDate, self.format);
 	if(self.restrictToMaxDate) 
@@ -84,11 +81,14 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 
 
 CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
-    this.ngModelCtrl = ngModelCtrl;
     var self = this;
+
+    self.ngModelCtrl = ngModelCtrl;
+
     ngModelCtrl.$render = function() {
       self.ngModelCtrl.$viewValue= self.currentDate;
     };
+
   };
 
 

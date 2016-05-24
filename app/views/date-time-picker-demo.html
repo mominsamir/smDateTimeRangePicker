@@ -1,6 +1,6 @@
-<form name="empForm" >
+<form name="empForm"  ng-init="vm.selectedDate='10-10-2015'">
     <md-content   layout-padding class="md-whiteframe-z2" >
-        <div layout="row">
+       <div layout="row">
             DateTime picker, week start date is Monday    
         </div>
         <div  layout="row"> 
@@ -132,7 +132,7 @@
         <div layout="column"  class="picker-container" style="width:315px;">
             <div  class="container md-whiteframe-z2" style="background: #84ffff;">  
                 <sm-calender 
-                    ng-model="selectedDate"
+                    ng-model="vm.selectedDate"
                     data-mode="{{mode}}" 
                     data-min-date="minDate" 
                     data-max-date="maxDate" 
@@ -146,13 +146,3 @@
 
     </md-content>
 </form>
-
-<calender-dt
-    ng-model="selectedDate"
-    data-mode="{{mode}}" 
-    data-min-date="minDate" 
-    data-max-date="maxDate" 
-    close-on-select="{{closeOnSelect}}"              
-    data-format="{{format}}"  
-    data-week-start-day="{{weekStartDay}}">
-</calender-dt>

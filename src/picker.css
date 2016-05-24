@@ -67,7 +67,8 @@
             text-align: left; }
 
 .date-picker {
-  width: 300px; }
+  width: 300px;
+  height: 270px; }
   .date-picker .year-container {
     width: 300px;
     animation: slideInDown 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);

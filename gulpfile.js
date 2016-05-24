@@ -140,7 +140,7 @@ gulp.task('stylePicker', function() {
 
 
 gulp.task('pickerJs', function () {
-  gulp.src('app/picker/*.js')
+  gulp.src('app/picker/js/*.js')
     .pipe(addStream.obj(prepareTemplates()))
     .pipe(concat('picker.js'))
     .pipe(gulp.dest('src/'));
