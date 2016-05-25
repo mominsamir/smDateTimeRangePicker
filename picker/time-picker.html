@@ -1,38 +1,27 @@
 <div class="picker-container  md-whiteframe-15dp">
-	<md-content  class="container" >
-		<md-toolbar class="md-height">			
-			<div class="md-toolbar-tools">
-				<div layout="column" flex="100" class="">
-					<span flex ng-hide="mode==='time'" class="md-subhead">{{currentDate.format('YYYY')}}</span>
-					<div class="date-time-header">
-						<span flex class="date-display" ng-hide="mode==='time'">
-							{{currentDate.format('ddd, MMM DD')}}			
-						</span>
-						<span  class="time-display" ng-show="mode==='date-time' || mode==='time'">
-							{{currentDate.format('HH:mm')}}			
-						</span>
-					</div>					
-				</div>
-			</div>	
+	<md-content  layout-xs="column" layout="row"  class="container" >
+		<md-toolbar class="md-height" ng-class="{'portrait': !$mdMedia('gt-xs'),'landscape': $mdMedia('gt-xs')}" >			
+				<span class="year-header" layout="row" layout-xs="row">{{currentDate.format('YYYY')}}</span>
+				<span class="date-time-header" layout="row" layout-xs="row">{{currentDate.format(headerDispalyFormat)}}</span>
 		</md-toolbar>
-		<div >
+		<div layout="column" class="picker-container" >
 			<sm-time
 				ng-model="selectedTime"
 				data-format="HH:mm">
 			</sm-time>
-		</div>		
-		<div class="action" layout="row" layout-align="end center" ng-hide="closeOnSelect && (mode!=='date-time' || mode!=='time')">
-				<div ng-show="mode==='date-time'">
-					<md-button class="md-icon-button" ng-show="view==='DATE'" ng-click="view='HOUR'">
-						<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>
-					</md-button>				
-					<md-button class="md-icon-button" ng-show="view==='HOUR'" ng-click="view='DATE'">
-						<md-icon md-font-icon="material-icons md-primary">date_range</md-icon>
-					</md-button>
-				</div>												
-				<span flex></span>
-				<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancleLabel}}</md-button>
-				<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>
+			<div layout="row" ng-hide="closeOnSelect && (mode!=='date-time' || mode!=='time')">
+					<div ng-show="mode==='date-time'">
+						<md-button class="md-icon-button" ng-show="view==='DATE'" ng-click="view='HOUR'">
+							<md-icon md-font-icon="material-icons md-primary">access_time</md-icon>
+						</md-button>				
+						<md-button class="md-icon-button" ng-show="view==='HOUR'" ng-click="view='DATE'">
+							<md-icon md-font-icon="material-icons md-primary">date_range</md-icon>
+						</md-button>
+					</div>												
+					<span flex></span>
+					<md-button class="md-button md-primary" ng-click="closeDateTime()">{{cancelLabel}}</md-button>
+					<md-button class="md-button md-primary" ng-click="selectedDateTime()">{{okLabel}}</md-button>
+			</div>
 		</div>
 	</md-content>	
 </div>
