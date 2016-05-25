@@ -1,6 +1,5 @@
 <div class="picker-container  md-whiteframe-15dp">
 	<md-content  layout-xs="column" layout="row"  class="container" >
-	<!--  -->
 		<md-toolbar class="md-height" ng-class="{'portrait': !$mdMedia('gt-xs'),'landscape': $mdMedia('gt-xs')}" >			
 				<span class="year-header" layout="row" layout-xs="row">{{currentDate.format('YYYY')}}</span>
 				<span class="date-time-header" layout="row" layout-xs="row">{{currentDate.format(headerDispalyFormat)}}</span>
@@ -9,7 +8,7 @@
 			<div ng-show="view==='DATE'" >
 				<sm-calender 
 					ng-model="selectedDate"
-					initial-date="{{selectedDate}}"					
+					initial-date="initialDate"					
 					id="{{fname}}Picker" 
 					data-mode="{{mode}}" 
 					data-min-date="minDate" 

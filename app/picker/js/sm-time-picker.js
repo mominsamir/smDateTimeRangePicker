@@ -28,7 +28,7 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
                 +'    		<div ng-messages-include="{{ngMassagedTempaltePath}}"></div>'
                 +'    </div>'
                 +'    <div id="picker" class="sm-calender-pane md-whiteframe-15dp">'
-                +'     		<sm-time-pickern '
+                +'     		<sm-time-picker '
                 +'              id="{{fname}}Picker" '  
                 +'              ng-model="value" '
                 +'				initial-date="{{value}}"'
@@ -39,7 +39,7 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
                 +'              data-max-date="maxDate"  '
                 +'              format="{{format}}"  '
                 +'          	start-day="{{weekStartDay}}" > '
-                +'			</sm-time-pickern>'
+                +'			</sm-time-picker>'
                 +'    </div>'                
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){

@@ -31,9 +31,9 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
                 +'     		<sm-date-picker '
                 +'              id="{{fname}}Picker" '  
                 +'              ng-model="value" '
-                +'				initial-date="{{value}}"'
+                +'				      initial-date="value"'
                 +'              mode="{{mode}}" '
-                +'				close-on-select="{{closeOnSelect}}"'
+                +'				      close-on-select="{{closeOnSelect}}"'
                 +'              start-view="{{startView}}" '  
                 +'              data-min-date="minDate" '
                 +'              data-max-date="maxDate"  '
@@ -43,7 +43,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
                 +'    	</div>'                
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
-
+        
         var inputPane = $element[0].querySelector('.sm-input-container');
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
         var cElement = angular.element(calenderPane);

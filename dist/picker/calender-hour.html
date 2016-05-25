@@ -5,17 +5,17 @@
 			<span class="md-button">Minute</span>
 		</div>
 		<div layout="row" >
-			<md-virtual-repeat-container flex="50"  id="hour-container" class="time-md-repeat" >
-				<div md-virtual-repeat="h in vm.hourCells"  class="repeated-item">
+			<md-virtual-repeat-container flex="50"  id="hour-container{{vm.uid}}" class="time-md-repeat" md-top-index="vm.hourTopIndex">
+			<div md-virtual-repeat="h in vm.hourItems" class="repeated-item">
 						<md-button class="md-icon-button" 
 							ng-click="vm.setHour(h.hour)" 							
 							ng-class="{'md-primary': h.isCurrent,
 									'md-primary md-raised' :h.hour===vm.currentDate.hour()}">
 							{{h.hour}}
 						</md-button>
-				</div>
+			</div>
 			</md-virtual-repeat-container>		     
-			<md-virtual-repeat-container flex="50" id="minute-container" class="time-md-repeat">
+			<md-virtual-repeat-container flex="50" id="minute-container" class="time-md-repeat" md-top-index="vm.minuteTopIndex">
 				<div md-virtual-repeat="m in vm.minuteCells"  class="repeated-item">
 						<md-button class="md-icon-button" 
 							ng-click="vm.setMinute(m.minute)" 							

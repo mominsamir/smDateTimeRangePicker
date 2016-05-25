@@ -9,9 +9,9 @@ function Calender($timeout,picker){
 	  replace:true,
       require: ['^ngModel', 'smCalender'],
       scope :{
-	      	minDate:"=",
-	      	maxDate:"=",
-	      	initialDate : "@",
+	      	minDate: "=",
+	      	maxDate: "=",
+	      	initialDate : "=",
 	      	format:"@",
 	      	mode:"@",
 	      	startView:"@",	      	
@@ -21,8 +21,7 @@ function Calender($timeout,picker){
 	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
 	    templateUrl:"picker/calender-date.html",
-		link : function(scope,element,att,ctrls){
-
+		link : function(scope,element,attr,ctrls){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
@@ -56,7 +55,7 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 
 	self.format = angular.isUndefined(self.format) ? 'MM-DD-YYYY': self.format;
 	self.initialDate =	angular.isUndefined(self.initialDate) ? moment() : moment(self.initialDate,self.format);
-
+	
 	self.currentDate = self.initialDate.clone();
 
 	if(self.restrictToMinDate) 
@@ -78,6 +77,12 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
     };	
 	self.init();
 }
+
+CalenderCtrl.prototype.setInitDate = function(dt) {
+    var self = this;
+    console.log(dt);
+    self.initialDate =angular.isUndefined( dt) ? moment() : moment( dt,self.format);
+  };
 
 
 CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
@@ -126,6 +131,7 @@ CalenderCtrl.prototype.setView = function(){
 	}	
 }
 
+
 CalenderCtrl.prototype.showYear = function() { 
 	var self = this;
     self.yearTopIndex = (self.initialDate.year() - self.yearItems.START) + Math.floor(self.yearItems.PAGE_SIZE / 2);
@@ -144,6 +150,7 @@ CalenderCtrl.prototype.buildDateCells = function(){
     var calStartDate  = self.initialDate.clone().date(0).day(self.startDay);
     var weekend = false;
     var isDisabledDate =false;
+
 
     /*
     	Check if min date is greater than first date of month
