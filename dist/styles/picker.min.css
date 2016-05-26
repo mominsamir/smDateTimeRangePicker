@@ -1160,7 +1160,8 @@ md-sidenav {
             max-height: 0px;
             opacity: 0; }
           md-sidenav.main-left-menu .side-menu li .menu-toggle-list li a {
-            font-size: 13px; }
+            font-size: 13px;
+            text-align: left; }
         md-sidenav.main-left-menu .side-menu li a {
           margin: 0;
           display: flex;

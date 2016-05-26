@@ -27,7 +27,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
                 +'             ng-focus="show()">'
                 +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp">'                
-                +'    <sm-range-picker custom-to-home="{{customToHome}}" mode="{{mode}}" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}" ng-model="value" divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
+                +'    <sm-range-picker custom-to-home="{{customToHome}}" mode="{{mode}}" range-select-call="rangeSelected(range)" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}"  divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
                 +'   </div> '  
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
@@ -53,6 +53,12 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
               hideElement();
             }
         });
+
+        scope.rangeSelected = function(range){
+          console.log(range);
+          scope.value= range;
+        }
+
 
         scope.show= function(){
           var elementRect = inputPane.getBoundingClientRect();
@@ -91,6 +97,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
 
 
 
+
         scope.$on('range-picker:close',function(){
           hideElement();
         });
@@ -118,14 +125,15 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
 function smRangePicker (picker){
   return{
     restrict : 'E',
-    require : ['ngModel','smRangePicker'],
+    require : ['smRangePicker'],
     scope:{
       format:'@',
       divider: '@',
       weekStartDay :"@",
       customToHome: "@",
       mode: "@",      
-      showCustom:'@'
+      showCustom:'@',
+      rangeSelectCall : '&'      
     },
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
@@ -133,7 +141,7 @@ function smRangePicker (picker){
     link : function(scope,element,att,ctrls){
       var ngModelCtrl = ctrls[0];
       var calCtrl = ctrls[1];
-      calCtrl.configureNgModel(ngModelCtrl);
+     // calCtrl.configureNgModel(ngModelCtrl);
 
     }    
   }
@@ -142,6 +150,7 @@ function smRangePicker (picker){
 var RangePickerCtrl = function($scope,picker){
   var self = this;
   self.scope = $scope;
+  self.rangeSelectCall = $scope.rangeSelectCall;
   self.mode = $scope.mode;
   self.clickedButton = 0;
   
@@ -212,7 +221,7 @@ RangePickerCtrl.prototype.setNextView = function(){
 
 RangePickerCtrl.prototype.dateRangeSelected = function(){
     var self = this;
-    
+    console.log('test');
     self.selectedTabIndex =0;
     self.view= 'DATE';
     if(self.startShowCustomSettting){
@@ -264,8 +273,10 @@ RangePickerCtrl.prototype.preDefineDate = function(p){
         break;
     }
     if(p!=7){
+
       self.setNgModelValue(self.startDate,self.divider,self.endDate);
     }
+
 } 
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
@@ -290,8 +301,10 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
 
 RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) {
     var self = this;
-    self.ngModelCtrl.$setViewValue(startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format));
-    self.ngModelCtrl.$render();
+    console.log('test preDefineDate');
+    self.rangeSelectCall({range:startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format)});
+ //   self.ngModelCtrl.$setViewValue(startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format));
+ //   self.ngModelCtrl.$render();
     self.scope.$emit('range-picker:close');    
 };
 

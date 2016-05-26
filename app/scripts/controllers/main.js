@@ -86,6 +86,10 @@
           return debounceFn;
         }
         vm.toggleLeft = buildToggler('left');
+
+        vm.save = function(){
+          console.log(vm.employee);
+        }
         
     }
 

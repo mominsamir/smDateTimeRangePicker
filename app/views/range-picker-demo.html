@@ -1,21 +1,18 @@
-<form name="test">
+<form name="test" ng-submit="vm.save()" novalidate>
 <md-content  class="md-whiteframe-z2" layout-padding>
     <div> 
     	<h2 class="md-title">Demo For Default Date Range Picker</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
-	                fname="Date of Pay" 
-	                lable="Date of Pay"
-	                form="test"
-	                min-date="11-10-2015" 
-	                value="vm.employee.default" 
-	                flex="50"                         
-	                is-required="true" 
-	                format="DD-MM-YYYY"
-	                divider="To"
-	                
-	                week-start-day="Monday"
-	                custom-to-home="'true'">
+	            fname="Date of Pay" 
+	            lable="Date of Pay"
+	            form="test"
+	            value="vm.employee.default" 
+	            flex="50"                         
+				format="DD-MM-YYYY"
+	            divider="To"
+	            week-start-day="Monday"
+	            custom-to-home="'true'">
 	        </sm-range-picker-input>
 	    </div>
 
@@ -24,19 +21,18 @@
     	<h2 class="md-title">Custom view</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
-	                fname="Date of Pay" 
-	                lable="Date of Pay"
-	                form="test"
-	                min-date="11-10-2015" 
-	                value="vm.employee.dateOfPay" 
-	                flex="50"                         
-	                is-required="true" 
-	                format="DD-MM-YYYY"
-	                divider="To"
-	                mode="date"
-	                week-start-day="Monday"
-	                custom-to-home="'true'"
-	                show-custom="'true'">
+	            fname="Date of Pay" 
+	            lable="Date of Pay"
+	            form="test"
+	            min-date="11-10-2015" 
+	            value="vm.employee.dateOfPay" 
+	            flex="50"                         
+	            format="DD-MM-YYYY"
+	            divider="To"
+	            mode="date"
+	            week-start-day="Monday"
+	            custom-to-home="'true'"
+	            show-custom="'true'">
 	        </sm-range-picker-input>
 	    </div>
 
@@ -62,7 +58,10 @@
 	    </div>
     </div>    
 
-      <md-grid-list md-cols="1" md-row-height="2:1">
+
+
+
+       <md-grid-list md-cols="1" md-row-height="2:1">
         <md-grid-tile class="gray" md-rowspan="1" md-colspan="1">
           <md-grid-tile-header>
             <h3>tile header</h3>
@@ -100,5 +99,5 @@
           </md-grid-tile-footer>
         </md-grid-tile>
      </md-grid-list>    
-</md-content>    	
+ </md-content>    	
 </form>
