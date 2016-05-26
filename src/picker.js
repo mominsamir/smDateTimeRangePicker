@@ -1320,21 +1320,21 @@ RangePickerCtrl.prototype.preDefineDate = function(p){
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;
-  self.scope.$emit('range-picker:startDateSelected');
+  this.scope.$emit('range-picker:startDateSelected');
   this.setNextView();
 }
 
 RangePickerCtrl.prototype.startTimeSelected = function(time){
 
   this.startDate.hour(time.hour()).minute(time.minute());
-  self.scope.$emit('range-picker:startTimeSelected');
+  this.scope.$emit('range-picker:startTimeSelected');
   this.setNextView();
 }
 
 
 RangePickerCtrl.prototype.endDateSelected = function(date){
   this.endDate = date;
-  self.scope.$emit('range-picker:endDateSelected');
+  this.scope.$emit('range-picker:endDateSelected');
   if(this.closeOnSelect && this.mode==='date'){
     this.setNgModelValue(this.startDate,this.divider,this.endDate);
   }else{
@@ -1344,7 +1344,7 @@ RangePickerCtrl.prototype.endDateSelected = function(date){
 
 RangePickerCtrl.prototype.endTimeSelected = function(time){
   this.endDate.hour(time.hour()).minute(time.minute());
-  self.scope.$emit('range-picker:endTimeSelected');  
+  this.scope.$emit('range-picker:endTimeSelected');  
   if(this.closeOnSelect && this.mode==='date-time'){
     this.setNgModelValue(this.startDate,this.divider,this.endDate);    
   }
