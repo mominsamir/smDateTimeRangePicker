@@ -75,6 +75,13 @@
           });          
         };
         
+        vm.dayofPaySelected = function(range){
+          vm.rangeObj = range;
+        }
+
+        vm.dayofPay2Selected = function(range){
+          vm.rangeObj2 = range;
+        }
 
         function buildToggler(navID) {
           var debounceFn =  $mdUtil.debounce(function(){

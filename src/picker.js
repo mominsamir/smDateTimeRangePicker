@@ -1061,7 +1061,8 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         divider: '@',
         showCustom:'@',
         weekStartDay :"@",
-        customToHome: "@"
+        customToHome: "@",
+        onRangeSelect : '&'  
       },
       template: ' <md-input-container>'
                 +'    <label for="{{fname}}">{{lable}}</label>'
@@ -1069,7 +1070,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
                 +'             type="text" placeholde="{{lable}}"'
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
                 +'             ng-focus="show()">'
-                +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp">'                
+                +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp" ng-model="value">'                
                 +'    <sm-range-picker custom-to-home="{{customToHome}}" mode="{{mode}}" range-select-call="rangeSelected(range)" close-on-select="{{closeOnSelect}}" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}"  divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
                 +'   </div> '  
                 +'  </md-input-container>',
@@ -1098,7 +1099,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         });
 
         scope.rangeSelected = function(range){
-          scope.value= range;
+          scope.onRangeSelect({range:range});
         }
 
 
@@ -1167,7 +1168,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
 function smRangePicker (picker){
   return{
     restrict : 'E',
-    require : ['smRangePicker'],
+    require : ['^?ngModel','smRangePicker'],
     scope:{
       format:'@',
       divider: '@',
@@ -1184,7 +1185,7 @@ function smRangePicker (picker){
     link : function(scope,element,att,ctrls){
       var ngModelCtrl = ctrls[0];
       var calCtrl = ctrls[1];
-     // calCtrl.configureNgModel(ngModelCtrl);
+      calCtrl.configureNgModel(ngModelCtrl);
 
     }    
   }
@@ -1348,14 +1349,17 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
   if(this.closeOnSelect && this.mode==='date-time'){
     this.setNgModelValue(this.startDate,this.divider,this.endDate);    
   }
-//  this.setNextView();
 }
 
- //   self.ngModelCtrl.$setViewValue(startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format));
- //   self.ngModelCtrl.$render();
+
 RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) {
     var self = this;
-    self.rangeSelectCall({range:startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format)});
+    var range = {startDate: startDate.format(self.scope.format) , endDate: endDate.format(self.scope.format)};
+    self.rangeSelectCall({range: range});
+    self.ngModelCtrl.$setViewValue(startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format));
+    self.ngModelCtrl.$render();    
+    self.selectedTabIndex =0 
+    self.view ="DATE";
     self.scope.$emit('range-picker:close');    
 };
 

@@ -12,10 +12,11 @@
 				format="DD-MM-YYYY"
 	            divider="To"
 	            week-start-day="Monday"
-	            custom-to-home="'true'">
+	            custom-to-home="'true'"
+	            on-range-select="vm.dayofPaySelected(range)">
 	        </sm-range-picker-input>
 	    </div>
-
+	    {{vm.rangeObj}}
     </div>
     <div> 
     	<h2 class="md-title">Close on Select : Custom view</h2>	
@@ -76,8 +77,10 @@
 	                week-start-day="Monday"
 	                custom-to-home="'true'"
 	                close-on-select="true"
-	                show-custom="'true'">
+	                show-custom="'true'"
+	                on-range-select="vm.dayofPay2Selected(range)">
 	        </sm-range-picker-input>
+	        {{vm.rangeObj2}}
 	    </div>
     </div>        
 
@@ -121,6 +124,7 @@
             <h3>tile footer</h3>
           </md-grid-tile-footer>
         </md-grid-tile>
-     </md-grid-list>    
+     </md-grid-list>   
+     <md-button type="submit" class="md-primary md-raised">save</md-button> 
  </md-content>    	
 </form>
