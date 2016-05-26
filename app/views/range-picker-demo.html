@@ -18,7 +18,7 @@
 
     </div>
     <div> 
-    	<h2 class="md-title">Custom view</h2>	
+    	<h2 class="md-title">Close on Select : Custom view</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
 	            fname="Date of Pay" 
@@ -32,6 +32,7 @@
 	            mode="date"
 	            week-start-day="Monday"
 	            custom-to-home="'true'"
+	            close-on-select="true"	            
 	            show-custom="'true'">
 	        </sm-range-picker-input>
 	    </div>
@@ -57,6 +58,28 @@
 	        </sm-range-picker-input>
 	    </div>
     </div>    
+
+    <div> 
+    	<h2 class="md-title">Close on Select Date-Time Range Picker</h2>	
+	    <div layout="row">
+	        <sm-range-picker-input
+	                fname="dayOfPay" 
+	                lable="Date of Pay 2"
+	                form="test"
+	                min-date="11-10-2015" 
+	                value="vm.employee.dateOfPay2" 
+	                flex="50"                         
+	                is-required="true" 
+	                format="DD-MM-YYYY HH:mm"
+	                divider="To"
+	                mode="date-time"
+	                week-start-day="Monday"
+	                custom-to-home="'true'"
+	                close-on-select="true"
+	                show-custom="'true'">
+	        </sm-range-picker-input>
+	    </div>
+    </div>        
 
 
 

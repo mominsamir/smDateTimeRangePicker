@@ -12,6 +12,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         fname : "@",
         value: '=',
         isRequired : '@',
+        closeOnSelect: '@',
         disable : '=',
         format : '@',
         mode : '@',
@@ -27,7 +28,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
                 +'             ng-focus="show()">'
                 +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp">'                
-                +'    <sm-range-picker custom-to-home="{{customToHome}}" mode="{{mode}}" range-select-call="rangeSelected(range)" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}"  divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
+                +'    <sm-range-picker custom-to-home="{{customToHome}}" mode="{{mode}}" range-select-call="rangeSelected(range)" close-on-select="{{closeOnSelect}}" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}"  divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
                 +'   </div> '  
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
@@ -55,7 +56,6 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         });
 
         scope.rangeSelected = function(range){
-          console.log(range);
           scope.value= range;
         }
 
@@ -131,6 +131,7 @@ function smRangePicker (picker){
       divider: '@',
       weekStartDay :"@",
       customToHome: "@",
+      closeOnSelect: "@",
       mode: "@",      
       showCustom:'@',
       rangeSelectCall : '&'      
@@ -152,6 +153,7 @@ var RangePickerCtrl = function($scope,picker){
   self.scope = $scope;
   self.rangeSelectCall = $scope.rangeSelectCall;
   self.mode = $scope.mode;
+  self.closeOnSelect = $scope.closeOnSelect;
   self.clickedButton = 0;
   
   self.format = angular.isUndefined($scope.format) ? 'MM-DD-YYYY': $scope.format;
@@ -178,10 +180,6 @@ var RangePickerCtrl = function($scope,picker){
   }else{
     self.selectedTabIndex = $scope.selectedTabIndex;
   }
-
-  self.scope.$on('calender:date-selected',function(){
-    //self.selectedTabIndex =1;
-  });        
 
 }
 
@@ -221,7 +219,6 @@ RangePickerCtrl.prototype.setNextView = function(){
 
 RangePickerCtrl.prototype.dateRangeSelected = function(){
     var self = this;
-    console.log('test');
     self.selectedTabIndex =0;
     self.view= 'DATE';
     if(self.startShowCustomSettting){
@@ -281,36 +278,47 @@ RangePickerCtrl.prototype.preDefineDate = function(p){
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;
+  self.scope.$emit('range-picker:startDateSelected');
   this.setNextView();
 }
 
 RangePickerCtrl.prototype.startTimeSelected = function(time){
+
   this.startDate.hour(time.hour()).minute(time.minute());
+  self.scope.$emit('range-picker:startTimeSelected');
   this.setNextView();
 }
 
 
 RangePickerCtrl.prototype.endDateSelected = function(date){
-  this.setNextView();
+  this.endDate = date;
+  self.scope.$emit('range-picker:endDateSelected');
+  if(this.closeOnSelect && this.mode==='date'){
+    this.setNgModelValue(this.startDate,this.divider,this.endDate);
+  }else{
+    this.setNextView();
+  }
 }
 
 RangePickerCtrl.prototype.endTimeSelected = function(time){
   this.endDate.hour(time.hour()).minute(time.minute());
+  self.scope.$emit('range-picker:endTimeSelected');  
+  if(this.closeOnSelect && this.mode==='date-time'){
+    this.setNgModelValue(this.startDate,this.divider,this.endDate);    
+  }
 //  this.setNextView();
 }
 
-RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) {
-    var self = this;
-    console.log('test preDefineDate');
-    self.rangeSelectCall({range:startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format)});
  //   self.ngModelCtrl.$setViewValue(startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format));
  //   self.ngModelCtrl.$render();
+RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) {
+    var self = this;
+    self.rangeSelectCall({range:startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format)});
     self.scope.$emit('range-picker:close');    
 };
 
 RangePickerCtrl.prototype.cancel = function(){
   var self = this;
-
   if(self.customToHome && self.showCustom){
     self.showCustom=false; 
   }else{
