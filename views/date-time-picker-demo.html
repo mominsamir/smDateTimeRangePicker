@@ -1,4 +1,4 @@
-<form name="empForm"  ng-init="vm.employee.dateOfBirth='10-10-2015'">
+<form name="empForm"  ng-init="vm.employee.dateOfBirth='10-10-2015'" novalidate="true" ng-submit="vm.save()">
     <md-content   layout-padding class="md-whiteframe-z2" >
        <div layout="row">
             DateTime picker, week start date is Monday    
@@ -143,6 +143,6 @@
             </div>                
         </div>
         
-
+<!--         <md-button type="submit" class="md-primary md-raised">save</md-button> -->
    </md-content>
 </form>
