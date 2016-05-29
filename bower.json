@@ -1,14 +1,14 @@
 {
   "name": "smDateTimeRangePicker",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "homepage": "https://github.com/mominsamir/smDateTimeRangePicker",
   "authors": [
     "mominsamir"
   ],
   "description": "Material Design date/time/Range pickers built with Angular Material and Moment.js",
   "main": [
-    "dist/sm-picker-min.js",
-    "dist/sm-picker-min.css"
+    "src/picker.js",
+    "src/picker.css"
   ],
   "keywords": [
     "angular",
@@ -30,7 +30,6 @@
     "angular": "~1.4.5",
     "angular-material": "~1.0.1",
     "moment": "~2.10.6",
-    "angular-ui-router": "^0.2.18",
     "angular-aria": "^1.5.2"
   }
 }
