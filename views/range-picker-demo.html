@@ -5,7 +5,7 @@
 	    <div layout="row">
 	        <sm-range-picker-input
 	            fname="Date of Pay" 
-	            lable="Date of Pay"
+	            label="Date of Pay"
 	            form="test"
 	            value="vm.employee.default" 
 	            flex="50"                         
@@ -16,14 +16,14 @@
 	            on-range-select="vm.dayofPaySelected(range)">
 	        </sm-range-picker-input>
 	    </div>
-	    {{vm.rangeObj}}
+	   selected range via call back = {{vm.rangeObj}}
     </div>
     <div> 
     	<h2 class="md-title">Close on Select : Custom view</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
 	            fname="Date of Pay" 
-	            lable="Date of Pay"
+	            label="Date of Pay"
 	            form="test"
 	            min-date="11-10-2015" 
 	            value="vm.employee.dateOfPay" 
@@ -44,7 +44,7 @@
 	    <div layout="row">
 	        <sm-range-picker-input
 	                fname="dayOfPay" 
-	                lable="Date of Pay"
+	                label="Date of Pay"
 	                form="test"
 	                min-date="11-10-2015" 
 	                value="vm.employee.dateOfPay1" 
@@ -65,7 +65,7 @@
 	    <div layout="row">
 	        <sm-range-picker-input
 	                fname="dayOfPay" 
-	                lable="Date of Pay 2"
+	                label="Date of Pay 2"
 	                form="test"
 	                min-date="11-10-2015" 
 	                value="vm.employee.dateOfPay2" 
@@ -80,13 +80,13 @@
 	                show-custom="'true'"
 	                on-range-select="vm.dayofPay2Selected(range)">
 	        </sm-range-picker-input>
-	        {{vm.rangeObj2}}
+	    	   selected range via call back = {{vm.rangeObj2}}
 	    </div>
     </div>        
 
 
 
-
+<!-- 
        <md-grid-list md-cols="1" md-row-height="2:1">
         <md-grid-tile class="gray" md-rowspan="1" md-colspan="1">
           <md-grid-tile-header>
@@ -94,7 +94,7 @@
           </md-grid-tile-header>
 	        <sm-range-picker-input
 	                fname="Date of Pay" 
-	                lable="Date of Pay"
+	                label="Date of Pay"
 	                form="test"
 	                min-date="11-10-2015" 
 	                value="vm.employee.dateOfPay" 
@@ -107,7 +107,7 @@
 	        </sm-range-picker-input>
                 <sm-date-time-picker 
                     fname="field" 
-                    lable="Date of Birth"
+                    label="Date of Birth"
                     form="empForm" 
                     value="vm.employee.dateOfBirth"
                     no-float 
@@ -126,5 +126,5 @@
         </md-grid-tile>
      </md-grid-list>   
      <md-button type="submit" class="md-primary md-raised">save</md-button> 
- </md-content>    	
+ --> </md-content>    	
 </form>
