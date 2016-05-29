@@ -8,7 +8,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
       replace: true,
       scope :{
         form : '=',
-        lable : "@",
+        label : "@",
         fname : "@",
         value: '=',
         isRequired : '@',
@@ -23,9 +23,9 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         onRangeSelect : '&'  
       },
       template: ' <md-input-container>'
-                +'    <label for="{{fname}}">{{lable}}</label>'
+                +'    <label for="{{fname}}">{{label}}</label>'
                 +'      <input name="{{fname}}" ng-model="value" ng-readonly="true"'
-                +'             type="text" placeholde="{{lable}}"'
+                +'             type="text" placeholde="{{label}}"'
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
                 +'             ng-focus="show()">'
                 +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp" ng-model="value">'                
@@ -218,6 +218,12 @@ RangePickerCtrl.prototype.setNextView = function(){
   }    
 } 
 
+RangePickerCtrl.prototype.showCustomView = function(){
+  this.showCustom=true;
+  this.selectedTabIndex=0
+
+}
+
 RangePickerCtrl.prototype.dateRangeSelected = function(){
     var self = this;
     self.selectedTabIndex =0;
@@ -230,7 +236,7 @@ RangePickerCtrl.prototype.dateRangeSelected = function(){
     self.setNgModelValue(self.startDate,self.divider,self.endDate);
 }
 
-RangePickerCtrl.prototype.preDefineDate = function(p){
+/*RangePickerCtrl.prototype.preDefineDate = function(p){
     var self = this;  
     self.clickedButton=p;
     var instance = moment();
@@ -275,7 +281,7 @@ RangePickerCtrl.prototype.preDefineDate = function(p){
       self.setNgModelValue(self.startDate,self.divider,self.endDate);
     }
 
-} 
+}*/ 
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;

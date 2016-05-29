@@ -329,7 +329,7 @@ function picker(){
 
     //date picker configuration
     var daysNames =  [
-        {'single':'S','shortName':'Su','fullName':'Sunday'}, 
+        {'single':'S','shortName':'Su','fullName':'Su startDate:nday'}, 
         {'single':'M','shortName':'Mo','fullName':'MonDay'}, 
         {'single':'T','shortName':'Tu','fullName':'TuesDay'}, 
         {'single':'W','shortName':'We','fullName':'Wednesday'}, 
@@ -344,14 +344,46 @@ function picker(){
 
     //range picker configuration
     var rangeDivider = "To";
-    var rangeDefaultList = ['Today',
-            'Last 7 Days',
-            'This Month',
-            'Last Month',
-            'This Quarter',
-            'Year To Date',
-            'This Year', 
-            'Custom Range'];
+    var rangeDefaultList = [
+    		{	label:'Today',
+    			startDate:moment().startOf('day'),
+    			endDate:moment().endOf('day')
+    		},
+            {	label:'Last 7 Days',
+            	startDate: moment().subtract(7,'d'),
+            	endDate:moment()
+            },
+            {	
+            	label:'This Month',
+            	startDate:moment().startOf('month'), 
+            	endDate: moment().endOf('month')
+            },
+            {
+				label:'Last Month',
+				startDate:moment().subtract(1,'month').startOf('month'),
+				endDate: moment()
+			},
+            {
+				label: 'This Quarter',
+				startDate: moment().startOf('quarter'),
+            	endDate: moment().endOf('quarter')
+            },
+            {
+				label:  'Year To Date',
+				startDate:  moment().startOf('year'),
+            	endDate:  moment()
+            },
+            {
+            	label:  'This Year',
+				startDate:  moment().startOf('year'),
+            	endDate:  moment().endOf('year')
+            }/*, 
+            { 
+				label:  'Custom Range',
+				startDate:  'custom',
+				endDate: 'custom'
+			}*/
+		];
 
     var rangeCustomStartEnd =['Start Date','End Date'];            
 
@@ -1050,7 +1082,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
       replace: true,
       scope :{
         form : '=',
-        lable : "@",
+        label : "@",
         fname : "@",
         value: '=',
         isRequired : '@',
@@ -1065,9 +1097,9 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         onRangeSelect : '&'  
       },
       template: ' <md-input-container>'
-                +'    <label for="{{fname}}">{{lable}}</label>'
+                +'    <label for="{{fname}}">{{label}}</label>'
                 +'      <input name="{{fname}}" ng-model="value" ng-readonly="true"'
-                +'             type="text" placeholde="{{lable}}"'
+                +'             type="text" placeholde="{{label}}"'
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
                 +'             ng-focus="show()">'
                 +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp" ng-model="value">'                
@@ -1260,6 +1292,12 @@ RangePickerCtrl.prototype.setNextView = function(){
   }    
 } 
 
+RangePickerCtrl.prototype.showCustomView = function(){
+  this.showCustom=true;
+  this.selectedTabIndex=0
+
+}
+
 RangePickerCtrl.prototype.dateRangeSelected = function(){
     var self = this;
     self.selectedTabIndex =0;
@@ -1272,7 +1310,7 @@ RangePickerCtrl.prototype.dateRangeSelected = function(){
     self.setNgModelValue(self.startDate,self.divider,self.endDate);
 }
 
-RangePickerCtrl.prototype.preDefineDate = function(p){
+/*RangePickerCtrl.prototype.preDefineDate = function(p){
     var self = this;  
     self.clickedButton=p;
     var instance = moment();
@@ -1317,7 +1355,7 @@ RangePickerCtrl.prototype.preDefineDate = function(p){
       self.setNgModelValue(self.startDate,self.divider,self.endDate);
     }
 
-} 
+}*/ 
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;
@@ -1643,5 +1681,5 @@ angular.module("smDateTimeRangePicker").run(["$templateCache", function($templat
 $templateCache.put("picker/calender-hour.html","<div  class=\"time-picker\" layout=\"row\" layout-align=\"center center\">\r\n	<div>\r\n		<div layout=\"row\" class=\"navigation\">\r\n			<span class=\"md-button\">Hour</span>\r\n			<span class=\"md-button\">Minute</span>\r\n		</div>\r\n		<div layout=\"row\" >\r\n			<md-virtual-repeat-container flex=\"50\"  id=\"hour-container{{vm.uid}}\" class=\"time-md-repeat\" md-top-index=\"vm.hourTopIndex\">\r\n			<div md-virtual-repeat=\"h in vm.hourItems\" class=\"repeated-item\">\r\n						<md-button class=\"md-icon-button\" \r\n							ng-click=\"vm.setHour(h.hour)\" 							\r\n							ng-class=\"{\'md-primary\': h.isCurrent,\r\n									\'md-primary md-raised\' :h.hour===vm.currentDate.hour()}\">\r\n							{{h.hour}}\r\n						</md-button>\r\n			</div>\r\n			</md-virtual-repeat-container>		     \r\n			<md-virtual-repeat-container flex=\"50\" id=\"minute-container\" class=\"time-md-repeat\" md-top-index=\"vm.minuteTopIndex\">\r\n				<div md-virtual-repeat=\"m in vm.minuteCells\"  class=\"repeated-item\">\r\n						<md-button class=\"md-icon-button\" \r\n							ng-click=\"vm.setMinute(m.minute)\" 							\r\n							ng-class=\"{\'md-primary\': m.isCurrent,\r\n								\'md-primary md-raised\' :m.minute===vm.currentDate.minute()}\">\r\n							{{m.minute}}\r\n						</md-button>\r\n				</div>\r\n			</md-virtual-repeat-container>		     \r\n		</div>	\r\n	</div>\r\n</div>");
 $templateCache.put("picker/date-picker-service.html","<md-dialog class=\"picker-container  md-whiteframe-15dp\" aria-label=\"picker\">\r\n	<md-content  layout-xs=\"column\" layout=\"row\"  class=\"container\" >\r\n		<md-toolbar class=\"md-height\" ng-class=\"{\'portrait\': !vm.$mdMedia(\'gt-xs\'),\'landscape\': vm.$mdMedia(\'gt-xs\')}\" >			\r\n				<span class=\"year-header\" layout=\"row\" layout-xs=\"row\">{{vm.viewDate.format(\'YYYY\')}}</span>\r\n				<span class=\"date-time-header\" layout=\"row\" layout-xs=\"row\">{{vm.viewDate.format(vm.headerDispalyFormat)}}</span>\r\n		</md-toolbar>\r\n		<div layout=\"column\" class=\"picker-container\" >\r\n			<div ng-show=\"vm.view===\'DATE\'\" >\r\n				<sm-calender \r\n					ng-model=\"vm.selectedDate\"\r\n					initial-date=\"vm.selectedDate\"\r\n					id=\"{{vm.fname}}Picker\" \r\n					data-mode=\"{{vm.mode}}\" \r\n					data-min-date=\"vm.minDate\" \r\n					data-max-date=\"vm.maxDate\" \r\n					close-on-select=\"{{vm.closeOnSelect}}\"				 \r\n					data-format=\"{{vm.format}}\"  \r\n					data-week-start-day=\"{{vm.weekStartDay}}\"\r\n					date-select-call=\"vm.dateSelected(date)\">\r\n				</sm-calender>\r\n			</div>\r\n			<div ng-show=\"vm.view===\'HOUR\'\">\r\n				<sm-time\r\n					ng-model=\"vm.selectedTime\"\r\n					data-format=\"HH:mm\"\r\n					time-select-call=\"vm.timeSelected(time)\">\r\n				</sm-time>\r\n			</div>		\r\n 			<div layout=\"row\" ng-hide=\"vm.closeOnSelect && (vm.mode!==\'date-time\' || vm.mode!==\'time\')\">\r\n<!-- 					<div ng-show=\"vm.mode===\'date-time\'\">\r\n						<md-button class=\"md-icon-button\" ng-show=\"vm.view===\'DATE\'\" ng-click=\"vm.view=\'HOUR\'\">\r\n							<md-icon md-font-icon=\"material-icons md-primary\">access_time</md-icon>\r\n						</md-button>				\r\n						<md-button class=\"md-icon-button\" ng-show=\"vm.view===\'HOUR\'\" ng-click=\"vm.view=\'DATE\'\">\r\n							<md-icon md-font-icon=\"material-icons md-primary\">date_range</md-icon>\r\n						</md-button>\r\n					</div>												\r\n -->					<span flex></span>\r\n					<md-button class=\"md-button md-primary\" ng-click=\"vm.closeDateTime()\">{{vm.cancelLabel}}</md-button>\r\n					<md-button class=\"md-button md-primary\" ng-click=\"vm.selectedDateTime()\">{{vm.okLabel}}</md-button>\r\n			</div>\r\n		</div>\r\n	</md-content>	\r\n</md-dialog>");
 $templateCache.put("picker/date-picker.html","<div class=\"picker-container  md-whiteframe-15dp\">\r\n	<md-content  layout-xs=\"column\" layout=\"row\"  class=\"container\" >\r\n		<md-toolbar class=\"md-height\" ng-class=\"{\'portrait\': !$mdMedia(\'gt-xs\'),\'landscape\': $mdMedia(\'gt-xs\')}\" >			\r\n				<span class=\"year-header\" layout=\"row\" layout-xs=\"row\">{{currentDate.format(\'YYYY\')}}</span>\r\n				<span class=\"date-time-header\" layout=\"row\" layout-xs=\"row\">{{currentDate.format(headerDispalyFormat)}}</span>\r\n		</md-toolbar>\r\n		<div layout=\"column\" class=\"picker-container\" >\r\n			<div ng-show=\"view===\'DATE\'\" >\r\n				<sm-calender \r\n					ng-model=\"selectedDate\"\r\n					initial-date=\"initialDate\"					\r\n					id=\"{{fname}}Picker\" \r\n					data-mode=\"{{mode}}\" \r\n					data-min-date=\"minDate\" \r\n					data-max-date=\"maxDate\" \r\n					close-on-select=\"{{closeOnSelect}}\"				 \r\n					data-format=\"{{format}}\"  \r\n					data-week-start-day=\"{{weekStartDay}}\">\r\n				</sm-calender>\r\n			</div>\r\n			<div ng-show=\"view===\'HOUR\'\">\r\n				<sm-time\r\n					ng-model=\"selectedTime\"\r\n					data-format=\"HH:mm\">\r\n				</sm-time>\r\n			</div>		\r\n			<div layout=\"row\" ng-hide=\"closeOnSelect && (mode!==\'date-time\' || mode!==\'time\')\">\r\n					<div ng-show=\"mode===\'date-time\'\">\r\n						<md-button class=\"md-icon-button\" ng-show=\"view===\'DATE\'\" ng-click=\"view=\'HOUR\'\">\r\n							<md-icon md-font-icon=\"material-icons md-primary\">access_time</md-icon>\r\n						</md-button>				\r\n						<md-button class=\"md-icon-button\" ng-show=\"view===\'HOUR\'\" ng-click=\"view=\'DATE\'\">\r\n							<md-icon md-font-icon=\"material-icons md-primary\">date_range</md-icon>\r\n						</md-button>\r\n					</div>												\r\n					<span flex></span>\r\n					<md-button class=\"md-button md-primary\" ng-click=\"closeDateTime()\">{{cancelLabel}}</md-button>\r\n					<md-button class=\"md-button md-primary\" ng-click=\"selectedDateTime()\">{{okLabel}}</md-button>\r\n			</div>\r\n		</div>\r\n	</md-content>	\r\n</div>");
-$templateCache.put("picker/range-picker.html","<md-content layout=\"column\"  id=\"{{id}}\" class=\"range-picker md-whiteframe-2dp\" >\r\n    <md-toolbar layout=\"row\"  class=\"md-primary\" >\r\n      	<div class=\"md-toolbar-tools\"  layout-align=\"space-around center\">\r\n			<div  class=\"date-display\"><span>{{vm.startDate.format(vm.format)}}</span></div>\r\n			<div   class=\"date-display\"><span>{{vm.endDate.format(vm.format)}}</span></div>\r\n		</div>\r\n	</md-toolbar>\r\n	<div  layout=\"column\" class=\"pre-select\"  role=\"button\" ng-show=\"!vm.showCustom\">\r\n		<md-button  ng-class=\"{\'md-primary\': vm.clickedButton===1}\" ng-click=\"vm.preDefineDate(1)\">{{vm.rangeDefaultList[0]}}</md-button>\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===2}\" ng-click=\"vm.preDefineDate(2)\">{{vm.rangeDefaultList[1]}}</md-button>		\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===3}\"  ng-click=\"vm.preDefineDate(3)\">{{vm.rangeDefaultList[2]}}</md-button>\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===4}\"  ng-click=\"vm.preDefineDate(4)\">{{vm.rangeDefaultList[3]}}</md-button>\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===5}\"  ng-click=\"vm.preDefineDate(5)\">{{vm.rangeDefaultList[4]}}</md-button>	\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===8}\" ng-click=\"vm.preDefineDate(8)\">{{vm.rangeDefaultList[5]}}</md-button>		\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===6}\"  ng-click=\"vm.preDefineDate(6)\">{{vm.rangeDefaultList[6]}}</md-button>	\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===7}\"  ng-click=\"vm.preDefineDate(7)\">{{vm.rangeDefaultList[7]}}</md-button>\r\n	</div>\r\n	<div layout=\"column\" class=\"custom-select\" ng-show=\"vm.showCustom\" ng-class=\"{\'show-calender\': vm.showCustom}\">\r\n		<div layout=\"row\"   class=\"tab-head\">\r\n			<span  ng-class=\"{\'active moveLeft\':vm.selectedTabIndex===0}\">{{vm.rangeCustomStartEnd[0]}}</span>\r\n			<span  ng-class=\"{\'active moveLeft\':vm.selectedTabIndex===1}\">{{vm.rangeCustomStartEnd[1]}}</span>			\r\n		</div>\r\n		<div ng-show=\"vm.selectedTabIndex===0\" ng-model=\"vm.startDate\" >\r\n			<sm-calender \r\n				ng-show=\"vm.view===\'DATE\'\"\r\n				week-start-day=\"{{weekStartDay}}\"\r\n				format=\"{{format}}\"\r\n				date-select-call=\"vm.startDateSelected(date)\">\r\n			</sm-calender>\r\n			<sm-time\r\n				ng-show=\"vm.view===\'TIME\'\"\r\n				ng-model=\"selectedStartTime\"\r\n				time-select-call=\"vm.startTimeSelected(time)\">\r\n			</sm-time>\r\n		</div>\r\n		<div ng-if=\"vm.selectedTabIndex===1\" ng-model=\"vm.endDate\" >\r\n			<sm-calender \r\n				format=\"{{format}}\"\r\n				ng-show=\"vm.view===\'DATE\'\"\r\n				initial-date=\"vm.startDate.format(format)\"\r\n				min-date=\"vm.startDate\"\r\n				week-start-day=\"{{weekStartDay}}\"\r\n				date-select-call=\"vm.endDateSelected(date)\">\r\n			</sm-calender>\r\n			<sm-time\r\n				ng-show=\"vm.view===\'TIME\'\"\r\n				ng-model=\"selectedEndTime\"\r\n				time-select-call=\"vm.endTimeSelected(time)\">\r\n			</sm-time>\r\n		</div>								\r\n	</div>\r\n	<div layout=\"row\" layout-align=\"end center\">\r\n		<md-button type=\"button\" class=\"md-primary\" ng-click=\"vm.cancel()\">{{vm.cancelLabel}}</md-button>						\r\n		<md-button type=\"button\" class=\"md-primary\" ng-click=\"vm.dateRangeSelected()\">{{vm.okLabel}}</md-button>	\r\n	</div>	\r\n</md-content>");
+$templateCache.put("picker/range-picker.html","<md-content layout=\"column\"  id=\"{{id}}\" class=\"range-picker md-whiteframe-2dp\" >\r\n    <md-toolbar layout=\"row\"  class=\"md-primary\" >\r\n      	<div class=\"md-toolbar-tools\"  layout-align=\"space-around center\">\r\n			<div  class=\"date-display\"><span>{{vm.startDate.format(vm.format)}}</span></div>\r\n			<div   class=\"date-display\"><span>{{vm.endDate.format(vm.format)}}</span></div>\r\n		</div>\r\n	</md-toolbar>\r\n	<div  layout=\"column\" class=\"pre-select\"  role=\"button\" ng-show=\"!vm.showCustom\">\r\n		<md-button aria-label=\"{{list.label}}\" ng-click=\"vm.setNgModelValue(list.startDate,vm.divider,list.endDate)\" ng-repeat=\"list in vm.rangeDefaultList\">{{list.label}}</md-button> \r\n		<md-button aria-label=\"Custom Range\"  ng-click=\"vm.showCustomView()\">Custom Range</md-button>			\r\n\r\n\r\n<!-- 		<md-button  ng-class=\"{\'md-primary\': vm.clickedButton===1}\" ng-click=\"vm.preDefineDate(1)\">{{vm.rangeDefaultList[0]}}</md-button>\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===2}\" ng-click=\"vm.preDefineDate(2)\">{{vm.rangeDefaultList[1]}}</md-button>		\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===3}\"  ng-click=\"vm.preDefineDate(3)\">{{vm.rangeDefaultList[2]}}</md-button>\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===4}\"  ng-click=\"vm.preDefineDate(4)\">{{vm.rangeDefaultList[3]}}</md-button>\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===5}\"  ng-click=\"vm.preDefineDate(5)\">{{vm.rangeDefaultList[4]}}</md-button>	\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===8}\" ng-click=\"vm.preDefineDate(8)\">{{vm.rangeDefaultList[5]}}</md-button> 		\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===6}\"  ng-click=\"vm.preDefineDate(6)\">{{vm.rangeDefaultList[6]}}</md-button>	\r\n		<md-button ng-class=\"{\'md-primary\': vm.clickedButton===7}\"  ng-click=\"vm.preDefineDate(7)\">{{vm.rangeDefaultList[7]}}</md-button>-->\r\n	</div>\r\n	<div layout=\"column\" class=\"custom-select\" ng-show=\"vm.showCustom\" ng-class=\"{\'show-calender\': vm.showCustom}\">\r\n		<div layout=\"row\"   class=\"tab-head\">\r\n			<span  ng-class=\"{\'active moveLeft\':vm.selectedTabIndex===0}\">{{vm.rangeCustomStartEnd[0]}}</span>\r\n			<span  ng-class=\"{\'active moveLeft\':vm.selectedTabIndex===1}\">{{vm.rangeCustomStartEnd[1]}}</span>			\r\n		</div>\r\n		<div ng-show=\"vm.selectedTabIndex===0\" ng-model=\"vm.startDate\" >\r\n			<sm-calender \r\n				ng-show=\"vm.view===\'DATE\'\"\r\n				week-start-day=\"{{weekStartDay}}\"\r\n				format=\"{{format}}\"\r\n				date-select-call=\"vm.startDateSelected(date)\">\r\n			</sm-calender>\r\n			<sm-time\r\n				ng-show=\"vm.view===\'TIME\'\"\r\n				ng-model=\"selectedStartTime\"\r\n				time-select-call=\"vm.startTimeSelected(time)\">\r\n			</sm-time>\r\n		</div>\r\n		<div ng-if=\"vm.selectedTabIndex===1\" ng-model=\"vm.endDate\" >\r\n			<sm-calender \r\n				format=\"{{format}}\"\r\n				ng-show=\"vm.view===\'DATE\'\"\r\n				initial-date=\"vm.startDate.format(format)\"\r\n				min-date=\"vm.startDate\"\r\n				week-start-day=\"{{weekStartDay}}\"\r\n				date-select-call=\"vm.endDateSelected(date)\">\r\n			</sm-calender>\r\n			<sm-time\r\n				ng-show=\"vm.view===\'TIME\'\"\r\n				ng-model=\"selectedEndTime\"\r\n				time-select-call=\"vm.endTimeSelected(time)\">\r\n			</sm-time>\r\n		</div>								\r\n	</div>\r\n	<div layout=\"row\" layout-align=\"end center\">\r\n		<md-button type=\"button\" class=\"md-primary\" ng-click=\"vm.cancel()\">{{vm.cancelLabel}}</md-button>						\r\n		<md-button type=\"button\" class=\"md-primary\" ng-click=\"vm.dateRangeSelected()\">{{vm.okLabel}}</md-button>	\r\n	</div>	\r\n</md-content>");
 $templateCache.put("picker/time-picker.html","<div class=\"picker-container  md-whiteframe-15dp\">\r\n	<md-content  layout-xs=\"column\" layout=\"row\"  class=\"container\" >\r\n		<md-toolbar class=\"md-height\" ng-class=\"{\'portrait\': !$mdMedia(\'gt-xs\'),\'landscape\': $mdMedia(\'gt-xs\')}\" >			\r\n				<span class=\"year-header\" layout=\"row\" layout-xs=\"row\">{{currentDate.format(\'YYYY\')}}</span>\r\n				<span class=\"date-time-header\" layout=\"row\" layout-xs=\"row\">{{currentDate.format(headerDispalyFormat)}}</span>\r\n		</md-toolbar>\r\n		<div layout=\"column\" class=\"picker-container\" >\r\n			<sm-time\r\n				ng-model=\"selectedTime\"\r\n				data-format=\"HH:mm\">\r\n			</sm-time>\r\n			<div layout=\"row\" ng-hide=\"closeOnSelect && (mode!==\'date-time\' || mode!==\'time\')\">\r\n					<div ng-show=\"mode===\'date-time\'\">\r\n						<md-button class=\"md-icon-button\" ng-show=\"view===\'DATE\'\" ng-click=\"view=\'HOUR\'\">\r\n							<md-icon md-font-icon=\"material-icons md-primary\">access_time</md-icon>\r\n						</md-button>				\r\n						<md-button class=\"md-icon-button\" ng-show=\"view===\'HOUR\'\" ng-click=\"view=\'DATE\'\">\r\n							<md-icon md-font-icon=\"material-icons md-primary\">date_range</md-icon>\r\n						</md-button>\r\n					</div>												\r\n					<span flex></span>\r\n					<md-button class=\"md-button md-primary\" ng-click=\"closeDateTime()\">{{cancelLabel}}</md-button>\r\n					<md-button class=\"md-button md-primary\" ng-click=\"selectedDateTime()\">{{okLabel}}</md-button>\r\n			</div>\r\n		</div>\r\n	</md-content>	\r\n</div>");}]);

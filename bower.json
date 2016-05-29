@@ -30,6 +30,7 @@
     "angular": "~1.4.5",
     "angular-material": "~1.0.1",
     "moment": "~2.10.6",
+    "angular-ui-router": "~0.2.15",    
     "angular-aria": "^1.5.2"
   }
 }

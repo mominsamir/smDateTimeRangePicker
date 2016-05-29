@@ -329,7 +329,7 @@ function picker(){
 
     //date picker configuration
     var daysNames =  [
-        {'single':'S','shortName':'Su','fullName':'Sunday'}, 
+        {'single':'S','shortName':'Su','fullName':'Su startDate:nday'}, 
         {'single':'M','shortName':'Mo','fullName':'MonDay'}, 
         {'single':'T','shortName':'Tu','fullName':'TuesDay'}, 
         {'single':'W','shortName':'We','fullName':'Wednesday'}, 
@@ -344,14 +344,46 @@ function picker(){
 
     //range picker configuration
     var rangeDivider = "To";
-    var rangeDefaultList = ['Today',
-            'Last 7 Days',
-            'This Month',
-            'Last Month',
-            'This Quarter',
-            'Year To Date',
-            'This Year', 
-            'Custom Range'];
+    var rangeDefaultList = [
+    		{	label:'Today',
+    			startDate:moment().startOf('day'),
+    			endDate:moment().endOf('day')
+    		},
+            {	label:'Last 7 Days',
+            	startDate: moment().subtract(7,'d'),
+            	endDate:moment()
+            },
+            {	
+            	label:'This Month',
+            	startDate:moment().startOf('month'), 
+            	endDate: moment().endOf('month')
+            },
+            {
+				label:'Last Month',
+				startDate:moment().subtract(1,'month').startOf('month'),
+				endDate: moment()
+			},
+            {
+				label: 'This Quarter',
+				startDate: moment().startOf('quarter'),
+            	endDate: moment().endOf('quarter')
+            },
+            {
+				label:  'Year To Date',
+				startDate:  moment().startOf('year'),
+            	endDate:  moment()
+            },
+            {
+            	label:  'This Year',
+				startDate:  moment().startOf('year'),
+            	endDate:  moment().endOf('year')
+            }/*, 
+            { 
+				label:  'Custom Range',
+				startDate:  'custom',
+				endDate: 'custom'
+			}*/
+		];
 
     var rangeCustomStartEnd =['Start Date','End Date'];            
 
