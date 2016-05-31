@@ -62,9 +62,11 @@
 					<td>Go back to Defualt view from Custom view</td>
 					<td>True or false</td>				
 				</tr>		
-
-
-
+				<tr>
+					<td>on-range-select</td>
+					<td>call back function that return selected range as object with startDate and endDate</td>
+					<td>on-range-select="vm.yourCallbackFun(date)"</td>				
+				</tr>						
 			</tbody>
 		</table>
 	</div>
@@ -82,6 +84,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-size="100"</br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is-required="{{true}}" </br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;format="MM-DD-YYYY" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on-range-select="vm.yourCallbackFun(date)"</br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divider="To"&gt;</br>
             &lt;/sm-range-picker-input&gt;</br>
             </p>
