@@ -14,9 +14,15 @@
 					<md-button  ng-disabled="vm.stopScrollPrevious" class="md-icon-button scroll-button"  aria-label="previous"  ng-click="vm.changePeriod('p')">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M15 8.25H5.87l4.19-4.19L9 3 3 9l6 6 1.06-1.06-4.19-4.19H15v-1.5z"/></svg>
 					</md-button>
-					<md-button aria-label="Change Year" class="md-button" ng-class="vm.moveCalenderAnimation" ng-click="vm.changeView('YEAR_MONTH')">
+ 					<md-button
+ 						md-no-ink
+						aria-label="Change Year"
+ 						class="md-button" 
+ 						ng-class="vm.moveCalenderAnimation" 
+ 						ng-click="vm.changeView('YEAR_MONTH')">
 						{{vm.monthList[vm.initialDate.month()]}}{{' '}}{{vm.initialDate.year()}}
-					</md-button>			
+					</md-button>
+
 					<md-button ng-disabled="vm.stopScrollNext"  class="md-icon-button scroll-button" aria-label="next" ng-click="vm.changePeriod('n')">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M9 3L7.94 4.06l4.19 4.19H3v1.5h9.13l-4.19 4.19L9 15l6-6z"/></svg>							
 					</md-button>				

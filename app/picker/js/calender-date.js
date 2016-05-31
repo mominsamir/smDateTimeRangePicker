@@ -12,16 +12,18 @@ function Calender($timeout,picker){
 	      	minDate: "=",
 	      	maxDate: "=",
 	      	initialDate : "=",
-	      	format:"@",
-	      	mode:"@",
-	      	startView:"@",	      	
-	      	weekStartDay:"@",
+	      	format: '@',
+	      	mode: '@',
+	      	startView:'@',	      	
+	      	weekStartDay:'@',
+	      	disableYearSelection:'@',
 	      	dateSelectCall : '&'
 	    },
 	   	controller:["$scope","$timeout","picker","$mdMedia",CalenderCtrl],
 	    controllerAs : 'vm',
 	    templateUrl:"picker/calender-date.html",
 		link : function(scope,element,attr,ctrls){
+
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
@@ -47,6 +49,7 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.restrictToMaxDate = angular.isUndefined($scope.maxDate) ? false : true;
 	self.stopScrollPrevious =false;
 	self.stopScrollNext = false;
+	self.disableYearSelection = $scope.disableYearSelection;
 	self.monthCells=[];
 	self.dateCellHeader= [];	
 	self.dateCells = [];
@@ -261,10 +264,14 @@ CalenderCtrl.prototype.buildDateCellHeader = function(startFrom){
 
 CalenderCtrl.prototype.changeView = function(view){
 	var self = this;
-	self.view =view;
-    if(self.view==='YEAR_MONTH'){
-        self.showYear();
-    }
+	if(self.disableYearSelection){
+		return;
+	}else{ 
+	    if(view==='YEAR_MONTH'){
+	   		self.showYear();
+    	}
+   		self.view =view;
+	}
 }
 
 /*

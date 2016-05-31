@@ -16,7 +16,8 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 	      	mode:"@",	      	
 	      	startDay:"@",
 	      	closeOnSelect:"@",
-	      	weekStartDay:"@"
+	      	weekStartDay:"@",
+	      	disableYearSelection: "@"
 	    },
 	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){

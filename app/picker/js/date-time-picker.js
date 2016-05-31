@@ -16,7 +16,8 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
         isRequired : '@',
         disable : '=',
         form : '=',
-	    closeOnSelect:"@"
+        disableYearSelection : '@',
+	      closeOnSelect:"@"
       },
       template: '  <md-input-container md-no-float>'
                 +'    <label for="{{fname}}" >{{lable }}</label>'
@@ -33,6 +34,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
                 +'              ng-model="value" '
                 +'				      initial-date="value"'
                 +'              mode="{{mode}}" '
+                +'              disable-year-selection={{disableYearSelection}}'
                 +'				      close-on-select="{{closeOnSelect}}"'
                 +'              start-view="{{startView}}" '  
                 +'              data-min-date="minDate" '
@@ -43,7 +45,7 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
                 +'    	</div>'                
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
-        
+
         var inputPane = $element[0].querySelector('.sm-input-container');
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
         var cElement = angular.element(calenderPane);
