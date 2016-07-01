@@ -9,10 +9,11 @@
 	            form="test"
 	            value="vm.employee.default" 
 	            flex="50"                         
-				format="DD-MM-YYYY"
+				format="DD-MMM-YYYY"
 	            divider="To"
 	            week-start-day="Monday"
-	            custom-to-home="'true'"
+	            custom-to-home="true"
+
 	            on-range-select="vm.dayofPaySelected(range)">
 	        </sm-range-picker-input>
 	    </div>
@@ -32,12 +33,11 @@
 	            divider="To"
 	            mode="date"
 	            week-start-day="Monday"
-	            custom-to-home="'true'"
+	            custom-to-home="true"
 	            close-on-select="true"	            
-	            show-custom="'true'">
+	            show-custom="true">
 	        </sm-range-picker-input>
 	    </div>
-
     </div>
     <div> 
     	<h2 class="md-title">Date-Time Range Picker</h2>	
@@ -54,8 +54,8 @@
 	                divider="To"
 	                mode="date-time"
 	                week-start-day="Monday"
-	                custom-to-home="'true'"
-	                show-custom="'true'">
+	                custom-to-home="true"
+	                show-custom="true">
 	        </sm-range-picker-input>
 	    </div>
     </div>    
@@ -75,56 +75,31 @@
 	                divider="To"
 	                mode="date-time"
 	                week-start-day="Monday"
-	                custom-to-home="'true'"
+	                custom-to-home="true"
 	                close-on-select="true"
-	                show-custom="'true'"
 	                on-range-select="vm.dayofPay2Selected(range)">
 	        </sm-range-picker-input>
 	    	   selected range via call back = {{vm.rangeObj2}}
 	    </div>
     </div>        
 
-
-
-<!-- 
-       <md-grid-list md-cols="1" md-row-height="2:1">
-        <md-grid-tile class="gray" md-rowspan="1" md-colspan="1">
-          <md-grid-tile-header>
-            <h3>tile header</h3>
-          </md-grid-tile-header>
+    <div> 
+    	<h2 class="md-title">Override  custom list for specific picker element Date Range Picker</h2>	
+	    <div layout="row">
 	        <sm-range-picker-input
-	                fname="Date of Pay" 
-	                label="Date of Pay"
-	                form="test"
-	                min-date="11-10-2015" 
-	                value="vm.employee.dateOfPay" 
-	                flex="50"                         
-	                is-required="{{true}}" 
-	                format="DD-MM-YYYY"
-	                divider="To"
-	                week-start-day="Monday"
-	                custom-to-home="{{true}}">
+	            fname="Date of Paya" 
+	            label="Date of Paya"
+	            form="test"
+	            value="vm.employee.default1dd" 
+	            flex="50"                         
+				format="DD-MM-YYYY"
+	            divider="To"
+	            week-start-day="Monday"
+	            custom-list="vm.overrideList"	            	            
+	            custom-to-home="true">
 	        </sm-range-picker-input>
-                <sm-date-time-picker 
-                    fname="field" 
-                    label="Date of Birth"
-                    form="empForm" 
-                    value="vm.employee.dateOfBirth"
-                    no-float 
-                    flex="50"
-                    flex-sm="100"
-                    flex-xs="100"                          
-                    is-required="true" 
-                    format="MM-DD-YYYY HH:mm"
-                    mode="date-time" 
-                    week-start-day="Monday">
-                </sm-date-time-picker>
+	    </div>
+    </div>
 
-          <md-grid-tile-footer>
-            <h3>tile footer</h3>
-          </md-grid-tile-footer>
-        </md-grid-tile>
-     </md-grid-list>   
-     <md-button type="submit" class="md-primary md-raised">save</md-button> 
- --> </md-content>    	
+	</md-content>    	
 </form>
