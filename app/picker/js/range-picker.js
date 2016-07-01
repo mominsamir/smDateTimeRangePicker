@@ -138,6 +138,7 @@ function smRangePicker (picker){
       customList: '=',
       rangeSelectCall : '&'      
     },
+    terminal:true,
     controller: ['$scope','picker',RangePickerCtrl],
     controllerAs : 'vm',
     bindToController:true,
@@ -153,16 +154,7 @@ function smRangePicker (picker){
 var RangePickerCtrl = function($scope,picker){
   var self = this;
   self.scope = $scope;
-/*  self.mode = $scope.mode;
-  self.closeOnSelect = $scope.closeOnSelect;
-  self.format = angular.isUndefined($scope.format) ? 'MM-DD-YYYY': $scope.format;
-  self.showCustom=angular.isUndefined($scope.showCustom)? false:$scope.showCustom;
-  self.customToHome =  angular.isUndefined(self.scope.customToHome) ? false:self.scope.customToHome; */
-
-
   self.clickedButton = 0;
-  
- 
   self.startShowCustomSettting =self.showCustom;
 
 
@@ -176,13 +168,15 @@ var RangePickerCtrl = function($scope,picker){
   self.view = 'DATE';
 
   self.rangeCustomStartEnd = picker.rangeCustomStartEnd;
-  this.rangeDefaultList = picker.rangeDefaultList;
-  if(this.customList){
-    for (var i = 0; i < this.customList.length; i++) {
-      this.rangeDefaultList[this.customList[i].position] = this.customList[i];
+  var defaultList = [];
+  angular.copy(picker.rangeDefaultList,defaultList);
+  self.rangeDefaultList =  defaultList;
+  if(self.customList){
+    console.log(self.customList);
+    for (var i = 0; i < self.customList.length; i++) {
+      self.rangeDefaultList[self.customList[i].position] = self.customList[i];
     }
   }
-
 
   if(self.showCustom){
     self.selectedTabIndex=0;    
@@ -301,7 +295,6 @@ RangePickerCtrl.prototype.cancel = function(){
 }
 
 var app = angular.module('smDateTimeRangePicker');
-
 app.directive('smRangePicker',['picker',smRangePicker]);
 app.directive('smRangePickerInput',['$document','$mdMedia','$mdUtil','picker',RangePickerInput]);
 
