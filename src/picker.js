@@ -62,7 +62,7 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.currentDate = self.initialDate.clone();
 
 	if(self.restrictToMinDate) 
-		self.minDate = moment(self.minDate, self.format);
+		self.minDate = moment(self.minDate, self.format).subtract(1,'d');
 	if(self.restrictToMaxDate) 
 		self.maxDate = moment(self.maxDate, self.format);
     self.yearItems = {
@@ -163,6 +163,7 @@ CalenderCtrl.prototype.buildDateCells = function(){
 		self.stopScrollPrevious	 = self.minDate.unix() > calStartDate.unix();
 	}
 
+	console.log(self.minDate);
     self.dateCells =[];
 	for (var i = 0; i < 6; i++) {
 		var week = [];

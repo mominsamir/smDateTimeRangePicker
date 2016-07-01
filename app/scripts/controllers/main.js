@@ -2,8 +2,10 @@
 
      function MainCtrl($timeout, $mdSidenav, $mdUtil, $log,$state,$mdDialog,smDateTimePicker) {
         var vm = this;
-        vm.minDate = moment().subtract(1,'M').format('MM-DD-YYYY');
+        vm.minDate = moment().add(10,'d').format('MM-DD-YYYY');
         vm.maxDate = moment().add(1,'M').format('MM-DD-YYYY');
+
+        console.log(vm.minDate);
 
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
