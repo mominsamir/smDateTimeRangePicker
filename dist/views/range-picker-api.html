@@ -66,7 +66,14 @@
 					<td>on-range-select</td>
 					<td>call back function that return selected range as object with startDate and endDate</td>
 					<td>on-range-select="vm.yourCallbackFun(date)"</td>				
-				</tr>						
+				</tr>	
+				<tr>
+					<td>custom-list</td>
+					<td>Override specific range picker instance default list using this attribute</td>
+					<td>pass array of object  like this </br>[</br>&nbsp;{ position:index,</br> &nbsp;&nbsp;label:'new label name', </br>&nbsp;&nbsp;startDate: start Date moment Object(),</br>&nbsp;&nbsp;endDate: End Date moment Object() </br>&nbsp;}</br>]</td>				
+				</tr>					
+
+									
 			</tbody>
 		</table>
 	</div>
@@ -111,7 +118,41 @@
 	</div>
 
 	<div>
-		Need your feedback.
+		Override Default list for specific instance. This will override options overriden in config module.
+		Index will change first Six item in Default list
+		pass Object in your contoller. set via custom-list attribut in directive
+	</div>
+	<div>
+		<code>
+			<p>
+			&lt;sm-range-picker-input</br> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fname="joiningDate"</br> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lable="Date of Joining"</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;form="empForm" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value="vm.employee.joiningDate" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-size="100"</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is-required="{{true}}" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;format="MM-DD-YYYY" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;custom-to-home="'true'" </br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show-custom="'true'"</br>                
+	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;custom-list="vm.overrideList"</br>                    
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divider="To"&gt;</br>
+            &lt;/sm-range-picker-input&gt;</br>
+            </p>
+		</code>
+	</div>
+	<div>
+		<code>
+			<p>app.controller('YourControllerName',function(){</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vm.overrideList = [{</br>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  position:1,</br>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label:'Custom',</br>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate: moment(),</br>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate: moment()</br>
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}]</br>
+	        &nbsp;});
+	      </p>
+	    </code>    
 	</div>
 
 </md-content>
