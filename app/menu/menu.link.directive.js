@@ -4,10 +4,13 @@
   angular.module('demoApp')
     .run(['$templateCache', function ($templateCache) {
       $templateCache.put('partials/menu-link.tmpl.html',
-        '<md-button  \n' +
+        '<md-button class="md-button" href  \n' +
         ' ng-click="focusSection(section)">\n' +
-        '  <md-icon ng-if="section.icon" md-font-icon="material-icons">{{section.icon}}</md-icon>' +
-        '  {{section | humanizeDoc}}\n' +
+        '  <i ng-if="section.icon" class="menu-icon material-icons">' +
+        '     {{section.icon}}</i>\n' +
+        '    <div class="menu-text-container">\n' +
+        '       <span class="menu-text">{{section | humanizeDoc}}</span>\n' +
+        '    </div>\n' +
         '</md-button>');
     }])
     .directive('menuLink', function () {

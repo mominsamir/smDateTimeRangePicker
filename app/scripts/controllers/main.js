@@ -7,6 +7,13 @@
 
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
+        vm.overrideList = [{
+          position:1,
+          label:'Custom',
+          startDate: moment(),
+          endDate: moment()
+        }]
+
         vm.currentDate = '10-15-2015';  
         var options = {
           mode : 'date',

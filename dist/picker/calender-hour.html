@@ -6,7 +6,7 @@
 		</div>
 		<div layout="row" >
 			<md-virtual-repeat-container flex="50"  id="hour-container{{vm.uid}}" class="time-md-repeat" md-top-index="vm.hourTopIndex">
-			<div md-virtual-repeat="h in vm.hourItems" class="repeated-item">
+			<div ng-repeat="h in vm.hourItems" class="repeated-item">
 						<md-button class="md-icon-button" 
 							ng-click="vm.setHour(h.hour)" 							
 							ng-class="{'md-primary': h.isCurrent,
@@ -16,7 +16,7 @@
 			</div>
 			</md-virtual-repeat-container>		     
 			<md-virtual-repeat-container flex="50" id="minute-container" class="time-md-repeat" md-top-index="vm.minuteTopIndex">
-				<div md-virtual-repeat="m in vm.minuteCells"  class="repeated-item">
+				<div ng-repeat="m in vm.minuteCells"  class="repeated-item">
 						<md-button class="md-icon-button" 
 							ng-click="vm.setMinute(m.minute)" 							
 							ng-class="{'md-primary': m.isCurrent,

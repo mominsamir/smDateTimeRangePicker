@@ -221,7 +221,7 @@ md-sidenav {
                     color: $menu-font-color;
                     font-family: my-get-font(3);
                     font-size: 14px;
-
+                    text-decoration: inherit;
                     md-icon {
                         color: rgba(255,255,255, 0.7);
                         font-size: 18px;
