@@ -53,7 +53,10 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.monthCells=[];
 	self.dateCellHeader= [];	
 	self.dateCells = [];
-	self.monthList = picker.monthNames;
+
+	self.monthList = moment.monthsShort();
+
+	
 	self.moveCalenderAnimation='';
 
 	self.format = angular.isUndefined(self.format) ? 'MM-DD-YYYY': self.format;
@@ -83,7 +86,6 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 
 CalenderCtrl.prototype.setInitDate = function(dt) {
     var self = this;
-    console.log(dt);
     self.initialDate =angular.isUndefined( dt) ? moment() : moment( dt,self.format);
   };
 
@@ -163,7 +165,6 @@ CalenderCtrl.prototype.buildDateCells = function(){
 		self.stopScrollPrevious	 = self.minDate.unix() > calStartDate.unix();
 	}
 
-	console.log(self.minDate);
     self.dateCells =[];
 	for (var i = 0; i < 6; i++) {
 		var week = [];
@@ -280,9 +281,9 @@ CalenderCtrl.prototype.changeView = function(view){
 */
 
 
-CalenderCtrl.prototype.changeYear = function(yr){
+CalenderCtrl.prototype.changeYear = function(yr,mn){
 	var self = this;
-	self.initialDate.year(yr);
+	self.initialDate.year(yr+1).month(mn);
 	self.buildDateCells();
 	self.view='DATE';	
 }
@@ -348,7 +349,9 @@ function picker(){
 
     var dayHeader = "single";
 
-    var monthNames = moment.months();
+    var monthNames = moment.monthsShort();
+
+
 
     //range picker configuration
     var rangeDivider = "To";
