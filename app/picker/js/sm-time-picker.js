@@ -107,12 +107,17 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
         }
 
         function hideElement(){
-			cElement.addClass('hide-animate');
+			     cElement.addClass('hide-animate');
         	cElement.removeClass('show');
           	 //this is only for animation
             //calenderPane.parentNode.removeChild(calenderPane);          
             $mdUtil.enableScrolling();
         }
+
+        scope.$on('$destroy',function(){
+          calenderPane.parentNode.removeChild(calenderPane);
+        });
+                
         //listen to emit for closing calender
         scope.$on('calender:close',function(){
         	hideElement();

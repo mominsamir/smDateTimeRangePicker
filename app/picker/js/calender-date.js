@@ -61,10 +61,13 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	
 	self.currentDate = self.initialDate.clone();
 
+
+
 	if(self.restrictToMinDate) 
 		self.minDate = moment(self.minDate, self.format).subtract(1,'d');
 	if(self.restrictToMaxDate) 
 		self.maxDate = moment(self.maxDate, self.format);
+
     self.yearItems = {
         currentIndex_: 0,
         PAGE_SIZE: 7,
@@ -78,12 +81,12 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
             return this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2);
         }
     };	
+
 	self.init();
 }
 
 CalenderCtrl.prototype.setInitDate = function(dt) {
     var self = this;
-    console.log(dt);
     self.initialDate =angular.isUndefined( dt) ? moment() : moment( dt,self.format);
   };
 

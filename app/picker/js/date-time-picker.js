@@ -118,6 +118,11 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
             $mdUtil.enableScrolling();
 
         }
+
+        scope.$on('$destroy',function(){
+          calenderPane.parentNode.removeChild(calenderPane);
+        });
+                
         //listen to emit for closing calender
         scope.$on('calender:close',function(){
         	hideElement();
