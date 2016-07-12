@@ -61,10 +61,13 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	
 	self.currentDate = self.initialDate.clone();
 
+
+
 	if(self.restrictToMinDate) 
 		self.minDate = moment(self.minDate, self.format).subtract(1,'d');
 	if(self.restrictToMaxDate) 
 		self.maxDate = moment(self.maxDate, self.format);
+
     self.yearItems = {
         currentIndex_: 0,
         PAGE_SIZE: 7,
@@ -78,12 +81,12 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
             return this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2);
         }
     };	
+
 	self.init();
 }
 
 CalenderCtrl.prototype.setInitDate = function(dt) {
     var self = this;
-    console.log(dt);
     self.initialDate =angular.isUndefined( dt) ? moment() : moment( dt,self.format);
   };
 
@@ -1071,6 +1074,11 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
             $mdUtil.enableScrolling();
 
         }
+
+        scope.$on('$destroy',function(){
+          calenderPane.parentNode.removeChild(calenderPane);
+        });
+                
         //listen to emit for closing calender
         scope.$on('calender:close',function(){
         	hideElement();
@@ -1626,12 +1634,17 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
         }
 
         function hideElement(){
-			cElement.addClass('hide-animate');
+			     cElement.addClass('hide-animate');
         	cElement.removeClass('show');
           	 //this is only for animation
             //calenderPane.parentNode.removeChild(calenderPane);          
             $mdUtil.enableScrolling();
         }
+
+        scope.$on('$destroy',function(){
+          calenderPane.parentNode.removeChild(calenderPane);
+        });
+                
         //listen to emit for closing calender
         scope.$on('calender:close',function(){
         	hideElement();
@@ -1642,139 +1655,6 @@ function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
 
 var app = angular.module('smDateTimeRangePicker');
 app.directive('smTimePickerNew',['$mdUtil','$mdMedia','$document','$timeout','picker',smTimePickerNew]);
-
-
-(function(){
-
-'use strict';
-
-function TimePickerDir($timeout){
-  return {
-    restrict : 'E',
-      replace:true,
-      scope :{
-          initialDate : "@",
-          minDate:"=",
-          maxDate:"=",
-          format:"@",
-          mode:"@",         
-          startDay:"@",
-          closeOnSelect:"@"
-      },
-      template: '<div class="sm-clock">'+
-                '     <div class="sm-clock-container" >'+
-                '         <md-button class="md-button md-icon-button hour-number hour-number{{$index}}"'+
-                '           ng-repeat="h in numbers" '+
-                '           ng-class="{\'md-primary\': h.isCurrent,\'md-primary md-raised\': selectedHour===h.h || selectedMinute===h.h} "'+
-                '           ng-click="selectTime($event,$index,h.h)">'+
-                '           {{h.h}}'+
-                '         </md-button>'+
-                '     <md-toolbar class="sm-clock-center md-primary"></md-toolbar>'+
-                '     <md-toolbar class="sm-clock-hand md-primary"></md-toolbar>'+
-                '     </div>'+
-                '</div>',
-    link : function(scope,element,att,ngModelCtrl){
-        var currentTime = moment();
-        
-        scope.selectedHour = currentTime.hour();
-        scope.hourNumber =[];       //hour setting
-        scope.minuteNumber  =[];    //minute setting
-        scope.view ='HOUR';         //start at hour View
-
-
-        var buildHours = function(){
-          for (var i = 1; i <= 12; i++) {
-
-              var obj = {
-                h : i,
-                isCurrent : ((moment().hour()>12 ? moment().hour()-12:moment().hour()) === i),
-                m : moment()                
-              }
-              scope.hourNumber.push(obj);
-          };
-        }
-        var buildMinutes = function(){
-          for (var i = 0; i < 60;) {
-              var obj = {
-                h : i,
-                isCurrent : (moment().minute() === i),
-                m : moment()
-              }
-              scope.minuteNumber.push(obj);
-               i=i+5;
-          }
-        }
-
-        buildHours();
-        buildMinutes();
-
-
-
-        var hand = angular.element(document.querySelector('.sm-clock-hand'));
-        
-
-        scope.numbers = scope.hourNumber;
-
-        scope.selectTime= function($event,index,h){
-          if(scope.view==='HOUR'){
-              scope.selectedHour = h;
-              clearHandSelection();
-              hand.addClass('sm-clock-hand-'+index);
-              scope.swichTo('MINUTE');
-          }else{
-              scope.selectedMinute = h;
-              clearHandSelection();
-              hand.addClass('sm-clock-hand-'+index);
-              scope.swichTo('HOUR');
-          }
-          console.log(scope.selectedHour,scope.selectedMinute);
-        }
-
-        function clearHandSelection(){
-            for (var i = 0; i <= 12;i++) {
-              var cls = 'sm-clock-hand-'+i;
-              hand.removeClass(cls);
-            };
-        }
-
-        scope.resetToDefaultClockHand = function(){
-            hand.addClass('sm-clock-hand-'+11);
-        }
-
-        scope.swichTo = function(view){
-            switch (view){
-              case 'HOUR':
-                $timeout(function() {
-                  scope.numbers = scope.hourNumber;
-                  scope.view ='HOUR';
-                }, 1000);
-                break;
-              case 'MINUTE':
-                $timeout(function() {
-                  scope.numbers = scope.minuteNumber;
-                  scope.view ='MINUTE';                
-                }, 10);
-                break;
-              default:
-                break;
-            }
-        }
-
-
-
-    }      
-  }
-}
-
-
-var app = angular.module('smDateTimeRangePicker');
-
-app.directive('smTimePickerU',['$timeout',TimePickerDir]);
-
-
-})();
-
-
 
 angular.module("smDateTimeRangePicker").run(["$templateCache", function($templateCache) {$templateCache.put("picker/calender-date.html","		<div  class=\"date-picker\">\r\n			<div ng-show=\"vm.view===\'YEAR_MONTH\'\" ng-class=\"{\'year-container\' : vm.view===\'YEAR_MONTH\'}\"> \r\n				<md-virtual-repeat-container id=\"year-container\" class=\"year-md-repeat\" md-top-index=\"vm.yearTopIndex\">\r\n				      <div md-virtual-repeat=\"yr in vm.yearItems\"  md-on-demand  class=\"repeated-item\">\r\n						<md-button class=\"md-button\" aria-label=\"year\" ng-click=\"vm.changeYear(yr)\" ng-class=\"{\'md-accent\': yr === vm.currentDate.year(),\r\n										\'selected-year md-primary\':vm.initialDate.year()===yr}\">\r\n							{{yr}}\r\n						</md-button>				          \r\n				      </div>\r\n				</md-virtual-repeat-container>		     \r\n			</div>				\r\n			<div ng-show=\"vm.view===\'DATE\'\" ng-class=\"{\'date-container\' : vm.view===\'DATE\'}\">\r\n				<div layout=\"row\" class=\"navigation\" layout-align=\"space-between center\">\r\n					<md-button  ng-disabled=\"vm.stopScrollPrevious\" class=\"md-icon-button scroll-button\"  aria-label=\"previous\"  ng-click=\"vm.changePeriod(\'p\')\">\r\n						<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\"><path d=\"M15 8.25H5.87l4.19-4.19L9 3 3 9l6 6 1.06-1.06-4.19-4.19H15v-1.5z\"/></svg>\r\n					</md-button>\r\n 					<md-button\r\n 						md-no-ink\r\n						aria-label=\"Change Year\"\r\n 						class=\"md-button\" \r\n 						ng-class=\"vm.moveCalenderAnimation\" \r\n 						ng-click=\"vm.changeView(\'YEAR_MONTH\')\">\r\n						{{vm.monthList[vm.initialDate.month()]}}{{\' \'}}{{vm.initialDate.year()}}\r\n					</md-button>\r\n\r\n					<md-button ng-disabled=\"vm.stopScrollNext\"  class=\"md-icon-button scroll-button\" aria-label=\"next\" ng-click=\"vm.changePeriod(\'n\')\">\r\n						<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\"><path d=\"M9 3L7.94 4.06l4.19 4.19H3v1.5h9.13l-4.19 4.19L9 15l6-6z\"/></svg>							\r\n					</md-button>				\r\n				</div>			\r\n				<div class=\"date-cell-header\">\r\n					<md-button class=\"md-icon-button\" md-autofocus ng-disabled=\"true\" ng-repeat=\"dHead in vm.dateCellHeader\">\r\n						{{dHead[vm.dayHeader]}}\r\n					</md-button>\r\n				</div>		\r\n				<div \r\n					md-swipe-right=\"vm.changePeriod(\'p\')\" \r\n					class=\"date-cell-row\" \r\n					md-swipe-left=\"vm.changePeriod(\'n\')\" \r\n					ng-class=\"vm.moveCalenderAnimation\">\r\n					<div layout=\"row\" ng-repeat=\"w in vm.dateCells\" >\r\n						<md-button\r\n							ng-repeat=\"d in w\"\r\n							aria-label=\"vm.currentDate\"\r\n							class=\"md-icon-button\"\r\n							ng-click=\"vm.selectDate(d.date,d.isDisabledDate)\"\r\n							ng-disabled=\"d.isDisabledDate\"\r\n							ng-class=\"{\'md-primary sm-today\' : d.today,\r\n								\'active\':d.isCurrentMonth,\r\n								\'md-primary md-raised selected\' :d.date.isSame(vm.currentDate),\r\n								\'disabled\':d.isDisabledDate}\">\r\n							<span>{{d.dayNum}}</span>\r\n						</md-button>\r\n					</div>\r\n				</div>\r\n			</div>\r\n		</div>\r\n");
 $templateCache.put("picker/calender-hour.html","<div  class=\"time-picker\" layout=\"row\" layout-align=\"center center\">\r\n	<div>\r\n		<div layout=\"row\" class=\"navigation\">\r\n			<span class=\"md-button\">Hour</span>\r\n			<span class=\"md-button\">Minute</span>\r\n		</div>\r\n		<div layout=\"row\" >\r\n			<md-virtual-repeat-container flex=\"50\"  id=\"hour-container{{vm.uid}}\" class=\"time-md-repeat\" md-top-index=\"vm.hourTopIndex\">\r\n			<div ng-repeat=\"h in vm.hourItems\" class=\"repeated-item\">\r\n						<md-button class=\"md-icon-button\" \r\n							ng-click=\"vm.setHour(h.hour)\" 							\r\n							ng-class=\"{\'md-primary\': h.isCurrent,\r\n									\'md-primary md-raised\' :h.hour===vm.currentDate.hour()}\">\r\n							{{h.hour}}\r\n						</md-button>\r\n			</div>\r\n			</md-virtual-repeat-container>		     \r\n			<md-virtual-repeat-container flex=\"50\" id=\"minute-container\" class=\"time-md-repeat\" md-top-index=\"vm.minuteTopIndex\">\r\n				<div ng-repeat=\"m in vm.minuteCells\"  class=\"repeated-item\">\r\n						<md-button class=\"md-icon-button\" \r\n							ng-click=\"vm.setMinute(m.minute)\" 							\r\n							ng-class=\"{\'md-primary\': m.isCurrent,\r\n								\'md-primary md-raised\' :m.minute===vm.currentDate.minute()}\">\r\n							{{m.minute}}\r\n						</md-button>\r\n				</div>\r\n			</md-virtual-repeat-container>		     \r\n		</div>	\r\n	</div>\r\n</div>");
