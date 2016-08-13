@@ -28,6 +28,9 @@ Picker are design to be used with Angular Material.
 
 ### Installation
 ```sh
+  npm install --save smdatetimerangepicker
+```
+```sh
   bower install --save smDateTimeRangePicker
 ```
 ```sh

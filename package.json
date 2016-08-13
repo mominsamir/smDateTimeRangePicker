@@ -2,7 +2,7 @@
   "name": "smdatetimerangepicker",
   "version": "1.6.1",
   "description": "angular material Date Time Range Picker",
-  "main": "gulpfile.js",
+  "main": "./src/picker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
