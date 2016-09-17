@@ -7,9 +7,10 @@
 	            fname="Date of Pay" 
 	            label="Date of Pay"
 	            form="test"
-	            value="vm.employee.default" 
+	            ng-model="vm.employee.default" 
 	            flex="50"                         
 				format="DD-MMM-YYYY"
+				floating-label="true"
 	            divider="To"
 	            week-start-day="Monday"
 	            custom-to-home="true"
@@ -20,14 +21,13 @@
 	   selected range via call back = {{vm.rangeObj}}
     </div>
     <div> 
-    	<h2 class="md-title">Close on Select : Custom view</h2>	
+    	<h2 class="md-title">Close on Select : Custom view without floating label</h2>	
 	    <div layout="row">
 	        <sm-range-picker-input
 	            fname="Date of Pay" 
 	            label="Date of Pay"
-	            form="test"
-	            min-date="11-10-2015" 
-	            value="vm.employee.dateOfPay" 
+				no-floating-label="true"
+	            ng-model="vm.employee.dateOfPay" 
 	            flex="50"                         
 	            format="DD-MM-YYYY"
 	            divider="To"
@@ -47,7 +47,7 @@
 	                label="Date of Pay"
 	                form="test"
 	                min-date="11-10-2015" 
-	                value="vm.employee.dateOfPay1" 
+	                ng-model="vm.employee.dateOfPay1" 
 	                flex="50"                         
 	                is-required="true" 
 	                format="DD-MM-YYYY HH:mm"
@@ -68,7 +68,7 @@
 	                label="Date of Pay 2"
 	                form="test"
 	                min-date="11-10-2015" 
-	                value="vm.employee.dateOfPay2" 
+	                ng-model="vm.employee.dateOfPay2" 
 	                flex="50"                         
 	                is-required="true" 
 	                format="DD-MM-YYYY HH:mm"
@@ -90,7 +90,7 @@
 	            fname="Date of Paya" 
 	            label="Date of Paya"
 	            form="test"
-	            value="vm.employee.default1dd" 
+	            ng-model="vm.employee.default1dd" 
 	            flex="50"                         
 				format="DD-MM-YYYY"
 	            divider="To"
@@ -100,6 +100,26 @@
 	        </sm-range-picker-input>
 	    </div>
     </div>
+
+    <div> 
+    	<h2 class="md-title">Min and Max Date Support</h2>	
+	    <div layout="row">
+	        <sm-range-picker-input
+	            fname="Date of Paya" 
+	            label="Date of Paya"
+	            form="test"
+	            ng-model="vm.employee.default1dd" 
+	            flex="50"          
+				min-date="11-10-2015"                
+				format="DD-MM-YYYY"
+				max-date="11-10-2016"                
+	            divider="To"
+	            week-start-day="Monday"
+	            custom-list="vm.overrideList"	            	            
+	            custom-to-home="true">
+	        </sm-range-picker-input>
+	    </div>
+    </div>    
 
 	</md-content>    	
 </form>

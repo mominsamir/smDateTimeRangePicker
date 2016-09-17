@@ -1,15 +1,15 @@
-<form name="empForm"  ng-init="vm.employee.dateOfBirth='10-10-2015'" novalidate="true" ng-submit="vm.save()">
+<div ng-controller="MainCtrl as vm">
+<form name="empForm" novalidate="true" ng-submit="vm.save()">
     <md-content   layout-padding class="md-whiteframe-z2" >
        <div layout="row">
-            DateTime picker, week start date is Monday    
+            DateTime picker, week start date is Monday 
         </div>
+
         <div  layout="row"> 
                 <sm-date-time-picker 
                     fname="field" 
                     lable="Date of Birth"
-                    form="empForm" 
-                    value="vm.employee.dateOfBirth"
-                    no-float 
+                    data-ng-model="vm.dateOfBirth"
                     flex="50"
                     flex-sm="100"
                     disable-year-selection="true"
@@ -17,26 +17,31 @@
                     is-required="true" 
                     format="MM-DD-YYYY HH:mm"
                     mode="date-time" 
-                    week-start-day="Monday">
+                    week-start-day="Monday"
+                    on-date-selected-call="vm.dateSelected(date)">
                 </sm-date-time-picker>
+        </div>
+        <div  layout="row">
+            Call back value {{vm.callBackValue }}
         </div>
 
         <div layout="row">
-            Date picker, Close on date select only works with &nbsp;<b> Date Picker </b>&nbsp; mode with attribute &nbsp;<b> close-on-select="true"</b>
+            Date picker, Close on date select only works with &nbsp;<b> Date Picker </b>&nbsp; mode with attribute &nbsp;<b> close-on-select="true" &nbsp;</b> without floating label
         </div>
         <div   layout="row">
                 <sm-date-time-picker 
                     fname="exitDate" 
                     lable="Date of Exit"
-                    form="empForm" 
-                    value="vm.employee.exitDate" 
+                    ng-model="vm.employee.exitDate" 
                     flex="50"
                     flex-sm="100"
-                    flex-xs="100"                          
+                    no-floating-label="true"
+                    flex-xs="100"          
                     close-on-select="true"  
                     format="MM-DD-YYYY" 
                     week-start-day="Monday">
                 </sm-date-time-picker>
+
         </div>    
         <div layout="row">
             Min date set to {{vm.minDate}}    => <b>min-date="{{vm.minDate}}"</b>
@@ -45,13 +50,11 @@
                 <sm-date-time-picker 
                     fname="Date of Pay" 
                     lable="Date of Pay"
-                    form="empForm"
                     min-date="{{vm.minDate}}" 
-                    value="vm.employee.dateOfPay" 
+                    ng-model="vm.employee.dateOfPay" 
                     flex="50"                         
                     is-required="{{true}}" 
-                    format="MM-DD-YYYY HH:mm"
-                    mode="date-time" 
+                    format="MM-DD-YYYY"
                     week-start-day="Sunday">
                 </sm-date-time-picker>        
         </div>   
@@ -62,8 +65,7 @@
                 <sm-date-time-picker 
                     fname="exitDate" 
                     lable="Date of Exit"
-                    form="empForm" 
-                    value="vm.employee.exitDate" 
+                    ng-model="vm.employee.exitDate" 
                     flex="50"
                     flex-sm="100"
                     flex-xs="100"                          
@@ -81,8 +83,7 @@
                 <sm-date-time-picker 
                     fname="joiningDate" 
                     lable="Date of Joining"
-                    form="empForm" 
-                    value="vm.employee.joiningDate" 
+                    ng-model="vm.employee.joiningDate" 
                     data-start-date="10-15-2015"
                     flex="50"
                     flex-sm="100"
@@ -147,3 +148,4 @@
 <!--         <md-button type="submit" class="md-primary md-raised">save</md-button> -->
    </md-content>
 </form>
+</div>
