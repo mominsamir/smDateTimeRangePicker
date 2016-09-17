@@ -1,11 +1,10 @@
 'use strict';
 
-     function MainCtrl($timeout, $mdSidenav, $mdUtil, $log,$state,$mdDialog,smDateTimePicker) {
+     function MainCtrl($scope,$timeout, $mdSidenav, $mdUtil, $log,$state,$mdDialog,smDateTimePicker) {
         var vm = this;
         vm.minDate = moment().add(10,'d').format('MM-DD-YYYY');
         vm.maxDate = moment().add(1,'M').format('MM-DD-YYYY');
-
-        console.log(vm.minDate);
+        vm.dateOfBirth = moment().add(10,'d').format('MM-DD-YYYY HH:mm');
 
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
@@ -15,6 +14,10 @@
           startDate: moment(),
           endDate: moment()
         }]
+
+        vm.dateSelected = function(date){
+          vm.callBackValue = date;
+        }
 
         vm.currentDate = '10-15-2015';  
         var options = {
@@ -122,5 +125,5 @@
 
 
 angular.module('demoApp')
-.controller('MainCtrl',['$timeout', '$mdSidenav', '$mdUtil', '$log','$state', '$mdDialog','smDateTimePicker',MainCtrl])
+.controller('MainCtrl',['$scope','$timeout', '$mdSidenav', '$mdUtil', '$log','$state', '$mdDialog','smDateTimePicker',MainCtrl])
 .controller('LeftCtrl', ['$timeout', '$mdSidenav', '$mdUtil', '$log',LeftCtrl]);

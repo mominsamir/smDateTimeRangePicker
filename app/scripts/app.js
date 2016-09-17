@@ -16,10 +16,6 @@ angular
      }) 
 .config(function ($stateProvider, $urlRouterProvider,$mdThemingProvider,pickerProvider) {
 
-    pickerProvider.setCustomHeader({dateTime: 'MMM-DD ddd'});
-
-    pickerProvider.setMassagePath("error-messages");
-
     pickerProvider.setDayHeader('single');
 
     pickerProvider.setOkLabel('Save');

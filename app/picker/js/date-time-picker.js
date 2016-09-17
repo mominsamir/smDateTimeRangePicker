@@ -1,10 +1,9 @@
 function DateTimePicker($mdUtil,$mdMedia,$document,picker){
     return {
       restrict : 'E',
+      require: ['^ngModel'],
       replace:true,
       scope :{
-        value: '=',
-        startDate : '@',
         weekStartDay : '@',
         startView:"@",                  
         mode : '@',
@@ -15,23 +14,19 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
         lable : "@",
         isRequired : '@',
         disable : '=',
-        form : '=',
+        noFloatingLabel:"=",
         disableYearSelection : '@',
-	      closeOnSelect:"@"
+	      closeOnSelect:"@",
+        onDateSelectedCall :"&"
       },
-      template: '  <md-input-container md-no-float>'
-                +'    <label for="{{fname}}" >{{lable }}</label>'
-                +'    <input name="{{fname}}" ng-model="value" '
-                +'             type="text" placeholde="{{lable}}"'
-                +'             aria-label="{{fname}}" ng-focus="show()" data-ng-required="isRequired" ng-disabled="disable"'
-                +'              server-error class="sm-input-container">'
-                +'    <div ng-messages="form[fname].$error" ng-if="form[fname].$touched">'
-                +'    		<div ng-messages-include="{{ngMassagedTempaltePath}}"></div>'
-                +'    </div>'
-                +'    	<div id="picker" class="sm-calender-pane md-whiteframe-15dp">'
-                +'     		<sm-date-picker '
+      template: '  <md-input-container md-no-float="noFloatingLabel">'
+                +'    <input name="{{fname}}" data-ng-model="value" '
+                +'             type="text" placeholder="{{lable}}"'
+                +'             aria-label="{{fname}}" ng-focus="show()" data-ng-required="isRequired"  ng-disabled="disable"'
+                +'              server-error class="sm-input-container" >'
+                +'    	<div id="picker" class="sm-calender-pane md-whiteframe-4dp">'
+                +'     		 <sm-date-picker '
                 +'              id="{{fname}}Picker" '  
-                +'              ng-model="value" '
                 +'				      initial-date="value"'
                 +'              mode="{{mode}}" '
                 +'              disable-year-selection={{disableYearSelection}}'
@@ -40,19 +35,19 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
                 +'              data-min-date="minDate" '
                 +'              data-max-date="maxDate"  '
                 +'              data-format="{{format}}"  '
+                +'              data-on-select-call="onDateSelected(date)"'
                 +'          	data-week-start-day="{{weekStartDay}}" > '
-                +'			</sm-date-picker>'
+                +'			   </sm-date-picker>'
                 +'    	</div>'                
+                +'    </input>'                
                 +'  </md-input-container>',
-      link :  function(scope,$element,attr){
-
+      link :  function(scope,$element,attr,ctrl){
         var inputPane = $element[0].querySelector('.sm-input-container');
         var calenderPane = $element[0].querySelector('.sm-calender-pane');
         var cElement = angular.element(calenderPane);
 
-        scope.noFloat = 'noFloat' in attr;
-
-        scope.ngMassagedTempaltePath =picker.massagePath;
+        //check if mode is undefied set to date mode 
+        scope.mode = angular.isUndefined(scope.mode) ? 'date':scope.mode;
         // check if Pre defined format is supplied
         scope.format = angular.isUndefined(scope.format) ? 'MM-DD-YYYY': scope.format;
         
@@ -60,7 +55,14 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
         cElement.addClass('hide hide-animate');
 
         // set start date
-        scope.startDate  = angular.isUndefined(scope.value)? scope.startDate : scope.value;
+        ctrl[0].$render = function(){
+          scope.value= scope.startDate  =  this.$viewValue;
+        }
+
+        scope.onDateSelected = function(date){
+            scope.onDateSelectedCall({date:date});
+            scope.value = date.format(scope.format);
+        }
 
         // Hide Calender on click out side
         $document.on('click', function (e) {
@@ -113,10 +115,9 @@ function DateTimePicker($mdUtil,$mdMedia,$document,picker){
         }
 
         function hideElement(){
-            cElement.addClass('hide-animate');
-        	cElement.removeClass('show');
-            $mdUtil.enableScrolling();
-
+           cElement.addClass('hide-animate');
+        	 cElement.removeClass('show');
+           $mdUtil.enableScrolling();
         }
 
         scope.$on('$destroy',function(){

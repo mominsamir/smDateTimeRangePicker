@@ -7,10 +7,9 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
       restrict : 'EA',
       replace: true,
       scope :{
-        form : '=',
         label : "@",
         fname : "@",
-        value: '=',
+        ngModel: '=value',
         isRequired : '@',
         closeOnSelect: '@',
         disable : '=',
@@ -21,16 +20,18 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         weekStartDay :"@",
         customToHome: "@",
         customList: '=',
+        noFloatingLabel:"=", 
+        minDate : '@',
+        maxDate : '@',               
         onRangeSelect : '&'  
       },
-      template: ' <md-input-container>'
-                +'    <label for="{{fname}}">{{label}}</label>'
+      template: ' <md-input-container md-no-float="noFloatingLabel">'
                 +'      <input name="{{fname}}" ng-model="value" ng-readonly="true"'
-                +'             type="text" placeholde="{{label}}"'
+                +'             type="text" '
                 +'             aria-label="{{fname}}" ng-required="{{isRequired}}" class="sm-input-container"'
-                +'             ng-focus="show()">'
+                +'             ng-focus="show()" placeholder="{{label}}">'
                 +'   <div id="picker" class="sm-calender-pane md-whiteframe-15dp" ng-model="value">'                
-                +'    <sm-range-picker custom-to-home="{{customToHome}}" custom-list="customList" mode="{{mode}}" range-select-call="rangeSelected(range)" close-on-select="{{closeOnSelect}}" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}"  divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
+                +'    <sm-range-picker custom-to-home="{{customToHome}}" custom-list="customList" mode="{{mode}}" min-date="{{minDate}}"  max-date="{{maxDate}}" range-select-call="rangeSelected(range)" close-on-select="{{closeOnSelect}}" show-custom="{{showCustom}}" week-start-day="{{weekStartDay}}"  divider="{{divider}}" format="{{format}}" ></sm-range-picker>'
                 +'   </div> '  
                 +'  </md-input-container>',
       link :  function(scope,$element,attr){
@@ -136,6 +137,8 @@ function smRangePicker (picker){
       mode: "@",      
       showCustom:'@',
       customList: '=',
+      minDate : '@',
+      maxDate : '@',          
       rangeSelectCall : '&'      
     },
     terminal:true,
@@ -172,7 +175,6 @@ var RangePickerCtrl = function($scope,picker){
   angular.copy(picker.rangeDefaultList,defaultList);
   self.rangeDefaultList =  defaultList;
   if(self.customList){
-    console.log(self.customList);
     for (var i = 0; i < self.customList.length; i++) {
       self.rangeDefaultList[self.customList[i].position] = self.customList[i];
     }
