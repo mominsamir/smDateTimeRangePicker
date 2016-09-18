@@ -76,23 +76,44 @@
     .date-picker .year-container .year-md-repeat {
       height: 245px; }
       .date-picker .year-container .year-md-repeat .md-virtual-repeat-container {
-        text-align: center;
         width: 240px;
         height: 239px; }
       .date-picker .year-container .year-md-repeat .repeated-item {
         box-sizing: border-box;
-        height: 35px;
-        margin: 0 100px; }
-        .date-picker .year-container .year-md-repeat .repeated-item .md-button {
-          height: 30px;
-          width: 30px;
-          outline: none;
-          cursor: pointer;
-          font-weight: bold;
-          font-size: 14px;
-          text-align: center; }
+        height: 70px;
+        margin: 0 10px; }
+        .date-picker .year-container .year-md-repeat .repeated-item .year {
+          margin: 0 10px;
+          display: flex;
+          height: 70px;
+          width: 30px; }
+          .date-picker .year-container .year-md-repeat .repeated-item .year .year-num {
+            outline: none;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            margin: 3px;
+            cursor: pointer; }
+        .date-picker .year-container .year-md-repeat .repeated-item .month-row {
+          display: flex;
+          height: 35px;
+          float: right; }
+          .date-picker .year-container .year-md-repeat .repeated-item .month-row .month {
+            outline: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin: 3px;
+            font-size: 12px;
+            cursor: pointer; }
+            .date-picker .year-container .year-md-repeat .repeated-item .month-row .month:hover {
+              background-color: #E0E0E0; }
         .date-picker .year-container .year-md-repeat .repeated-item .selected-year {
-          font-size: 18px; }
+          font-size: 18px;
+          color: blue; }
   .date-picker .date-container .navigation {
     height: 40px; }
     .date-picker .date-container .navigation .md-button {
@@ -173,24 +194,21 @@
     .range-picker .pre-select .md-button {
       padding: 3px;
       margin: 0; }
-  .range-picker .custom-select {
-    /* 		height: 390px;
-		overflow: hidden; */ }
-    .range-picker .custom-select.show-calender > .tab-head {
-      height: 43px;
-      text-align: center;
-      line-height: 35px; }
-      .range-picker .custom-select.show-calender > .tab-head span {
-        color: #ccc1c1;
-        width: 50%; }
-        .range-picker .custom-select.show-calender > .tab-head span.active {
-          animation-property: border-bottom;
-          color: inherit;
-          border-bottom: 2px solid #FF5252; }
-          .range-picker .custom-select.show-calender > .tab-head span.active.moveLeft {
-            animation: slideInLeft 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
-          .range-picker .custom-select.show-calender > .tab-head span.active.moveRight {
-            animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
+  .range-picker .custom-select.show-calender > .tab-head {
+    height: 43px;
+    text-align: center;
+    line-height: 35px; }
+    .range-picker .custom-select.show-calender > .tab-head span {
+      color: #ccc1c1;
+      width: 50%; }
+      .range-picker .custom-select.show-calender > .tab-head span.active {
+        animation-property: border-bottom;
+        color: inherit;
+        border-bottom: 2px solid #FF5252; }
+        .range-picker .custom-select.show-calender > .tab-head span.active.moveLeft {
+          animation: slideInLeft 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
+        .range-picker .custom-select.show-calender > .tab-head span.active.moveRight {
+          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
 
 @keyframes slideInLeft {
   from {
@@ -399,23 +417,44 @@
     .date-picker .year-container .year-md-repeat {
       height: 245px; }
       .date-picker .year-container .year-md-repeat .md-virtual-repeat-container {
-        text-align: center;
         width: 240px;
         height: 239px; }
       .date-picker .year-container .year-md-repeat .repeated-item {
         box-sizing: border-box;
-        height: 35px;
-        margin: 0 100px; }
-        .date-picker .year-container .year-md-repeat .repeated-item .md-button {
-          height: 30px;
-          width: 30px;
-          outline: none;
-          cursor: pointer;
-          font-weight: bold;
-          font-size: 14px;
-          text-align: center; }
+        height: 70px;
+        margin: 0 10px; }
+        .date-picker .year-container .year-md-repeat .repeated-item .year {
+          margin: 0 10px;
+          display: flex;
+          height: 70px;
+          width: 30px; }
+          .date-picker .year-container .year-md-repeat .repeated-item .year .year-num {
+            outline: none;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            margin: 3px;
+            cursor: pointer; }
+        .date-picker .year-container .year-md-repeat .repeated-item .month-row {
+          display: flex;
+          height: 35px;
+          float: right; }
+          .date-picker .year-container .year-md-repeat .repeated-item .month-row .month {
+            outline: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin: 3px;
+            font-size: 12px;
+            cursor: pointer; }
+            .date-picker .year-container .year-md-repeat .repeated-item .month-row .month:hover {
+              background-color: #E0E0E0; }
         .date-picker .year-container .year-md-repeat .repeated-item .selected-year {
-          font-size: 18px; }
+          font-size: 18px;
+          color: blue; }
   .date-picker .date-container .navigation {
     height: 40px; }
     .date-picker .date-container .navigation .md-button {
@@ -496,24 +535,21 @@
     .range-picker .pre-select .md-button {
       padding: 3px;
       margin: 0; }
-  .range-picker .custom-select {
-    /* 		height: 390px;
-		overflow: hidden; */ }
-    .range-picker .custom-select.show-calender > .tab-head {
-      height: 43px;
-      text-align: center;
-      line-height: 35px; }
-      .range-picker .custom-select.show-calender > .tab-head span {
-        color: #ccc1c1;
-        width: 50%; }
-        .range-picker .custom-select.show-calender > .tab-head span.active {
-          animation-property: border-bottom;
-          color: inherit;
-          border-bottom: 2px solid #FF5252; }
-          .range-picker .custom-select.show-calender > .tab-head span.active.moveLeft {
-            animation: slideInLeft 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
-          .range-picker .custom-select.show-calender > .tab-head span.active.moveRight {
-            animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
+  .range-picker .custom-select.show-calender > .tab-head {
+    height: 43px;
+    text-align: center;
+    line-height: 35px; }
+    .range-picker .custom-select.show-calender > .tab-head span {
+      color: #ccc1c1;
+      width: 50%; }
+      .range-picker .custom-select.show-calender > .tab-head span.active {
+        animation-property: border-bottom;
+        color: inherit;
+        border-bottom: 2px solid #FF5252; }
+        .range-picker .custom-select.show-calender > .tab-head span.active.moveLeft {
+          animation: slideInLeft 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
+        .range-picker .custom-select.show-calender > .tab-head span.active.moveRight {
+          animation: slideInRight 1s cubic-bezier(0.06, 0.61, 0.04, 1.03); }
 
 @keyframes slideInLeft {
   from {
