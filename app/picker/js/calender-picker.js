@@ -7,7 +7,7 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 	return {
 	  restrict : 'E',
       require: ['^ngModel','smDatePicker'],
-      replace: true,
+      replace: false,
       scope :{
 	      	initialDate : "=",
 	      	minDate	:"=",

@@ -63,6 +63,18 @@ $aniimation-duration:			1s;
 	}
 }
 
+
+/* 
+	Input container and button postion css
+ */
+.sm-input-container{
+	& .sm-picker-icon{    
+	    position: absolute;
+	    top: 0%;
+	    left: 93%;
+	}
+}
+
 .picker-container{
 	border-radius:2px;
 	.container{

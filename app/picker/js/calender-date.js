@@ -6,7 +6,7 @@ function Calender($timeout,picker){
     
 	return {
 	  restrict : 'E',
-	  replace:true,
+	  replace:false,
       require: ['^ngModel', 'smCalender'],
       scope :{
 	      	minDate: "=",
@@ -171,10 +171,9 @@ CalenderCtrl.prototype.buildDateCells = function(){
 		for (var j = 0; j < 7; j++) {
 			
 			var isCurrentMonth = (calStartDate.month()=== currentMonth);	
-			
 
-			if(isCurrentMonth){isDisabledDate=false}else{isDisabledDate=true};
-			
+			isDisabledDate = isCurrentMonth? false:true; 
+			//if(isCurrentMonth){isDisabledDate=false}else{isDisabledDate=true};
 
 			if(self.restrictToMinDate && !angular.isUndefined(self.minDate) && !isDisabledDate)
 				isDisabledDate = self.minDate.isAfter(calStartDate);
@@ -184,15 +183,15 @@ CalenderCtrl.prototype.buildDateCells = function(){
 			
 
 			var  day = {
-	            	date : calStartDate.clone(),
-	                dayNum: isCurrentMonth ? calStartDate.date() :"",
-	                month : calStartDate.month(),
-	                today: calStartDate.isSame(moment(),'day') && calStartDate.isSame(moment(),'month'),
-	                year : calStartDate.year(),
-	                dayName : calStartDate.format('dddd'),
-	                isWeekEnd : weekend,
-	                isDisabledDate : isDisabledDate,
-	                isCurrentMonth : isCurrentMonth
+	            date : calStartDate.clone(),
+	            dayNum: isCurrentMonth ? calStartDate.date() :"",
+	            month : calStartDate.month(),
+	            today: calStartDate.isSame(moment(),'day') && calStartDate.isSame(moment(),'month'),
+	            year : calStartDate.year(),
+	            dayName : calStartDate.format('dddd'),
+	            isWeekEnd : weekend,
+	            isDisabledDate : isDisabledDate,
+	            isCurrentMonth : isCurrentMonth
 			};
 			
 			week.push(day);
