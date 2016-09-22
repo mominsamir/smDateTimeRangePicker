@@ -7,12 +7,13 @@
             <div  layout="row"> 
                     <sm-date-time-picker 
                         fname="field" 
-                        lable="Date of Birth"
+                        label="Date of Birth"
                         data-ng-model="vm.dateOfBirth"
-                        flex="50"
+                        flex="100"
                         flex-sm="100"
                         disable-year-selection="true"
-                        flex-xs="100"                          
+                        flex-xs="100"     
+                        on-focus                     
                         is-required="true" 
                         format="MM-DD-YYYY HH:mm"
                         mode="date-time" 
@@ -30,7 +31,7 @@
             <div   layout="row">
                     <sm-date-time-picker 
                         fname="exitDate" 
-                        lable="Date of Exit"
+                        label="Date of Exit"
                         ng-model="vm.employee.exitDate" 
                         flex="50"
                         flex-sm="100"
@@ -48,7 +49,7 @@
             <div   layout="row">
                     <sm-date-time-picker 
                         fname="Date of Pay" 
-                        lable="Date of Pay"
+                        label="Date of Pay"
                         min-date="{{vm.minDate}}" 
                         ng-model="vm.employee.dateOfPay" 
                         flex="50"                         
@@ -63,7 +64,7 @@
             <div   layout="row">
                     <sm-date-time-picker 
                         fname="exitDate" 
-                        lable="Date of Exit"
+                        label="Date of Exit"
                         ng-model="vm.employee.exitDate" 
                         flex="50"
                         flex-sm="100"
@@ -81,7 +82,7 @@
             <div   layout="row">
                     <sm-date-time-picker 
                         fname="joiningDate" 
-                        lable="Date of Joining"
+                        label="Date of Joining"
                         ng-model="vm.employee.joiningDate" 
                         data-start-date="10-15-2015"
                         flex="50"

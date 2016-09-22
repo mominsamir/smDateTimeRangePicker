@@ -21,7 +21,9 @@
                         <span ng-click="vm.changeYear(yr,10)" class="month">{{vm.monthList[10]}}</span>
                         <span ng-click="vm.changeYear(yr,11)" class="month">{{vm.monthList[11]}}</span>
                     </div>
+                    <md-divider></md-divider>
             </div>
+
         </md-virtual-repeat-container>
     </div>
     <div ng-class="{'date-container' : vm.view==='DATE'}" ng-show="vm.view==='DATE'">
@@ -49,7 +51,7 @@
         </div>
         <div class="date-cell-row" md-swipe-left="vm.changePeriod('n')" md-swipe-right="vm.changePeriod('p')" ng-class="vm.moveCalenderAnimation">
             <div layout="row" ng-repeat="w in vm.dateCells">
-                <md-button aria-label="vm.currentDate" class="md-icon-button" ng-class="{'md-primary sm-today' : d.today,
+                <md-button aria-label="vm.currentDate" class="date-cell md-icon-button" ng-class="{'md-primary sm-today' : d.today,
 								'active':d.isCurrentMonth,
 								'md-primary md-raised selected' :d.date.isSame(vm.currentDate),
 								'disabled':d.isDisabledDate}" ng-click="vm.selectDate(d.date,d.isDisabledDate)" ng-disabled="d.isDisabledDate" ng-repeat="d in w">

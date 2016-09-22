@@ -35,6 +35,14 @@
       -o-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02); } }
 
+/* 
+	Input container and button postion css
+ */
+.sm-input-container .sm-picker-icon {
+  position: absolute;
+  top: 0%;
+  left: 93%; }
+
 .picker-container {
   border-radius: 2px; }
   .picker-container .container {
@@ -375,6 +383,14 @@
       -moz-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       -o-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02); } }
+
+/* 
+	Input container and button postion css
+ */
+.sm-input-container .sm-picker-icon {
+  position: absolute;
+  top: 0%;
+  left: 93%; }
 
 .picker-container {
   border-radius: 2px; }
