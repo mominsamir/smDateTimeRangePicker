@@ -20,6 +20,12 @@
     transition: all 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
     max-height: 500px;
     max-width: 450px; }
+  .sm-calender-pane .action {
+    height: 30px;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
 
 @media only screen and (min-device-width: 0px) and (max-device-width: 960px) {
   .sm-calender-pane {
@@ -33,7 +39,13 @@
       -webkit-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       -moz-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       -o-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
-      animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02); } }
+      animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02); }
+  .action {
+    height: 30px;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%; } }
 
 /* 
 	Input container and button postion css
@@ -166,13 +178,6 @@
           min-height: 30px;
           padding: 0px;
           font-size: 13px; }
-
-.action {
-  height: 30px;
-  margin-bottom: 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%; }
 
 .md-virtual-repeat-container .md-virtual-repeat-scroller {
   right: -21px;
@@ -369,6 +374,12 @@
     transition: all 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
     max-height: 500px;
     max-width: 450px; }
+  .sm-calender-pane .action {
+    height: 30px;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
 
 @media only screen and (min-device-width: 0px) and (max-device-width: 960px) {
   .sm-calender-pane {
@@ -382,7 +393,13 @@
       -webkit-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       -moz-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
       -o-animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02);
-      animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02); } }
+      animation: scaleUpCal 1s cubic-bezier(0.04, 1.01, 0.13, 1.02); }
+  .action {
+    height: 30px;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%; } }
 
 /* 
 	Input container and button postion css
@@ -515,13 +532,6 @@
           min-height: 30px;
           padding: 0px;
           font-size: 13px; }
-
-.action {
-  height: 30px;
-  margin-bottom: 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%; }
 
 .md-virtual-repeat-container .md-virtual-repeat-scroller {
   right: -21px;
