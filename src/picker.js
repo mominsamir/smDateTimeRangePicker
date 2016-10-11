@@ -940,7 +940,15 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
                   ' </md-input-container>';    
         },
         link: function(scope, $element, attr, ctrl) {
+          console.log(ctrl[0]);
             // set value to input if any provided
+          ctrl[0].$viewChangeListeners.push(function(){ 
+              /*Set model value differently based on the viewvalue entered*/
+            console.log('$viewChangeListeners',o,n);
+          });
+          scope.$watch('vm.value',function(o,n){
+            console.log('vm.value',o,n);
+          })
             ctrl[0].$render = function() {
                 scope.vm.value = this.$viewValue;
             }

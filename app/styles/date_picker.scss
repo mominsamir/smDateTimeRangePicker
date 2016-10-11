@@ -37,7 +37,14 @@ $aniimation-duration:			1s;
   		    transition: all $aniimation-duration  $aniimation-timing-fun; 
  	    max-height: 500px;
 	    max-width: 450px; 
-	}  	
+	} 
+	.action{
+	  height: 30px;
+	  margin-bottom: 0;
+	  position: absolute;
+	  bottom: 0;
+	  width: 100%; 
+	}	 	
 }
 
 @media only screen 
@@ -60,6 +67,13 @@ $aniimation-duration:			1s;
 	  		    animation: scaleUpCal $aniimation-duration  $aniimation-timing-fun;
 
 		}  	
+	}
+	.action{
+	  height: 30px;
+	  margin-bottom: 0;
+	  position: absolute;
+	  bottom: 0;
+	  width: 100%; 
 	}
 }
 
@@ -252,13 +266,7 @@ $aniimation-duration:			1s;
 	}		
 
 }
-.action{
-  height: 30px;
-  margin-bottom: 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%; 
-}
+
 .md-virtual-repeat-container .md-virtual-repeat-scroller{
 	right: -21px;
 	padding-right:20px;

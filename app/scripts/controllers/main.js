@@ -16,7 +16,15 @@
         }]
 
         vm.dateSelected = function(date){
+
+
           vm.callBackValue = date;
+        }
+
+        vm.changeModelValue = function(){
+          $scope.$apply(function(){
+            vm.dateOfBirth = moment();
+          });
         }
 
         vm.currentDate = '10-15-2015';  
