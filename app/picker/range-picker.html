@@ -19,6 +19,9 @@
 			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>			
 		</div>
 		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >
+			<div layout="row" ng-if="vm.allowEmptyDates" ng-click="vm.startDateSelected('')">
+				<md-button class="md-warn"><small>No start date</small></md-button>
+			</div>
 			<sm-calender 
 				ng-show="vm.view==='DATE'"
 				week-start-day="{{weekStartDay}}"
@@ -34,6 +37,9 @@
 			</sm-time>
 		</div>
 		<div ng-if="vm.selectedTabIndex===1" ng-model="vm.endDate" >
+			<div layout="row" layout-align="end" ng-if="vm.allowEmptyDates" ng-click="vm.endDateSelected('')">
+				<md-button class="md-warn"><small>No end date</small></md-button>
+			</div>
 			<sm-calender 
 				format="{{format}}"
 				ng-show="vm.view==='DATE'"
@@ -51,7 +57,9 @@
 		</div>								
 	</div>
 	<div layout="row" layout-align="end center">
-		<md-button type="button" class="md-primary" ng-click="vm.cancel()">{{vm.cancelLabel}}</md-button>						
-		<md-button type="button" class="md-primary" ng-click="vm.dateRangeSelected()">{{vm.okLabel}}</md-button>	
+		<md-button type="button" class="md-warn" ng-if="vm.showClearButton" ng-click="vm.clearDateRange()">{{vm.clearLabel}}</md-button>
+		<span flex></span>
+		<md-button type="button" class="md-primary" ng-click="vm.cancel()">{{vm.cancelLabel}}</md-button>
+		<md-button type="button" class="md-primary" ng-click="vm.dateRangeSelected()">{{vm.okLabel}}</md-button>
 	</div>	
 </md-content>
