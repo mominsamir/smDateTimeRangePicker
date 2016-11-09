@@ -217,11 +217,7 @@ SMRangePickerCtrl.prototype.rangeSelected = function(range){
   var self = this;
   console.log(range);
   self.onRangeSelect({range: range});
-	//give it a couple of ms for the $render method to finish.
-  setTimeout(function()
-  {
-	  self.value = range;
-  }, 50);
+  self.value = range;
 }
 
 
