@@ -12,8 +12,10 @@ function smRangePicker (picker){
       showCustom:'@',
       customList: '=',
       minDate : '@',
-      maxDate : '@',          
-      rangeSelectCall : '&'      
+      maxDate : '@',
+	  allowClear: '@',
+	  allowEmpty: '@',
+      rangeSelectCall : '&'
     },
     terminal:true,
     controller: ['$scope','picker',RangePickerCtrl],
@@ -40,8 +42,14 @@ var RangePickerCtrl = function($scope,picker){
 
   self.divider = angular.isUndefined(self.scope.divider) || self.scope.divider ===''? picker.rangeDivider : $scope.divider;
 
+	//display the clear button?
+	self.showClearButton = self.allowClear === 'true' || false;
+	//allow set start/end date as empty value
+	self.allowEmptyDates = self.allowEmpty === 'true' || false;
+
   self.okLabel = picker.okLabel;
   self.cancelLabel = picker.cancelLabel;
+  self.clearLabel = picker.clearLabel;
   self.view = 'DATE';
 
   self.rangeCustomStartEnd = picker.rangeCustomStartEnd;
@@ -114,6 +122,19 @@ RangePickerCtrl.prototype.dateRangeSelected = function(){
     self.setNgModelValue(self.startDate,self.divider,self.endDate);
 }
 
+/* sets an empty value on dates. */
+RangePickerCtrl.prototype.clearDateRange = function(){
+	var self = this;
+	self.selectedTabIndex =0;
+	self.view= 'DATE';
+	if(self.startShowCustomSettting){
+		self.showCustom=true;
+	}else{
+		self.showCustom=false;
+	}
+	self.setNgModelValue('',self.divider,'');
+}
+
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;
@@ -150,11 +171,33 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
 
 RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) {
     var self = this;
-    var range = {startDate: startDate.format(self.format) , endDate: endDate.format(self.format)};
+
+	if(startDate)
+	{
+		startDate = startDate.format(self.format) || '';
+	}
+
+	if(endDate)
+	{
+		endDate = endDate.format(self.format) || '';
+	}
+
+	var range = {startDate: startDate, endDate: endDate};
     self.rangeSelectCall({range: range});
-    self.ngModelCtrl.$setViewValue(startDate.format(self.format)+' '+ divider +' '+endDate.format(self.format));
+
+	//if no startDate && endDate, then empty the model.
+	if(!startDate && !endDate)
+	{
+		self.ngModelCtrl.$setViewValue('');
+	}else
+	{
+		startDate = startDate || 'Any';
+		endDate = endDate || 'Any';
+		self.ngModelCtrl.$setViewValue(startDate + ' ' + divider + ' ' + endDate);
+	}
+
     self.ngModelCtrl.$render();    
-    self.selectedTabIndex =0 
+    self.selectedTabIndex = 0;
     self.view ="DATE";
     self.scope.$emit('range-picker:close');    
 };

@@ -22,8 +22,10 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         customList: '=',
         noFloatingLabel:"=", 
         minDate : '@',
-        maxDate : '@',               
-        onRangeSelect : '&'  
+        maxDate : '@',
+        allowClear : '@',
+        allowEmpty : '@',
+        onRangeSelect : '&'
       },
       controller: ['$scope', '$element', '$mdUtil', '$mdMedia', '$document', SMRangePickerCtrl],
       controllerAs: 'vm',
@@ -35,7 +37,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
                 +'             aria-label="{{vm.fname}}" ng-required="{{vm.isRequired}}" class="sm-input-container"'
                 +'             ng-focus="vm.show()" placeholder="{{vm.label}}">'
                 +'   <div id="picker" class="sm-calender-pane md-whiteframe-4dp" ng-model="value">'                
-                +'    <sm-range-picker ng-model="vm.value" custom-to-home="{{vm.customToHome}}" custom-list="vm.customList" mode="{{vm.mode}}" min-date="{{vm.minDate}}"  max-date="{{vm.maxDate}}" range-select-call="vm.rangeSelected(range)" close-on-select="{{vm.closeOnSelect}}" show-custom="{{vm.showCustom}}" week-start-day="{{vm.weekStartDay}}"  divider="{{vm.divider}}" format="{{vm.format}}" ></sm-range-picker>'
+                +'    <sm-range-picker ng-model="vm.value" custom-to-home="{{vm.customToHome}}" custom-list="vm.customList" mode="{{vm.mode}}" min-date="{{vm.minDate}}"  max-date="{{vm.maxDate}}" range-select-call="vm.rangeSelected(range)" close-on-select="{{vm.closeOnSelect}}" show-custom="{{vm.showCustom}}" week-start-day="{{vm.weekStartDay}}"  divider="{{vm.divider}}" format="{{vm.format}}" allow-clear="{{vm.allowClear}}" allow-empty="{{vm.allowEmpty}}"></sm-range-picker>'
                 +'   </div> '  
                 +'  </md-input-container>';
       },
@@ -215,7 +217,11 @@ SMRangePickerCtrl.prototype.rangeSelected = function(range){
   var self = this;
   console.log(range);
   self.onRangeSelect({range: range});
-  self.value = range;
+	//give it a couple of ms for the $render method to finish.
+  setTimeout(function()
+  {
+	  self.value = range;
+  }, 50);
 }
 
 

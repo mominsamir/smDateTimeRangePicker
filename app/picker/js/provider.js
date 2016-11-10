@@ -2,6 +2,7 @@ function picker(){
     var massagePath = "X";
     var cancelLabel = "Cancel";
     var okLabel = "Ok";
+    var clearLabel = "Clear";
     var customHeader ={
         date:'ddd, MMM DD',
         dateTime:'ddd, MMM DD HH:mm',
@@ -91,8 +92,11 @@ function picker(){
         },               
         setCancelLabel : function(param){
             cancelLabel = param;
-        },     
-        setRangeDefaultList : function(array){
+        },
+	    setClearLabel : function(param){
+		    clearLabel = param;
+	    },
+	    setRangeDefaultList : function(array){
             rangeDefaultList = array;
         },
         setRangeCustomStartEnd : function(array){
@@ -114,6 +118,7 @@ function picker(){
 				massagePath : massagePath,
                 cancelLabel: cancelLabel,
                 okLabel : okLabel,
+                clearLabel : clearLabel,
 
                 daysNames : daysNames,
                 monthNames:monthNames,
