@@ -22,9 +22,7 @@
         }
 
         vm.changeModelValue = function(){
-          $scope.$apply(function(){
-            vm.dateOfBirth = moment();
-          });
+            vm.dateOfBirth = '10-10-2016 10:10';
         }
 
         vm.currentDate = '10-15-2015';  
