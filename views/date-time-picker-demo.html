@@ -3,7 +3,7 @@
            <div layout="row">
                 DateTime picker, week start date is Monday , Disabled Year selection with attribute <b>&nbsp; disable-year-selection="true"</b>
             </div>
-
+{{vm.dateOfBirth}}
             <div  layout="row"> 
                     <sm-date-time-picker 
                         fname="field" 
@@ -127,14 +127,14 @@
 
             
             <div layout="row">
-                calender inline  selected date : {{selectedDate}}</b>   
+                calender inline  selected date : {{vm.dateOfBirth}}</b>   
             </div>
 
 
             <div layout="column"  class="picker-container" style="width:315px;">
                 <div  class="container md-whiteframe-z2" style="background: #84ffff;">  
                     <sm-calender 
-                        ng-model="vm.selectedDate"
+                        ng-model="vm.dateOfBirth"
                         data-mode="{{mode}}" 
                         data-min-date="minDate" 
                         data-max-date="maxDate" 
@@ -143,6 +143,9 @@
                         data-week-start-day="{{weekStartDay}}">
                     </sm-calender>
                 </div>                
+            </div>
+            <div  layout="row">
+                <md-button class="md-button" ng-click="vm.changeModelValue()">Chanage Model</md-button>  {{vm.dateOfBirth}} Call back value {{vm.callBackValue }}
             </div>
             
     <!--         <md-button type="submit" class="md-primary md-raised">save</md-button> -->
