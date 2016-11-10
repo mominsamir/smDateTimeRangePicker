@@ -1471,11 +1471,7 @@ SMRangePickerCtrl.prototype.rangeSelected = function(range){
   var self = this;
   console.log(range);
   self.onRangeSelect({range: range});
-	//give it a couple of ms for the $render method to finish.
-  setTimeout(function()
-  {
-	  self.value = range;
-  }, 50);
+  self.value = range;
 }
 
 
@@ -1734,19 +1730,24 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) 
 
 	var range = {startDate: startDate, endDate: endDate};
     self.rangeSelectCall({range: range});
+	var _ng_model_value;
 
 	//if no startDate && endDate, then empty the model.
 	if(!startDate && !endDate)
 	{
-		self.ngModelCtrl.$setViewValue('');
+		_ng_model_value = '';
 	}else
 	{
 		startDate = startDate || 'Any';
 		endDate = endDate || 'Any';
-		self.ngModelCtrl.$setViewValue(startDate + ' ' + divider + ' ' + endDate);
+		_ng_model_value = startDate + ' ' + divider + ' ' + endDate;
 	}
 
-    self.ngModelCtrl.$render();    
+	setTimeout(function()
+	{
+		self.ngModelCtrl.$setViewValue(_ng_model_value);
+		self.ngModelCtrl.$render();
+	}, 50);
     self.selectedTabIndex = 0;
     self.view ="DATE";
     self.scope.$emit('range-picker:close');    
