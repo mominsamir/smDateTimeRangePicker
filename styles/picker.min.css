@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 .sm-calender-pane {
   display: block;
   position: fixed;
@@ -350,6 +351,7 @@
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 .sm-calender-pane {
   display: block;
   position: fixed;
