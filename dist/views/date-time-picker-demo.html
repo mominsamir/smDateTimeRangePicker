@@ -3,7 +3,6 @@
            <div layout="row">
                 DateTime picker, week start date is Monday , Disabled Year selection with attribute <b>&nbsp; disable-year-selection="true"</b>
             </div>
-{{vm.dateOfBirth}}
             <div  layout="row"> 
                     <sm-date-time-picker 
                         fname="field" 
@@ -22,7 +21,8 @@
                     </sm-date-time-picker>
             </div>
             <div  layout="row">
-                <md-button class="md-button" ng-click="vm.changeModelValue()">Chanage Model</md-button>  {{vm.dateOfBirth}} Call back value {{vm.callBackValue }}
+                <md-button class="md-button" ng-click="vm.changeModelValue()">Chanage Model two way binding</md-button> 
+                <span>Call back value {{vm.callBackValue }}</span> 
             </div>
 
             <div layout="row">
@@ -98,7 +98,7 @@
                 Date picker as service, click on calender icon</b>   
             </div>
 
-          <div layout="row">
+<!--           <div layout="row">
                 <md-input-container flex="50" flex-sm="100" flex-xs="100">
                     <label for="servicePicker">Service Picker</label>
                     <input type="text" name="servicePicker" ng-model="vm.currentDate"></input>
@@ -124,7 +124,7 @@
             <div layout="row">
                 <md-button class="md-primary" ng-click="vm.showDailog($event)">Show Dialog</md-button>       
             </div>
-
+ -->
             
             <div layout="row">
                 calender inline  selected date : {{vm.dateOfBirth}}</b>   

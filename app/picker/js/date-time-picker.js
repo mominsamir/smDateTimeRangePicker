@@ -129,11 +129,7 @@ SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
     self.ngModelCtrl.$formatters.push(function(dateValue) {
       if(angular.isUndefined(dateValue)) return;
-      if(moment.isMoment(dateValue)){
-        self.value = dateValue.format(self.format);
-      }else{
-        self.value = moment(dateValue,self.format); 
-      }
+      self.setNgModelValue(dateValue);
     });    
       
 };
@@ -141,9 +137,15 @@ SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 SMDateTimePickerCtrl.prototype.setNgModelValue = function(date) {
   var self = this;
   self.onDateSelectedCall({date: date});
-  self.ngModelCtrl.$setViewValue(date.format(self.format));
+  var d = {};
+  if(moment.isMoment(date)){
+      d = date.format(self.format);
+  }else{
+      d = moment(date,self.format).format(self.format); 
+  }  
+  self.ngModelCtrl.$setViewValue(d);
   self.ngModelCtrl.$render();  
-  //self.value = self.ngModelCtrl.$modelValue; 
+  self.value = d; 
 };
 
 SMDateTimePickerCtrl.prototype.onDateSelected = function(date){
