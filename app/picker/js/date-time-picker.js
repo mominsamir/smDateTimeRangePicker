@@ -129,6 +129,7 @@ SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
     self.ngModelCtrl.$formatters.push(function(dateValue) {
       if(angular.isUndefined(dateValue)) return;
+      if(!dateValue ){return}; 
       self.setNgModelValue(dateValue);
     });    
       
