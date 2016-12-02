@@ -17,6 +17,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         mode : '@',
         divider: '@',
         showCustom:'@',
+	    value: '=ngModel',
         weekStartDay :"@",
         customToHome: "@",
         customList: '=',
