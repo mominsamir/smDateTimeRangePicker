@@ -1160,6 +1160,15 @@ function picker(){
 
     var dayHeader = "single";
 
+    // solve problem "moment is not defined" with systemjs package manager
+    if (typeof moment === 'undefined') {
+        if(typeof require === 'function') {
+            var moment = require('moment'); // Using nw.js or browserify?
+        } else {
+            throw new Error('Moment cannot be found by angular-moment! Please reference to: https://github.com/urish/angular-moment'); // Add wiki/troubleshooting section?
+        }
+    }
+
     var monthNames = moment.months();
 
     //range picker configuration
@@ -1292,6 +1301,7 @@ function RangePickerInput($document,$mdMedia,$mdUtil,picker){
         mode : '@',
         divider: '@',
         showCustom:'@',
+	    value: '=ngModel',
         weekStartDay :"@",
         customToHome: "@",
         customList: '=',
