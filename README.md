@@ -6,13 +6,15 @@ Picker are design to be used with Angular Material.
   * [plunker](http://plnkr.co/edit/2ePb5nf8vH71iH5byP7q?p=preview) 
 
 ## Requirements
+
 * [AngularJS](https://angularjs.org/)
 * [Angular Material](https://material.angularjs.org/)
 * [moment.js](http://momentjs.com/)
 * [Material Design Font Icons](http://google.github.io/material-design-icons/#icon-font-for-the-web)
 
 ### Feature
-* Anuglar Material Theme supported
+
+* Angular Material Theme supported
 
 ### Screenshot 
 * Date Picker
@@ -27,19 +29,19 @@ Picker are design to be used with Angular Material.
 ![Range Custome Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-3.png "Range Picker")
 
 ### Installation
-```sh
+```javascript
   npm install --save smdatetimerangepicker
 ```
-```sh
+```javascript
   bower install --save smDateTimeRangePicker
 ```
-```sh
+```javascript
   angular.module('Your App',["ngMaterial","smDateTimeRangePicker"]); 
 ```
 
 ### Configuration
 
-```sh
+```javascript
   angular.module('Your App',["ngMaterial","smDateTimeRangePicker"])
     .config(function ($mdThemingProvider,pickerProvider) {
         pickerProvider.setOkLabel('Save');    
@@ -72,7 +74,7 @@ Picker are design to be used with Angular Material.
 
 
 ####  DateTime Picker
-```sh
+```html
 
       <div  layout="row"> 
             <sm-date-time-picker 
@@ -91,8 +93,7 @@ Picker are design to be used with Angular Material.
     </div>
 ```
 ####  Date Picker
-```sh
-
+```html
       <div  layout="row"> 
             <sm-date-time-picker 
                 fname="field" 
@@ -109,7 +110,7 @@ Picker are design to be used with Angular Material.
     </div>
 ```
 ####  Range Picker
-```sh
+```html
 	    <div layout="row">
 	        <sm-range-picker-input
 	                fname="dayOfPay" 
