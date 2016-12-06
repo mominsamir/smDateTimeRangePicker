@@ -26,6 +26,8 @@ function Calender($timeout,picker){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
+
+	        
 		}      
 	}
 }
@@ -238,7 +240,6 @@ CalenderCtrl.prototype.selectDate = function(d,isDisabled){
 	self.currentDate = d;
 	self.$scope.dateSelectCall({date:d});
 	self.setNgModelValue(d);
-
 	self.$scope.$emit('calender:date-selected');
 
 }

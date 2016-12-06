@@ -1,7 +1,7 @@
 function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
     return {
         restrict: 'E',
-        require: ['^ngModel'],
+        require: ['^ngModel','smDateTimePicker'],
         scope: {
             weekStartDay: '@',
             startView: "@",
@@ -24,13 +24,13 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
         template: function (element,attributes){
           var inputType ="";
           if(attributes.hasOwnProperty('onFocus')){
-            inputType =  '<input name="{{vm.fname}}" data-ng-model="vm.value" '
+            inputType =  '<input name="{{vm.fname}}" ng-model="vm.value" '
                   + '  type="text" placeholder="{{vm.label}}"'
                   + '  aria-label="{{vm.fname}}" ng-focus="vm.show()" data-ng-required="vm.isRequired"  ng-disabled="vm.disable"' 
                   + '  server-error class="sm-input-container" />' ;
 
           }else{
-             inputType = '      <input class="" name="{{vm.fname}}" data-ng-model="vm.value" '
+             inputType = '      <input class="" name="{{vm.fname}}" ng-model="vm.value" '
                       + '             type="text" placeholder="{{vm.label}}" '
                       + '             aria-label="{{vm.fname}}" aria-hidden="true" data-ng-required="vm.isRequired"  ng-disabled="vm.disable"/>' 
                       + '     <md-button tabindex="-1" class="sm-picker-icon md-icon-button" aria-label="showCalender" ng-disabled="vm.disable" aria-hidden="true" type="button" ng-click="vm.show()">'
@@ -40,10 +40,11 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
 
           return  '  <md-input-container class="sm-input-container md-icon-float md-block" md-no-float="vm.noFloatingLabel">' + 
                     inputType +
-                  '     <div id="picker" class="sm-calender-pane md-whiteframe-z1 hide-animate">' +
+                  '     <div id="picker" class="sm-calender-pane md-whiteframe-z2">' +
                   '          <sm-date-picker ' +
                   '              id="{{vm.fname}}Picker" ' +
                   '              initial-date="vm.value"' +
+                  '              ng-model="vm.value"' +                  
                   '              mode="{{vm.mode}}" ' +
                   '              disable-year-selection={{vm.disableYearSelection}}' +
                   '              close-on-select="{{vm.closeOnSelect}}"' +
@@ -58,18 +59,11 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
                   ' </md-input-container>';    
         },
         link: function(scope, $element, attr, ctrl) {
-          console.log(ctrl[0]);
-            // set value to input if any provided
-          ctrl[0].$viewChangeListeners.push(function(){ 
-              /*Set model value differently based on the viewvalue entered*/
-            console.log('$viewChangeListeners',o,n);
-          });
-          scope.$watch('vm.value',function(o,n){
-            console.log('vm.value',o,n);
-          })
-            ctrl[0].$render = function() {
-                scope.vm.value = this.$viewValue;
-            }
+          var ngModelCtrl = ctrl[0];
+          var pickerCtrl = ctrl[1];
+          pickerCtrl.configureNgModel(ngModelCtrl);
+            
+
         }
     }
 }
@@ -128,6 +122,40 @@ var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $docume
 }
 
 
+SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
+    var self = this;
+    self.ngModelCtrl = ngModelCtrl;
+
+
+    self.ngModelCtrl.$formatters.push(function(dateValue) {
+      if(angular.isUndefined(dateValue)) return;
+      if(!dateValue ){return}; 
+      self.setNgModelValue(dateValue);
+    });    
+      
+};
+
+SMDateTimePickerCtrl.prototype.setNgModelValue = function(date) {
+  var self = this;
+  self.onDateSelectedCall({date: date});
+  var d = {};
+  if(moment.isMoment(date)){
+      d = date.format(self.format);
+  }else{
+      d = moment(date,self.format).format(self.format); 
+  }  
+  self.ngModelCtrl.$setViewValue(d);
+  self.ngModelCtrl.$render();  
+  self.value = d; 
+};
+
+SMDateTimePickerCtrl.prototype.onDateSelected = function(date){
+  var self = this;
+  self.setNgModelValue(date);
+}
+
+
+
 /*get visiable port
 
   @param : elementnRect 
@@ -153,11 +181,6 @@ SMDateTimePickerCtrl.prototype.getVisibleViewPort = function(elementRect, bodyRe
     };
 }
 
-SMDateTimePickerCtrl.prototype.onDateSelected = function(date){
-  var self = this;
-  self.onDateSelectedCall({date: date});
-  self.value = date.format(self.format);
-}
 
 
 SMDateTimePickerCtrl.prototype.show = function($event) {
@@ -223,10 +246,6 @@ SMDateTimePickerCtrl.prototype.clickOutSideHandler = function(e){
       self.hideElement();
     }
   }
-}
-
-SMDateTimePickerCtrl.prototype.getCalenderCtrl = function(e){
-
 }
 
 

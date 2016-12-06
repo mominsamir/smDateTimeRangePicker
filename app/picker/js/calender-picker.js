@@ -25,7 +25,7 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 	    bindToController:true,
 	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ctrls){
-		      var ngModelCtrl = ctrls[0];
+		      var ngModelCtrl = ctrls[0];	
 		      var calCtrl = ctrls[1];
 		      calCtrl.configureNgModel(ngModelCtrl);
 		}      
@@ -59,7 +59,8 @@ PickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
     var self = this;
     self.ngModelCtrl = ngModelCtrl;
     self.ngModelCtrl.$render = function() {
-      self.ngModelCtrl.$viewValue= self.initialDate;
+      self.ngModelCtrl.$viewValue= ngModelCtrl.$viewValue;
+      self.ngModelCtrl.$modelvalue= ngModelCtrl.$modelvalue;
     };
 };
 
