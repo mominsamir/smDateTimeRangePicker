@@ -1185,7 +1185,7 @@ function picker(){
             {
 				label:'Last Month',
 				startDate:moment().subtract(1,'month').startOf('month'),
-				endDate: moment()
+				endDate: moment().subtract(1,'month').endOf('month')
 			},
             {
 				label: 'This Quarter',
