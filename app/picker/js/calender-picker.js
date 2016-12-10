@@ -50,7 +50,6 @@ PickerCtrl.prototype.init = function() {
 		self.mode = 'date';	
 	}
 	self.currentDate = isNaN(self.ngModelCtrl)  ? moment():  self.ngModelCtrl.$viewValue ;
-
 	self.setViewMode(self.mode);
 };
 

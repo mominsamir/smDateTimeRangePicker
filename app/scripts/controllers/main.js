@@ -4,7 +4,7 @@
         var vm = this;
         vm.minDate = moment().add(10,'d').format('MM-DD-YYYY');
         vm.maxDate = moment().add(1,'M').format('MM-DD-YYYY');
-        vm.dateOfBirth = moment().add(10,'d').format('MM-DD-YYYY HH:mm');
+        vm.dateOfBirth = moment();
 
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
