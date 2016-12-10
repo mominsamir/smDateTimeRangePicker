@@ -26,8 +26,6 @@ function Calender(){
 			var ngModelCtrl = ctrls[0];
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
-
-	        
 		}      
 	}
 }
@@ -39,13 +37,13 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.$timeout = $timeout;
     self.picker = picker;
     self.dayHeader = self.picker.dayHeader;
-	self.initialDate = $scope.initialDate; 	
+	self.initialDate = $scope.initialDate;
     self.viewModeSmall = $mdMedia('xs');
 	self.startDay = angular.isUndefined($scope.weekStartDay) || $scope.weekStartDay==='' ? 'Sunday' : $scope.weekStartDay ;	   	
 	self.minDate = $scope.minDate;			//Minimum date 
 	self.maxDate = $scope.maxDate;			//Maximum date 
 	self.mode = angular.isUndefined($scope.mode) ? 'DATE' : $scope.mode;
-	self.format = $scope.format;
+	self.format = angular.isUndefined($scope.format)? picker.format : $scope.format;
 	self.restrictToMinDate = angular.isUndefined($scope.minDate) ? false : true;
 	self.restrictToMaxDate = angular.isUndefined($scope.maxDate) ? false : true;
 	self.stopScrollPrevious =false;
@@ -61,7 +59,6 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	self.initialDate =	angular.isUndefined(self.initialDate) ? moment() : moment(self.initialDate,self.format);
 	
 	self.currentDate = self.initialDate.clone();
-
 	if(self.restrictToMinDate){
 		if(moment.isMoment(self.minDate)){
 			self.minDate = self.minDate.subtract(1,'d');					
@@ -96,7 +93,7 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 CalenderCtrl.prototype.setInitDate = function(dt) {
     var self = this;
     self.initialDate =angular.isUndefined( dt) ? moment() : moment( dt,self.format);
-  };
+};
 
 
 CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
@@ -104,10 +101,23 @@ CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
     self.ngModelCtrl = ngModelCtrl;
 
-    ngModelCtrl.$render = function() {
+    self.ngModelCtrl.$formatters.push(function(dateValue) {
+    	if(self.format){
+    	if(dateValue){
+	    	if(moment.isMoment(dateValue)){
+	    		self.initialDate = dateValue;
+	    	}else{
+	    		console.log();
+	    		self.initialDate = moment(dateValue,self.format); 
+	    	}	
+    	}
+		self.currentDate = self.initialDate.clone();
+		self.buildDateCells();
+		}
+	});
+    self.ngModelCtrl.$render = function() {
       self.ngModelCtrl.$viewValue= self.currentDate;
     };
-
   };
 
 
@@ -164,8 +174,6 @@ CalenderCtrl.prototype.buildDateCells = function(){
     var calStartDate  = self.initialDate.clone().date(0).day(self.startDay);
     var weekend = false;
     var isDisabledDate =false;
-
-
     /*
     	Check if min date is greater than first date of month
     	if true than set stopScrollPrevious=true 
@@ -173,7 +181,6 @@ CalenderCtrl.prototype.buildDateCells = function(){
 	if(!angular.isUndefined(self.minDate)){	
 		self.stopScrollPrevious	 = self.minDate.unix() > calStartDate.unix();
 	}
-
     self.dateCells =[];
 	for (var i = 0; i < 6; i++) {
 		var week = [];
@@ -219,7 +226,6 @@ CalenderCtrl.prototype.buildDateCells = function(){
 	if(self.dateCells[0][6].isDisabledDate && !self.dateCells[0][6].isCurrentMonth){
 		self.dateCells[0].splice(0);
 	}
-
 };
 
 CalenderCtrl.prototype.changePeriod = function(c){

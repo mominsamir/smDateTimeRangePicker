@@ -43,7 +43,7 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
                   '     <div id="picker" class="sm-calender-pane md-whiteframe-z2">' +
                   '          <sm-date-picker ' +
                   '              id="{{vm.fname}}Picker" ' +
-                  '              initial-date="vm.value"' +
+                  '              initial-date="vm.initialDate"' +
                   '              ng-model="vm.value"' +                  
                   '              mode="{{vm.mode}}" ' +
                   '              disable-year-selection={{vm.disableYearSelection}}' +
@@ -134,7 +134,6 @@ SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
       };
       if(!dateValue ){self.value="";return}; 
       self.setNgModelValue(dateValue);
-
     });    
       
 };
