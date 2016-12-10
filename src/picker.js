@@ -2,7 +2,7 @@
 
 'use strict';
 
-function Calender($timeout,picker){
+function Calender(){
     
 	return {
 	  restrict : 'E',
@@ -62,12 +62,19 @@ var CalenderCtrl = function($scope,$timeout,picker,$mdMedia){
 	
 	self.currentDate = self.initialDate.clone();
 
+	if(self.restrictToMinDate){
+		if(moment.isMoment(self.minDate)){
+			self.minDate = self.minDate.subtract(1,'d');					
+		}else{
+			self.minDate = moment(self.minDate, self.format).subtract(1,'d');					
+		}
+	} 
 
-
-	if(self.restrictToMinDate) 
-		self.minDate = moment(self.minDate, self.format).subtract(1,'d');
-	if(self.restrictToMaxDate) 
-		self.maxDate = moment(self.maxDate, self.format);
+	if(self.restrictToMaxDate) {
+		if(!moment.isMoment(self.maxDate)){
+			self.maxDate = moment(self.maxDate, self.format);					
+		}
+	}
 
     self.yearItems = {
         currentIndex_: 0,
@@ -328,7 +335,7 @@ CalenderCtrl.prototype.closeDateTime = function(){
 
 var app = angular.module('smDateTimeRangePicker',[]);
 
-app.directive('smCalender',['$timeout','picker',Calender]);
+app.directive('smCalender',[Calender]);
 
 })();
 (function(){
