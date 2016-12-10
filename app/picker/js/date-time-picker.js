@@ -62,8 +62,6 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
           var ngModelCtrl = ctrl[0];
           var pickerCtrl = ctrl[1];
           pickerCtrl.configureNgModel(ngModelCtrl);
-            
-
         }
     }
 }
@@ -128,9 +126,15 @@ SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 
 
     self.ngModelCtrl.$formatters.push(function(dateValue) {
-      if(angular.isUndefined(dateValue)) return;
-      if(!dateValue ){return}; 
+
+      if(!dateValue && angular.isUndefined(dateValue)) {
+        self.value="";
+        self.onDateSelectedCall({date: null});
+        return
+      };
+      if(!dateValue ){self.value="";return}; 
       self.setNgModelValue(dateValue);
+
     });    
       
 };

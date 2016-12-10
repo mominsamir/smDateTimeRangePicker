@@ -15,6 +15,10 @@
           endDate: moment()
         }]
 
+        vm.clearInput =  function(){
+            vm.dateOfBirth = "";
+        }
+
         vm.dateSelected = function(date){
 
 
