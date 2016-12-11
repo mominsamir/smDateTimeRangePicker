@@ -140,6 +140,10 @@ RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;
   this.scope.$emit('range-picker:startDateSelected');
   this.setNextView();
+	
+  if (this.endDate && this.endDate.diff(this.startDay, 'ms') < 0) {
+    this.endDate = date;
+  }
 }
 
 RangePickerCtrl.prototype.startTimeSelected = function(time){
