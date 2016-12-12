@@ -115,9 +115,6 @@ CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 		self.buildDateCells();
 		}
 	});
-    self.ngModelCtrl.$render = function() {
-      self.ngModelCtrl.$viewValue= self.currentDate;
-    };
   };
 
 
@@ -1725,6 +1722,10 @@ RangePickerCtrl.prototype.startDateSelected = function(date){
   this.startDate = date;
   this.scope.$emit('range-picker:startDateSelected');
   this.setNextView();
+	
+  if (this.endDate && this.endDate.diff(this.startDay, 'ms') < 0) {
+    this.endDate = date;
+  }
 }
 
 RangePickerCtrl.prototype.startTimeSelected = function(time){
@@ -1805,6 +1806,7 @@ RangePickerCtrl.prototype.cancel = function(){
 
 var app = angular.module('smDateTimeRangePicker');
 app.directive('smRangePicker',['picker',smRangePicker]);
+
 function smTimePickerNew($mdUtil,$mdMedia,$document,$timeout,picker){
     return {
       restrict : 'E',

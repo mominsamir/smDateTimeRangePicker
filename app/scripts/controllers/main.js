@@ -116,9 +116,33 @@
         }
         vm.toggleLeft = buildToggler('left');
 
-        vm.save = function(){
-          console.log(vm.employee);
+        vm.save = function(form){
+          validateForm(form);
         }
+
+        function validateForm(form){
+             angular.forEach(form, function(obj,name){
+              if (name.indexOf('$') !== 0) {
+                obj.$validate();
+                obj.$touched= true;
+              }
+             });
+            form.$setSubmitted();
+            return form.$valid;           
+        }
+
+        function resetForm(form){
+            console.log('resetting form')
+            angular.forEach(form, function(obj,name){
+              if (name.indexOf('$') !== 0) {
+                obj.$setValidity(name,true);
+                obj.$touched= false;
+              }
+             });
+            form.$submitted =false;
+            form.$setPristine();
+            form.$setUntouched();
+        }        
         
     }
 

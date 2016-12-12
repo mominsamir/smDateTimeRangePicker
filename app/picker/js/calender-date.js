@@ -115,9 +115,6 @@ CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
 		self.buildDateCells();
 		}
 	});
-    self.ngModelCtrl.$render = function() {
-      self.ngModelCtrl.$viewValue= self.currentDate;
-    };
   };
 
 
