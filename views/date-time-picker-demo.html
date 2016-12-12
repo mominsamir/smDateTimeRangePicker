@@ -1,4 +1,4 @@
-    <form name="empForm" novalidate="true" ng-submit="vm.save()">
+    <form name="empForm" novalidate="true" ng-submit="vm.save(empForm)">
         <md-content   layout-padding class="md-whiteframe-z2" style="background-color=rgb(250, 250, 250)">
            <div layout="row">
                 DateTime picker, week start date is Monday , Disabled Year selection with attribute <b>&nbsp; disable-year-selection="true"</b>
@@ -133,9 +133,9 @@
 
 
             <div layout="column"  class="picker-container" style="width:315px;">
-                <div  class="container md-whiteframe-z2" style="background: #84ffff;">  
+                <div  class="container md-whiteframe-z2"  style="background: #84ffff;">  
                     <sm-calender 
-                        ng-model="vm.dateOfBirth"
+                        ng-model="vm.dateOfBirth" 
                         data-mode="{{mode}}" 
                         data-min-date="minDate" 
                         data-max-date="maxDate" 
@@ -149,7 +149,7 @@
                 <md-button class="md-button" ng-click="vm.changeModelValue()">Chanage Model</md-button>  {{vm.dateOfBirth}} Call back value {{vm.callBackValue }}
             </div>
             
-    <!--         <md-button type="submit" class="md-primary md-raised">save</md-button> -->
+       <md-button type="submit" class="md-primary md-raised">save</md-button>
        </md-content>
     </form>
 <!-- <div ng-controller="MainCtrl as vm" >
