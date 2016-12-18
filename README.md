@@ -131,7 +131,11 @@ Picker are design to be used with Angular Material.
         </div>
 ```
 
-### License
+## Contributing to the project
+
+We are always looking for the quality contributions! Please check the [contribution docs](CONTRIBUTING.md) for the contribution instructions.
+
+## License
 
 The MIT License (MIT)
 
