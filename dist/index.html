@@ -18,12 +18,12 @@
 
     <!-- Add your site or application content here -->
       <md-content class="container main" layout="row" ng-init="toogle = false" ng-controller="MainCtrl as vm">
-              <md-sidenav 
-          layout="column" 
+              <md-sidenav
+          layout="column"
           class="main-left-menu md-sidenav-left"
-          md-component-id="left" 
+          md-component-id="left"
           md-is-locked-open="$mdMedia('gt-md')">
-            <md-toolbar layout="center center" layout="row" class="left-menu-header md-whiteframe-1dp">
+            <md-toolbar layout="center center" class="left-menu-header md-whiteframe-1dp">
                 <div layout-align="center center" class="logo" layout="row">
                     <span class="logo-image">D</span>
                     <span class="logo-text">Date Picker</span>
@@ -34,7 +34,7 @@
                         <md-icon class="material-icons fold-toggle">play_circle_filled</md-icon>
                     </md-button>
                 </div>
-            </md-toolbar>          
+            </md-toolbar>
             <ul class="side-menu" ng-controller="MenuCtrl as vm" >
                 <li ng-repeat="section in vm.menu.sections" class="parent-list-item"
                     ng-class="{'parentActive' : vm.isSectionSelected(section)}">
@@ -54,7 +54,7 @@
               <span class="md-headline">Date Time Picker</span>
               <md-button aria-label="Open Sidebar" hide-gt-md class="md-icon-button" ng-click="vm.toggleLeft()">
                   <md-icon md-menu-align-target md-font-icon="material-icons" >menu</md-icon>
-              </md-button>        
+              </md-button>
               <span flex></span>
               <md-button class="md-icon-button" aria-label="log out" target="_blank" href="https://github.com/mominsamir/smDateTimeRangePicker/" >
                   <md-icon md-menu-align-target md-font-icon="material-icons" >open_in_new</md-icon>
@@ -62,12 +62,12 @@
             </div>
           </md-toolbar>
           <md-content layout="column" class="main-container animated fadeInUpBig" flex >
-                <div ui-view></div>             
+                <div ui-view></div>
           </md-content>
         </md-content>
       </md-content>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),

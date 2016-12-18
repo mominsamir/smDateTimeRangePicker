@@ -2,41 +2,42 @@
 
 Picker are design to be used with Angular Material.
 
-  * for [Demo](http://mominsamir.github.io/smDateTimeRangePicker/)
-  * [plunker](http://plnkr.co/edit/2ePb5nf8vH71iH5byP7q?p=preview) 
+- for [Demo](http://mominsamir.github.io/smDateTimeRangePicker/)
+- [plunker](http://plnkr.co/edit/2ePb5nf8vH71iH5byP7q?p=preview)
 
 ## Requirements
 
-* [AngularJS](https://angularjs.org/)
-* [Angular Material](https://material.angularjs.org/)
-* [moment.js](http://momentjs.com/)
-* [Material Design Font Icons](http://google.github.io/material-design-icons/#icon-font-for-the-web)
+- [AngularJS](https://angularjs.org/)
+- [Angular Material](https://material.angularjs.org/)
+- [moment.js](http://momentjs.com/)
+- [Material Design Font Icons](http://google.github.io/material-design-icons/#icon-font-for-the-web)
 
 ### Feature
 
-* Angular Material Theme supported
+- Angular Material Theme supported
 
-### Screenshot 
-* Date Picker
+### Screenshot
 
-![Date Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/date-picker-1.png "Date Picker")
-![Hour Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/date-picker-2.png "Date Picker")
+- Date Picker
 
- * Range Picker
-  
-![Range Default Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-1.png "Range Picker")
-![Range Custome Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-2.png "Range Picker")
-![Range Custome Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-3.png "Range Picker")
+![Date Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/date-picker-1.png "Date Picker") ![Hour Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/date-picker-2.png "Date Picker")
+
+- Range Picker
+
+![Range Default Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-1.png "Range Picker") ![Range Custome Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-2.png "Range Picker") ![Range Custome Picker](https://raw.githubusercontent.com/mominsamir/date-time-picker/master/app/images/range-picker-3.png "Range Picker")
 
 ### Installation
+
 ```javascript
   npm install --save smdatetimerangepicker
 ```
+
 ```javascript
   bower install --save smDateTimeRangePicker
 ```
+
 ```javascript
-  angular.module('Your App',["ngMaterial","smDateTimeRangePicker"]); 
+  angular.module('Your App',["ngMaterial","smDateTimeRangePicker"]);
 ```
 
 ### Configuration
@@ -49,12 +50,12 @@ Picker are design to be used with Angular Material.
         //  Over ride day names by changing here
         pickerProvider.setDayHeader('single');  //Options 'single','shortName', 'fullName'
         picker.setDaysNames([
-             {'single':'S','shortName':'Su','fullName':'Sunday'}, 
-             {'single':'M','shortName':'Mo','fullName':'MonDay'}, 
-             {'single':'T','shortName':'Tu','fullName':'TuesDay'}, 
-             {'single':'W','shortName':'We','fullName':'Wednesday'}, 
-             {'single':'T','shortName':'Th','fullName':'Thursday'}, 
-             {'single':'F','shortName':'Fr','fullName':'Friday'}, 
+             {'single':'S','shortName':'Su','fullName':'Sunday'},
+             {'single':'M','shortName':'Mo','fullName':'MonDay'},
+             {'single':'T','shortName':'Tu','fullName':'TuesDay'},
+             {'single':'W','shortName':'We','fullName':'Wednesday'},
+             {'single':'T','shortName':'Th','fullName':'Thursday'},
+             {'single':'F','shortName':'Fr','fullName':'Friday'},
              {'single':'S','shortName':'Sa','fullName':'Saturday'}
          ]);
          // Range Picker Configuration
@@ -66,69 +67,71 @@ Picker are design to be used with Angular Material.
                         'Last Month',
                         'This Quarter',
                         'Year To Date',
-                        'This Year', 
+                        'This Year',
                         'Custome Range']);
         picker.setRangeCustomStartEnd(['Start Date', 'End Date']);      
     }
 ```
 
+#### DateTime Picker
 
-####  DateTime Picker
 ```html
 
-      <div  layout="row"> 
-            <sm-date-time-picker 
-                fname="field" 
+      <div  layout="row">
+            <sm-date-time-picker
+                fname="field"
                 lable="Date of Birth"
-                form="empForm" 
-                value="vm.employee.dateOfBirth" 
+                form="empForm"
+                value="vm.employee.dateOfBirth"
                 flex="50"
                 flex-sm="100"
                 flex-xs="100"                          
-                is-required="{{true}}" 
+                is-required="{{true}}"
                 format="MM-DD-YYYY HH:mm"
-                mode="date-time" 
+                mode="date-time"
                 week-start-day="Monday">
             </sm-date-time-picker>
     </div>
 ```
-####  Date Picker
+
+#### Date Picker
+
 ```html
-      <div  layout="row"> 
-            <sm-date-time-picker 
-                fname="field" 
+      <div  layout="row">
+            <sm-date-time-picker
+                fname="field"
                 lable="Date of Birth"
-                form="empForm" 
-                value="vm.employee.dateOfBirth" 
+                form="empForm"
+                value="vm.employee.dateOfBirth"
                 flex="50"
                 flex-sm="100"
                 flex-xs="100"                          
-                is-required="{{true}}" 
+                is-required="{{true}}"
                 format="MM-DD-YYYY HH:mm"
                 week-start-day="Monday">
             </sm-date-time-picker>
     </div>
 ```
-####  Range Picker
+
+#### Range Picker
+
 ```html
-	    <div layout="row">
-	        <sm-range-picker-input
-	                fname="dayOfPay" 
-	                lable="Date of Pay"
-	                form="empForm"
-	                value="vm.employee.dateOfPay" 
-	                flex="50"                         
-	                is-required="{{true}}" 
-	                format="MM-DD-YYYY"
-	                mode="date-time" 
-	                week-start-day="Sunday">
-	        </sm-range-picker-input>
-	    </div>
+        <div layout="row">
+            <sm-range-picker-input
+                    fname="dayOfPay"
+                    lable="Date of Pay"
+                    form="empForm"
+                    value="vm.employee.dateOfPay"
+                    flex="50"                         
+                    is-required="{{true}}"
+                    format="MM-DD-YYYY"
+                    mode="date-time"
+                    week-start-day="Sunday">
+            </sm-range-picker-input>
+        </div>
 ```
 
-
-
-###License
+### License
 
 The MIT License (MIT)
 
@@ -138,4 +141,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
