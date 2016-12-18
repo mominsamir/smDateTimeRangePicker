@@ -3,6 +3,7 @@ function picker(){
     var cancelLabel = "Cancel";
     var okLabel = "Ok";
     var clearLabel = "Clear";
+    var format = 'MM-DD-YYYY';
     var customHeader ={
         date:'ddd, MMM DD',
         dateTime:'ddd, MMM DD HH:mm',
@@ -44,7 +45,7 @@ function picker(){
             {
 				label:'Last Month',
 				startDate:moment().subtract(1,'month').startOf('month'),
-				endDate: moment()
+				endDate: moment().subtract(1,'month').endOf('month')
 			},
             {
 				label: 'This Quarter',
@@ -127,7 +128,8 @@ function picker(){
 
                 rangeDivider : rangeDivider,
                 rangeCustomStartEnd : rangeCustomStartEnd,
-                rangeDefaultList :rangeDefaultList                 
+                rangeDefaultList :rangeDefaultList,
+                format : format             
 			}
 		}
 	}

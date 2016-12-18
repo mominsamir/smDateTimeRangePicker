@@ -27,7 +27,7 @@
 				week-start-day="{{weekStartDay}}"
 				min-date="vm.minDate"
 				max-date="vm.maxDate"
-				format="{{format}}"
+				format="{{vm.format}}"
 				date-select-call="vm.startDateSelected(date)">
 			</sm-calender>
 			<sm-time
@@ -41,9 +41,9 @@
 				<md-button class="md-warn"><small>No end date</small></md-button>
 			</div>
 			<sm-calender 
-				format="{{format}}"
+				format="{{vm.format}}"
 				ng-show="vm.view==='DATE'"
-				initial-date="vm.startDate.format(format)"
+				initial-date="vm.startDate.format(vm.format)"
 				min-date="vm.startDate"
 				max-date="vm.maxDate"
 				week-start-day="{{weekStartDay}}"

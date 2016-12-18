@@ -4,7 +4,7 @@
         var vm = this;
         vm.minDate = moment().add(10,'d').format('MM-DD-YYYY');
         vm.maxDate = moment().add(1,'M').format('MM-DD-YYYY');
-        vm.dateOfBirth = moment().add(10,'d').format('MM-DD-YYYY HH:mm');
+        vm.dateOfBirth = moment();
 
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
@@ -14,6 +14,10 @@
           startDate: moment(),
           endDate: moment()
         }]
+
+        vm.clearInput =  function(){
+            vm.dateOfBirth = "";
+        }
 
         vm.dateSelected = function(date){
 
@@ -112,9 +116,33 @@
         }
         vm.toggleLeft = buildToggler('left');
 
-        vm.save = function(){
-          console.log(vm.employee);
+        vm.save = function(form){
+          validateForm(form);
         }
+
+        function validateForm(form){
+             angular.forEach(form, function(obj,name){
+              if (name.indexOf('$') !== 0) {
+                obj.$validate();
+                obj.$touched= true;
+              }
+             });
+            form.$setSubmitted();
+            return form.$valid;           
+        }
+
+        function resetForm(form){
+            console.log('resetting form')
+            angular.forEach(form, function(obj,name){
+              if (name.indexOf('$') !== 0) {
+                obj.$setValidity(name,true);
+                obj.$touched= false;
+              }
+             });
+            form.$submitted =false;
+            form.$setPristine();
+            form.$setUntouched();
+        }        
         
     }
 
