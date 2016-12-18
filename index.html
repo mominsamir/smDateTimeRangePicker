@@ -10,6 +10,7 @@
     <!-- endbower -->
     <link rel="stylesheet" href="styles/vendor.min.css">
     <link rel="stylesheet" href="styles/picker.min.css">
+
   </head>
   <body ng-app="demoApp" ng-clock>
     <!--[if lte IE 8]>
@@ -49,7 +50,7 @@
 
         </md-sidenav>
         <md-content layout="column" layout-fill class="right-container">
-          <md-toolbar layout="row"  class="md-whiteframe-z2 animated fadeInDown" >
+          <md-toolbar layout="row"  class="md-whiteframe-z2 animated md-tall" >
             <div class="md-toolbar-tools" >
               <span class="md-headline">Date Time Picker</span>
               <md-button aria-label="Open Sidebar" hide-gt-md class="md-icon-button" ng-click="vm.toggleLeft()">
@@ -61,9 +62,9 @@
               </md-button>
             </div>
           </md-toolbar>
-          <md-content layout="column" class="main-container animated fadeInUpBig" flex >
-                <div ui-view></div>
-          </md-content>
+          <md-card layout="column"  class="main-container" flex style="top:-80px;z-index: 2;position: relative;margin: 24px;" >
+                <div  layout-fill ui-view></div>
+          </md-card>
         </md-content>
       </md-content>
 
@@ -83,6 +84,7 @@
 
         <script src="scripts/vendor.min.js"></script>
         <script src="scripts/script.min.js"></script>
+
         <!-- Place this tag in your head or just before your close body tag. -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
