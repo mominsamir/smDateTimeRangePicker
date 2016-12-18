@@ -216,7 +216,6 @@ SMRangePickerCtrl.prototype.getVisibleViewPort = function(elementRect, bodyRect)
 
 SMRangePickerCtrl.prototype.rangeSelected = function(range){
   var self = this;
-  console.log(range);
   self.onRangeSelect({range: range});
   self.value = range;
 }

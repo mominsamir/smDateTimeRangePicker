@@ -50,7 +50,6 @@ PickerCtrl.prototype.init = function() {
 		self.mode = 'date';	
 	}
 	self.currentDate = isNaN(self.ngModelCtrl)  ? moment():  self.ngModelCtrl.$viewValue ;
-
 	self.setViewMode(self.mode);
 };
 
@@ -61,6 +60,7 @@ PickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
     self.ngModelCtrl.$render = function() {
       self.ngModelCtrl.$viewValue= ngModelCtrl.$viewValue;
       self.ngModelCtrl.$modelvalue= ngModelCtrl.$modelvalue;
+      self.initialDate = self.ngModelCtrl.$viewValue;
     };
 };
 
