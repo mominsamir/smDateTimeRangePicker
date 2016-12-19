@@ -71,6 +71,13 @@
 
         self.bodyClickHandler = angular.bind(self, self.clickOutSideHandler);
 
+        self.ngModelText = '';
+        self.$scope.$watch('vm.value', function(newRange) {
+            if (newRange && typeof newRange == 'object') {
+                self.ngModelText = newRange.startDate + ' ' + self.divider + ' ' + newRange.endDate;
+            }
+        });
+
         self.$scope.$on('range-picker:close', function() {
             self.$document.off('keydown');
             self.hideElement();
