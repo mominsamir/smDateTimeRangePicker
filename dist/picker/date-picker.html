@@ -7,14 +7,14 @@
 		<div layout="column" class="picker-container" >
 			<div ng-show="vm.view==='DATE'" >
 				<sm-calender 
-					data-ng-model="vm.selectedDate"
+
 					data-initial-date="vm.initialDate"					
 					data-id="{{vm.fname}}Picker" 
 					data-mode="{{vm.mode}}" 
 					data-min-date="vm.minDate" 
 					data-max-date="vm.maxDate" 
 					data-close-on-select="{{vm.closeOnSelect}}"				 
-					data-data-format="{{vm.format}}" 
+					data-format="{{vm.format}}" 
 					data-disable-year-selection="{{vm.disableYearSelection}}" 
 					data-week-start-day="{{vm.weekStartDay}}"
 					data-date-select-call="vm.dateSelected(date)">

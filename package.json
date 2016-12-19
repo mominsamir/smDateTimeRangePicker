@@ -1,8 +1,8 @@
 {
   "name": "smdatetimerangepicker",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "angular material Date Time Range Picker",
-  "main": "./src/picker.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,0 +1,25 @@
+<md-input-container>
+    <label for="{{fname}}">{{lable }}</label>
+    <input name="{{fname}}" ng-model="value" ng-readonly="true"
+        type="text" placeholde="{{lable}}"
+        aria-label="{{fname}}" data-ng-required="isRequired"
+        ng-focus="show()" server-error class="sm-input-container"
+    />
+    <div ng-messages="form.fname.$error" ng-if="form[fname].$touched">
+        <div ng-messages-include="{{ngMassagedTempaltePath}}"></div>
+    </div>
+    <div id="picker" class="sm-calender-pane md-whiteframe-15dp">
+        <sm-time-picker
+            id="{{fname}}Picker"
+            ng-model="value"
+            initial-date="{{value}}"
+            mode="{{mode}}"
+            close-on-select="{{closeOnSelect}}"
+            start-view="{{startView}}"
+            data-min-date="minDate"
+            data-max-date="maxDate"
+            format="{{format}}"
+            start-day="{{weekStartDay}}"
+        ></sm-time-picker>
+    </div>
+</md-input-container>
