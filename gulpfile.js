@@ -115,7 +115,8 @@ gulp.task('stylePicker', function() {
 
 
 gulp.task('pickerJs', function () {
-    gulp.src('app/picker/js/*.js')
+    // solution via https://github.com/auth0/angular-storage
+    gulp.src(['app/picker/js/picker.prefix', 'app/picker/js/*.js', 'app/picker/js/picker.suffix'])
     .pipe(addStream.obj(prepareTemplates()))
     .pipe(concat('picker.js'))
     .pipe(gulp.dest('src/'));

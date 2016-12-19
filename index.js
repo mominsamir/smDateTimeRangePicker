@@ -1,8 +1,8 @@
-// Should already be required, here for clarity
-require('angular');
+// support for Browserify
 
-require('moment');
+// Should already be required, here for clarity
+require('angular-material');
+
 require('./src/picker.js');
 
-// Export namespace
 module.exports = 'smdatetimerangepicker';

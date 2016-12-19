@@ -1,0 +1,9 @@
+if (typeof moment === 'undefined') {
+    if(typeof require === 'function') {
+        var moment = require('moment'); // Using nw.js or browserify?
+    } else {
+        throw new Error('Moment cannot be found by smdatetimerangepicker.');
+    }
+}
+
+(function() {
