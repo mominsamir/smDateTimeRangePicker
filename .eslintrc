@@ -20,7 +20,7 @@
 
     "angular/on-watch": 0,
 
-    "strict": 1,
+    "strict": 0,
 
     "no-shadow-restricted-names": 2,
 
