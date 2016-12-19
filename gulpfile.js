@@ -89,7 +89,7 @@ gulp.task('watch', function() {
 
 // clean task
 gulp.task('clean', function() {
-    return clean(['dist/**/*']);
+    return clean(['dist/*']);
 });
 
 
