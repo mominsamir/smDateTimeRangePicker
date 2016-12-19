@@ -69,7 +69,7 @@
 	                label="Date of Pay 2"
 	                form="test"
 	                min-date="11-10-2015"
-	                ng-model="vm.employee.dateOfPay2"
+	                ng-model="vm.dateOfPay2"
 	                flex="50"
 	                is-required="true"
 	                format="DD-MM-YYYY HH:mm"
@@ -81,7 +81,8 @@
 	                on-range-select="vm.dayofPay2Selected(range)">
 	        </sm-range-picker-input>
 	    </div>
-        selected range via call back = <pre>{{ vm.rangeObj2 | json }}</pre>
+        <pre><code>ngModel = {{ vm.dateOfPay2 | json }}</code></pre>
+        <pre><code>data parameter on callback = {{ vm.rangeObj2 | json }}</code></pre>
     </div>
 
     <div>
