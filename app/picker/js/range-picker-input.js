@@ -7,49 +7,38 @@
             restrict : 'EA',
             replace: true,
             require: ['^ngModel'],
-            scope :{
-                label : '@',
-                fname : '@',
-                isRequired : '@',
+            scope: {
+                label: '@',
+                fname: '@',
+                isRequired: '@',
                 closeOnSelect: '@',
-                disable : '=',
-                format : '@',
-                mode : '@',
+                disable: '=',
+                format: '@',
+                mode: '@',
                 divider: '@',
-                showCustom:'@',
+                showCustom: '@',
                 value: '=ngModel',
-                weekStartDay :'@',
+                weekStartDay: '@',
                 customToHome: '@',
                 customList: '=',
-                noFloatingLabel:'=',
-                minDate : '@',
-                maxDate : '@',
-                allowClear : '@',
-                allowEmpty : '@',
-                onRangeSelect : '&'
+                noFloatingLabel: '=',
+                minDate: '@',
+                maxDate: '@',
+                allowClear: '@',
+                allowEmpty: '@',
+                onRangeSelect: '&'
             },
             controller: ['$scope', '$element', '$mdUtil', '$mdMedia', '$document', SMRangePickerCtrl],
             controllerAs: 'vm',
             bindToController:true,
-            template: function (element,attributes){
-                return ' <md-input-container md-no-float="vm.noFloatingLabel">'
-                +'      <input name="{{vm.fname}}" ng-model="vm.value" ng-readonly="true"'
-                +'             type="text" '
-                +'             aria-label="{{vm.fname}}" ng-required="{{vm.isRequired}}" class="sm-input-container"'
-                +'             ng-focus="vm.show()" placeholder="{{vm.label}}">'
-                +'   <div id="picker" class="sm-calender-pane md-whiteframe-4dp" ng-model="value">'
-                +'    <sm-range-picker ng-model="vm.value" custom-to-home="{{vm.customToHome}}" custom-list="vm.customList" mode="{{vm.mode}}" min-date="{{vm.minDate}}"  max-date="{{vm.maxDate}}" range-select-call="vm.rangeSelected(range)" close-on-select="{{vm.closeOnSelect}}" show-custom="{{vm.showCustom}}" week-start-day="{{vm.weekStartDay}}"  divider="{{vm.divider}}" format="{{vm.format}}" allow-clear="{{vm.allowClear}}" allow-empty="{{vm.allowEmpty}}"></sm-range-picker>'
-                +'   </div> '
-                +'  </md-input-container>';
-            },
-            link :  function(scope, $element, attr, ctrl){
+            templateUrl: 'picker/range-picker-input.html',
+            link: function(scope, $element, attr, ctrl){
                 ctrl[0].$render = function() {
                     scope.vm.value = this.$viewValue;
                 }
             }
         }
     }
-
 
     var SMRangePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $document) {
         var self = this;
@@ -59,7 +48,6 @@
         self.$mdMedia = $mdMedia;
         self.$document = $document;
         self.isCalenderOpen = false;
-
 
         self.calenderHeight = 460;
         self.calenderWidth = 296;

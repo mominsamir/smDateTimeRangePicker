@@ -6,6 +6,10 @@ function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog
     vm.minDate = moment().add(10, 'd').format('MM-DD-YYYY');
     vm.maxDate = moment().add(1, 'M').format('MM-DD-YYYY');
     vm.dateOfBirth = moment();
+    vm.dateOfPay2 = {
+        stratDate: new Date(),
+        endDate: new Date()
+    };
 
     vm.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
