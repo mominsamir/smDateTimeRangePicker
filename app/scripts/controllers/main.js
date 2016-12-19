@@ -7,8 +7,8 @@ function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog
     vm.maxDate = moment().add(1, 'M').format('MM-DD-YYYY');
     vm.dateOfBirth = moment();
     vm.dateOfPay2 = {
-        stratDate: new Date(),
-        endDate: new Date()
+        startDate: moment().add(10, 'd'),
+        endDate: moment().add(10, 'd')
     };
 
     vm.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

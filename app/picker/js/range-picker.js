@@ -205,7 +205,7 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate
 
     setTimeout(function()
     {
-        self.ngModelCtrl.$setViewValue(_ng_model_value);
+        // self.ngModelCtrl.$setViewValue(_ng_model_value);
         self.ngModelCtrl.$render();
     }, 50);
     self.selectedTabIndex = 0;
