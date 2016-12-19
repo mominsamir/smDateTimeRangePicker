@@ -1,14 +1,14 @@
 <form name="test" ng-submit="vm.save()" novalidate>
 <md-content  class="md-whiteframe-z2" layout-padding>
-    <div> 
+    <div>
     	<h2 class="md-title">Demo For Default Date Range Picker (ALLOW-CLEAR and ALLOW-EMPTY set to TRUE)</h2>
 	    <div layout="row">
 	        <sm-range-picker-input
-	            fname="Date of Pay" 
+	            fname="Date of Pay"
 	            label="Date of Pay"
 	            form="test"
-	            ng-model="vm.employee.default" 
-	            flex="50"                         
+	            ng-model="vm.employee.default"
+	            flex="50"
 				format="DD-MMM-YYYY"
 				floating-label="true"
 	            divider="To"
@@ -19,7 +19,7 @@
 	            on-range-select="vm.dayofPaySelected(range)">
 	        </sm-range-picker-input>
 	    </div>
-	   selected range via call back = {{vm.rangeObj}}
+	   selected range via call back = <pre>{{ vm.rangeObj | json }}</pre>
     </div>
     <div>
     	<h2 class="md-title">Close on Select : Custom view without floating label</h2>
@@ -80,8 +80,8 @@
 	                close-on-select="true"
 	                on-range-select="vm.dayofPay2Selected(range)">
 	        </sm-range-picker-input>
-	    	   selected range via call back = {{vm.rangeObj2}}
 	    </div>
+        selected range via call back = <pre>{{ vm.rangeObj2 | json }}</pre>
     </div>
 
     <div>
@@ -122,5 +122,5 @@
 	    </div>
     </div>
 
-	</md-content>    	
+	</md-content>
 </form>
