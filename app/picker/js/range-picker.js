@@ -174,6 +174,7 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
 }
 
 
+
 RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate) {
     var self = this;
 
@@ -212,9 +213,10 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate
     self.scope.$emit('range-picker:close');
 };
 
-RangePickerCtrl.prototype.cancel = function(){
+
+RangePickerCtrl.prototype.cancel = function() {
     var self = this;
-    if(self.customToHome && self.showCustom){
+    if(self.customToHome && self.showCustom) {
         self.showCustom=false;
     }else{
         self.selectedTabIndex =0;

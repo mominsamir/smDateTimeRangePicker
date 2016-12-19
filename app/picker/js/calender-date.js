@@ -243,7 +243,9 @@
 
     CalenderCtrl.prototype.selectDate = function(d, isDisabled){
         var self = this;
-        if (isDisabled) return;
+        if (isDisabled) {
+            return;
+        }
         self.currentDate = d;
         self.$scope.dateSelectCall({date:d});
         self.setNgModelValue(d);
