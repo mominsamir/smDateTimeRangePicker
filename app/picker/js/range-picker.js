@@ -174,39 +174,45 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
 }
 
 
-RangePickerCtrl.prototype.setNgModelValue = function(startDateMoment, divider, endDateMoment) {
+
+RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate) {
     var self = this;
 
-    var startDate = startDateMoment.format(self.format) || '';
-    var endDate = endDateMoment.format(self.format) || '';
+    if(startDate)
+    {
+        startDate = startDate.format(self.format) || '';
+    }
 
-    self.rangeSelectCall({
-        range: {
-            startDate: startDate,
-            endDate: endDate
-        }
-    });
+    if(endDate)
+    {
+        endDate = endDate.format(self.format) || '';
+    }
 
-    var ngModelValue;
+    var range = {startDate: startDate, endDate: endDate};
+    self.rangeSelectCall({range: range});
+    var _ng_model_value;
 
     //if no startDate && endDate, then empty the model.
     if(!startDate && !endDate)
     {
-        ngModelValue = '';
-    } else {
+        _ng_model_value = '';
+    }else
+    {
         startDate = startDate || 'Any';
         endDate = endDate || 'Any';
-        ngModelValue = startDate + ' ' + divider + ' ' + endDate;
+        _ng_model_value = startDate + ' ' + divider + ' ' + endDate;
     }
 
-    setTimeout(function() {
-        self.ngModelCtrl.$setViewValue(ngModelValue);
+    setTimeout(function()
+    {
+        self.ngModelCtrl.$setViewValue(_ng_model_value);
         self.ngModelCtrl.$render();
     }, 50);
     self.selectedTabIndex = 0;
     self.view ='DATE';
     self.scope.$emit('range-picker:close');
 };
+
 
 RangePickerCtrl.prototype.cancel = function() {
     var self = this;

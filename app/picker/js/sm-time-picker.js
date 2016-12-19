@@ -19,8 +19,8 @@ function smTimePickerNew($mdUtil, $mdMedia, $document, $timeout, picker){
             form : '=',
             closeOnSelect:'@'
         },
-        templateUrl: 'picker/sm-time-picker.html',
-        link :  function(scope, $element, attr) {
+        templateUrl: 'picker/sm-time-picker.html'
+        link :  function(scope, $element, attr){
             var inputPane = $element[0].querySelector('.sm-input-container');
             var calenderPane = $element[0].querySelector('.sm-calender-pane');
             var cElement = angular.element(calenderPane);
