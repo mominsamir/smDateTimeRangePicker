@@ -259,11 +259,11 @@
         var daysByName = self.picker.daysNames;
 
         var keys = [];
-        for (let key in daysByName) {
+        for (var key in daysByName) {
             keys.push(key)
         }
         var startIndex = moment().day(self.startDay).day(), count = 0;
-        for (let key in daysByName) {
+        for (var key in daysByName) {
 
             self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
             count++; // Don't forget to increase count.
