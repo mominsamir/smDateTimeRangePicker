@@ -7,22 +7,22 @@
 	</md-toolbar>
 	<div  layout="column" class="pre-select"  role="button" ng-show="!vm.showCustom">
 		<md-button
-			 aria-label="{{list.label}}" 
-			 ng-click="vm.setNgModelValue(list.startDate,vm.divider,list.endDate)" 
+			 aria-label="{{list.label}}"
+			 ng-click="vm.setNgModelValue(list.startDate,vm.divider,list.endDate)"
 			 ng-repeat="list in vm.rangeDefaultList | limitTo:6">{{list.label}}
-		 </md-button> 
-		<md-button aria-label="Custom Range"  ng-click="vm.showCustomView()">Custom Range</md-button>			
+		 </md-button>
+		<md-button aria-label="Custom Range"  ng-click="vm.showCustomView()">Custom Range</md-button>
 	</div>
 	<div layout="column" class="custom-select" ng-show="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
 		<div layout="row"   class="tab-head">
 			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>
-			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>			
+			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>
 		</div>
 		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >
 			<div layout="row" ng-if="vm.allowEmptyDates" ng-click="vm.startDateSelected('')">
 				<md-button class="md-warn"><small>No start date</small></md-button>
 			</div>
-			<sm-calender 
+			<sm-calender
 				ng-show="vm.view==='DATE'"
 				week-start-day="{{weekStartDay}}"
 				min-date="vm.minDate"
@@ -40,11 +40,11 @@
 			<div layout="row" layout-align="end" ng-if="vm.allowEmptyDates" ng-click="vm.endDateSelected('')">
 				<md-button class="md-warn"><small>No end date</small></md-button>
 			</div>
-			<sm-calender 
+			<sm-calender
 				format="{{vm.format}}"
 				ng-show="vm.view==='DATE'"
-				initial-date="vm.startDate.format(vm.format)"
-				min-date="vm.startDate"
+				initial-date="vm.minStartToDate.format(vm.format)"
+				min-date="vm.minStartToDate"
 				max-date="vm.maxDate"
 				week-start-day="{{weekStartDay}}"
 				date-select-call="vm.endDateSelected(date)">
@@ -54,12 +54,12 @@
 				ng-model="selectedEndTime"
 				time-select-call="vm.endTimeSelected(time)">
 			</sm-time>
-		</div>								
+		</div>
 	</div>
 	<div layout="row" layout-align="end center">
 		<md-button type="button" class="md-warn" ng-if="vm.showClearButton" ng-click="vm.clearDateRange()">{{vm.clearLabel}}</md-button>
 		<span flex></span>
 		<md-button type="button" class="md-primary" ng-click="vm.cancel()">{{vm.cancelLabel}}</md-button>
 		<md-button type="button" class="md-primary" ng-click="vm.dateRangeSelected()">{{vm.okLabel}}</md-button>
-	</div>	
+	</div>
 </md-content>
