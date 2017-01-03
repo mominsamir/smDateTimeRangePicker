@@ -139,6 +139,7 @@ RangePickerCtrl.prototype.clearDateRange = function(){
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
     this.startDate = date;
+    this.minStartToDate = date;
     this.scope.$emit('range-picker:startDateSelected');
     this.setNextView();
 
@@ -150,6 +151,7 @@ RangePickerCtrl.prototype.startDateSelected = function(date){
 RangePickerCtrl.prototype.startTimeSelected = function(time){
 
     this.startDate.hour(time.hour()).minute(time.minute());
+    this.minStartToDate = angular.copy(this.startDate);
     this.scope.$emit('range-picker:startTimeSelected');
     this.setNextView();
 }

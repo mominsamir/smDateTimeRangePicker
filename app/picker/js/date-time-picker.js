@@ -73,7 +73,7 @@ var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $docume
     self.$mdMedia = $mdMedia;
     self.$document = $document;
     self.isCalenderOpen = false;
-
+    self.disablePicker = $scope.disable;
 
     self.calenderHeight = 320;
     self.calenderWidth = 450;
@@ -190,6 +190,8 @@ SMDateTimePickerCtrl.prototype.getVisibleViewPort = function(elementRect, bodyRe
 
 SMDateTimePickerCtrl.prototype.show = function($event) {
     var self = this;
+
+
     var elementRect = self.inputPane.getBoundingClientRect();
     var bodyRect = document.body.getBoundingClientRect();
 

@@ -258,14 +258,17 @@
         var self = this;
         var daysByName = self.picker.daysNames;
         var keys = [];
-        angular.forEach(daysByName, function(value,key){
+        
+        for (var key in daysByName) {
             keys.push(key)
-        });
+        };
+        
         var startIndex = moment().day(self.startDay).day(), count = 0;
-        angular.forEach(daysByName, function(value,key){
+        
+        for (var key in daysByName) {
             self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
             count++; // Don't forget to increase count.
-        });
+        }
     }
     /*
     Month Picker

@@ -103,7 +103,7 @@
 		var self = this;
 		var date = moment(self.selectedDate, self.format);
 		if(!date.isValid()){
-			date = moment().format(self.format);
+			date = moment();
 			self.selectedDate =date;
 		}
 		if(!angular.isUndefined(self.selectedTime)){
@@ -115,7 +115,6 @@
 
 	PickerCtrl.prototype.dateSelected = function(date){
 		var self = this;
-		console.log('close on select');
 
 		self.currentDate.date(date.date()).month(date.month()).year(date.year());
 		self.selectedDate = self.currentDate;
@@ -143,6 +142,7 @@
 		self.ngModelCtrl.$setViewValue(date.format(self.format));
 		self.ngModelCtrl.$render();
 		self.closeDateTime();
+
 	};
 
 
