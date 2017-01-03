@@ -1,6 +1,6 @@
 {
   "name": "smdatetimerangepicker",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "angular material Date Time Range Picker",
   "main": "index.js",
   "scripts": {

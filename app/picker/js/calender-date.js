@@ -257,17 +257,15 @@
     CalenderCtrl.prototype.buildDateCellHeader = function(startFrom) {
         var self = this;
         var daysByName = self.picker.daysNames;
-
         var keys = [];
-        for (let key in daysByName) {
+        angular.forEach(daysByName, function(value,key){
             keys.push(key)
-        }
+        });
         var startIndex = moment().day(self.startDay).day(), count = 0;
-        for (let key in daysByName) {
-
+        angular.forEach(daysByName, function(value,key){
             self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
             count++; // Don't forget to increase count.
-        }
+        });
     }
     /*
     Month Picker

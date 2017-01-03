@@ -101,19 +101,22 @@
 
 	PickerCtrl.prototype.selectedDateTime = function(){
 		var self = this;
-		var date = moment(self.selectedDate, this.format);
+		var date = moment(self.selectedDate, self.format);
 		if(!date.isValid()){
-			date = moment();
+			date = moment().format(self.format);
 			self.selectedDate =date;
 		}
 		if(!angular.isUndefined(self.selectedTime)){
 			date.hour(self.selectedTime.hour()).minute(self.selectedTime.minute());
 		}
 		self.setNgModelValue(date);
+
 	}
 
 	PickerCtrl.prototype.dateSelected = function(date){
 		var self = this;
+		console.log('close on select');
+
 		self.currentDate.date(date.date()).month(date.month()).year(date.year());
 		self.selectedDate = self.currentDate;
 		if(self.closeOnSelect && self.mode==='date'){
@@ -129,9 +132,9 @@
 		self.selectedTime= self.currentDate;
 
 		if(self.closeOnSelect && self.mode==='date-time')
-		self.selectedDateTime();
+			self.selectedDateTime();
 		else
-		self.setNextView();
+			self.setNextView();
 	}
 
 	PickerCtrl.prototype.setNgModelValue = function(date) {
