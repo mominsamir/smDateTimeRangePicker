@@ -1,6 +1,6 @@
 {
   "name": "smDateTimeRangePicker",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "homepage": "https://github.com/mominsamir/smDateTimeRangePicker",
   "authors": [
     "mominsamir"
@@ -28,10 +28,11 @@
   ],
   "dependencies": {
     "angular": "^1.4.5",
-    "angular-material": "^1.1.1",
-    "moment": "~2.10.6",
+    "angular-material": "^1.0.0",
+    "moment": "~2.10.6"
+  },
+  "devDependencies": {
     "angular-ui-router": "~0.2.15",
-    "angular-aria": "^1.5.2",
-    "smDateTimeRangePicker": "https://github.com/oscar09/smDateTimeRangePicker.git#^2.0.2"
+    "angular-aria": "^1.4.5"
   }
 }
