@@ -17,7 +17,8 @@
                 mode: '@',
                 divider: '@',
                 showCustom: '@',
-                value: '=ngModel',
+                ngModel: '=',
+                //value: '=ngModel',
                 weekStartDay: '@',
                 customToHome: '@',
                 customList: '=',
@@ -33,6 +34,7 @@
             bindToController:true,
             templateUrl: 'picker/range-picker-input.html',
             link: function(scope, $element, attr, ctrl){
+                scope.vm.value = scope.vm.ngModel;
                 ctrl[0].$render = function() {
                     scope.vm.value = this.$viewValue;
                 }
@@ -117,7 +119,9 @@
     SMRangePickerCtrl.prototype.rangeSelected = function(range){
         var self = this;
         self.onRangeSelect({range: range});
-        self.value = range;
+        console.log('self', self);
+        self.ngModel = {startDate: range.startDateAsMoment, endDate: range.endDateAsMoment};  
+        //self.value = range;
     }
 
 

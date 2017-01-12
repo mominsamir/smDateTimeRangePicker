@@ -104,6 +104,12 @@ function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog
         validateForm(form);
     }
 
+    //@todo remove
+    setInterval(function()
+        {
+            console.log('calling model out', vm.employee.default);
+        }, 5000);
+
     function validateForm(form){
         angular.forEach(form, function(obj, name){
             if (name.indexOf('$') !== 0) {
