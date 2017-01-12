@@ -49,12 +49,12 @@ if (typeof moment === 'undefined') {
         self.initialDate = $scope.initialDate;
         self.viewModeSmall = $mdMedia('xs');
         self.startDay = angular.isUndefined($scope.weekStartDay) || $scope.weekStartDay==='' ? 'Sunday' : $scope.weekStartDay ;
-        self.minDate = $scope.minDate;			//Minimum date
-        self.maxDate = $scope.maxDate;			//Maximum date
+        self.minDate = $scope.minDate || undefined;			//Minimum date
+        self.maxDate = $scope.maxDate || undefined;			//Maximum date
         self.mode = angular.isUndefined($scope.mode) ? 'DATE' : $scope.mode;
         self.format = angular.isUndefined($scope.format)? picker.format : $scope.format;
-        self.restrictToMinDate = angular.isUndefined($scope.minDate) ? false : true;
-        self.restrictToMaxDate = angular.isUndefined($scope.maxDate) ? false : true;
+        self.restrictToMinDate = angular.isUndefined(self.minDate) ? false : true;
+        self.restrictToMaxDate = angular.isUndefined(self.maxDate) ? false : true;
         self.stopScrollPrevious =false;
         self.stopScrollNext = false;
         self.disableYearSelection = $scope.disableYearSelection;

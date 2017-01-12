@@ -7,7 +7,7 @@ function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog
     vm.maxDate = moment().add(1, 'M').format('MM-DD-YYYY');
     vm.dateOfBirth = moment();
     vm.dateOfPay2 = {
-        stratDate: new Date(),
+        startDate: new Date(),
         endDate: new Date()
     };
 
