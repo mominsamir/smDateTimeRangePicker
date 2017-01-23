@@ -4,6 +4,7 @@ function picker(){
     var cancelLabel = 'Cancel';
     var okLabel = 'Ok';
     var clearLabel = 'Clear';
+    var customRangeLabel = 'Custom Range';
     var format = 'MM-DD-YYYY';
     var customHeader ={
         date:'ddd, MMM DD',
@@ -94,6 +95,9 @@ function picker(){
         setClearLabel : function(param){
             clearLabel = param;
         },
+        setCustomRangeLabel : function(param){
+            customRangeLabel = param;
+        },
         setRangeDefaultList : function(array){
             rangeDefaultList = array;
         },
@@ -117,6 +121,7 @@ function picker(){
                 cancelLabel: cancelLabel,
                 okLabel : okLabel,
                 clearLabel : clearLabel,
+                customRangeLabel: customRangeLabel,
 
                 daysNames : daysNames,
                 monthNames:monthNames,
