@@ -11,7 +11,7 @@
 			 ng-click="vm.setNgModelValue(list.startDate,vm.divider,list.endDate)"
 			 ng-repeat="list in vm.rangeDefaultList | limitTo:6">{{list.label}}
 		 </md-button>
-		<md-button aria-label="Custom Range"  ng-click="vm.showCustomView()">Custom Range</md-button>
+		<md-button aria-label="Custom Range"  ng-click="vm.showCustomView()">{{vm.customRangeLabel}}</md-button>
 	</div>
 	<div layout="column" class="custom-select" ng-show="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
 		<div layout="row"   class="tab-head">

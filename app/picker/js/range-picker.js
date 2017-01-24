@@ -51,6 +51,7 @@ var RangePickerCtrl = function($scope, picker){
     self.okLabel = picker.okLabel;
     self.cancelLabel = picker.cancelLabel;
     self.clearLabel = picker.clearLabel;
+    self.customRangeLabel = picker.customRangeLabel;
     self.view = 'DATE';
 
     self.rangeCustomStartEnd = picker.rangeCustomStartEnd;
