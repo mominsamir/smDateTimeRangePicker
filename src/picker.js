@@ -268,13 +268,13 @@ if (typeof moment === 'undefined') {
         var self = this;
         var daysByName = self.picker.daysNames;
         var keys = [];
-        
+
         for (var key in daysByName) {
             keys.push(key)
         };
-        
+
         var startIndex = moment().day(self.startDay).day(), count = 0;
-        
+
         for (var key in daysByName) {
             self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
             count++; // Don't forget to increase count.
@@ -1017,8 +1017,10 @@ SMDateTimePickerCtrl.prototype.setNgModelValue = function(date) {
     var self = this;
     self.onDateSelectedCall({date: date});
     var d = {};
-    if (moment.isMoment(date)){
+    if (moment.isMoment(date)) {
         d = date.format(self.format);
+    } else if (date instanceof Date){
+        d = moment(date).format(self.format);
     } else {
         d = moment(date, self.format).format(self.format);
     }
@@ -1341,7 +1343,7 @@ app.provider('picker', [picker]);
 
                                     scope.vm.valueAsText = _temp.join(' ');
                                 }
-                                
+
                             }else //it must be removed in future releases once the input cannot be a string anymore.
                             {
                                 scope.vm.valueAsText = scope.vm.value || '';
@@ -1705,7 +1707,7 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate
   var range = {startDate: startDate, endDate: endDate, startDateAsMoment: momentStartDate, endDateAsMoment: momentEndDate};
 
     //var range = {startDate: startDate, endDate: endDate};
-    
+
     var _ng_model_value;
 
     //if no startDate && endDate, then empty the model.
@@ -1720,9 +1722,9 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate
     }
 
     range.text = _ng_model_value;
-    
+
     self.rangeSelectCall({range: range});
-    
+
     /*
     setTimeout(function()
     {
@@ -1730,7 +1732,7 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate
         self.ngModelCtrl.$render();
     }, 50);
     */
-    
+
     self.selectedTabIndex = 0;
     self.view ='DATE';
     self.scope.$emit('range-picker:close');
