@@ -114,6 +114,9 @@
             line-height: 30px;
             margin: 3px;
             cursor: pointer; }
+            .date-picker .year-container .year-md-repeat .repeated-item .year .year-num.disabled {
+              pointer-events: none;
+              color: rgba(0, 0, 0, 0.38); }
         .date-picker .year-container .year-md-repeat .repeated-item .month-row {
           display: flex;
           height: 35px;
@@ -130,6 +133,9 @@
             cursor: pointer; }
             .date-picker .year-container .year-md-repeat .repeated-item .month-row .month:hover {
               background-color: #E0E0E0; }
+            .date-picker .year-container .year-md-repeat .repeated-item .month-row .month.disabled {
+              pointer-events: none;
+              color: rgba(0, 0, 0, 0.38); }
         .date-picker .year-container .year-md-repeat .repeated-item .selected-year {
           font-size: 18px;
           color: blue; }
@@ -190,6 +196,7 @@
 
 .range-picker {
   width: 310px;
+  overflow-x: hidden;
   background-color: #fff; }
   .range-picker .md-toolbar-tools {
     font-size: calc(13px + 2); }
@@ -467,6 +474,9 @@
             line-height: 30px;
             margin: 3px;
             cursor: pointer; }
+            .date-picker .year-container .year-md-repeat .repeated-item .year .year-num.disabled {
+              pointer-events: none;
+              color: rgba(0, 0, 0, 0.38); }
         .date-picker .year-container .year-md-repeat .repeated-item .month-row {
           display: flex;
           height: 35px;
@@ -483,6 +493,9 @@
             cursor: pointer; }
             .date-picker .year-container .year-md-repeat .repeated-item .month-row .month:hover {
               background-color: #E0E0E0; }
+            .date-picker .year-container .year-md-repeat .repeated-item .month-row .month.disabled {
+              pointer-events: none;
+              color: rgba(0, 0, 0, 0.38); }
         .date-picker .year-container .year-md-repeat .repeated-item .selected-year {
           font-size: 18px;
           color: blue; }
@@ -543,6 +556,7 @@
 
 .range-picker {
   width: 310px;
+  overflow-x: hidden;
   background-color: #fff; }
   .range-picker .md-toolbar-tools {
     font-size: calc(13px + 2); }
