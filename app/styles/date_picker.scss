@@ -163,6 +163,11 @@ $aniimation-duration:			1s;
 					    line-height: 30px;
 					    margin: 3px;
 					    cursor: pointer;
+					    &.disabled
+						{
+							pointer-events:none;
+							color: rgba(0,0,0,0.38);
+						}
 					}
  				}
  				.month-row{
@@ -182,6 +187,11 @@ $aniimation-duration:			1s;
 					    &:hover{
 					    	background-color:#E0E0E0;
 					    }
+					    &.disabled
+						{
+							pointer-events:none;
+							color: rgba(0,0,0,0.38);
+						}
 					}
  				}
  				.selected-year{
@@ -281,6 +291,7 @@ $aniimation-duration:			1s;
 
 .range-picker{
 	width: $range-picker-width;
+	overflow-x: hidden;
 	background-color:$calender-bg;
 	.md-toolbar-tools{
 		font-size:calc(#{$font-size} + 2);
