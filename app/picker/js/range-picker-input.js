@@ -208,7 +208,6 @@
         }
         self.$document.off('click');
         self.isCalenderOpen =false;
-
     }
 
 
@@ -216,6 +215,7 @@
         var self = this;
         if(!self.button){
             if ((self.calenderPane !== e.target && self.inputPane !== e.target ) && (!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target))) {
+                self.$scope.$broadcast('range-picker-input:blur');
                 self.hideElement();
             }
         }else{

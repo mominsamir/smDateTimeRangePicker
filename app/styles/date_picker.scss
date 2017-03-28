@@ -136,6 +136,13 @@ $aniimation-duration:			1s;
 .date-picker{
 	width: 300px;	
 	height: 270px;
+	.cal-link
+	{
+		font-size: 0.7em;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
 	.year-container{
 		width:300px;
 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);
