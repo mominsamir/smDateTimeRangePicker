@@ -1,5 +1,6 @@
 <div class="date-picker">
-    <div ng-class="{'year-container' : vm.view==='YEAR_MONTH'}" ng-show="vm.view==='YEAR_MONTH'">
+    <div ng-class="{'year-container' : vm.view==='YEAR_MONTH'}" ng-show="vm.view==='YEAR_MONTH'" layout="column">
+        <a href="javascript:void(0)" class="cal-link" ng-click="vm.view = 'DATE'">Back to calendar</a>
         <md-virtual-repeat-container class="year-md-repeat" id="year-container" md-top-index="vm.yearTopIndex">
             <div class="repeated-item" md-on-demand="" md-virtual-repeat="yr in vm.yearItems">
                     <div class="year" ng-class="{'md-accent': yr === vm.currentDate.year(), 'selected-year md-primary':vm.initialDate.year()===yr}">

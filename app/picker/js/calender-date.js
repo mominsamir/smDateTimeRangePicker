@@ -346,7 +346,6 @@
         {
             return false;
         }
-        console.log('initial date', self.minDate.format('YYYY-MM-DD'));
         var _current_year = self.minDate.year();
         if(yearToCheck < _current_year)
         {

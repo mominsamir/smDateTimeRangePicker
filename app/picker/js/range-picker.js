@@ -70,6 +70,11 @@ var RangePickerCtrl = function($scope, picker){
         self.selectedTabIndex = $scope.selectedTabIndex;
     }
 
+    $scope.$on('range-picker-input:blur', function()
+    {
+        self.cancel();
+    });
+
 }
 
 RangePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
