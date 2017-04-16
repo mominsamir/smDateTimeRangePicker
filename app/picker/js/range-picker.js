@@ -51,6 +51,7 @@ var RangePickerCtrl = function($scope, picker){
     self.okLabel = picker.okLabel;
     self.cancelLabel = picker.cancelLabel;
     self.clearLabel = picker.clearLabel;
+    self.customRangeLabel = picker.customRangeLabel;
     self.view = 'DATE';
 
     self.rangeCustomStartEnd = picker.rangeCustomStartEnd;
@@ -68,6 +69,11 @@ var RangePickerCtrl = function($scope, picker){
     }else{
         self.selectedTabIndex = $scope.selectedTabIndex;
     }
+
+    $scope.$on('range-picker-input:blur', function()
+    {
+        self.cancel();
+    });
 
 }
 
@@ -138,8 +144,9 @@ RangePickerCtrl.prototype.clearDateRange = function(){
 
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
-    this.startDate = date;
-    this.minStartToDate = date;
+    var _date_copy = angular.copy(date);
+    this.startDate = _date_copy;
+    this.minStartToDate = _date_copy;
     this.scope.$emit('range-picker:startDateSelected');
     this.setNextView();
 

@@ -4,6 +4,7 @@ function picker(){
     var cancelLabel = 'Cancel';
     var okLabel = 'Ok';
     var clearLabel = 'Clear';
+    var customRangeLabel = 'Custom Range';
     var format = 'MM-DD-YYYY';
     var customHeader ={
         date:'ddd, MMM DD',
@@ -31,38 +32,38 @@ function picker(){
     var rangeDefaultList = [
         {
             label:'Today',
-            startDate:moment().startOf('day'),
-            endDate:moment().endOf('day')
+            startDate:moment().utc().startOf('day'),
+            endDate:moment().utc().endOf('day')
         },
         {
             label:'Last 7 Days',
-            startDate: moment().subtract(7, 'd'),
-            endDate:moment()
+            startDate: moment().utc().subtract(7, 'd').startOf('day'),
+            endDate:moment().utc().endOf('day')
         },
         {
             label:'This Month',
-            startDate:moment().startOf('month'),
-            endDate: moment().endOf('month')
+            startDate:moment().utc().startOf('month'),
+            endDate: moment().utc().endOf('month')
         },
         {
             label:'Last Month',
-            startDate:moment().subtract(1, 'month').startOf('month'),
-            endDate: moment().subtract(1, 'month').endOf('month')
+            startDate:moment().utc().subtract(1, 'month').startOf('month'),
+            endDate: moment().utc().subtract(1, 'month').endOf('month')
         },
         {
             label: 'This Quarter',
-            startDate: moment().startOf('quarter'),
-            endDate: moment().endOf('quarter')
+            startDate: moment().utc().startOf('quarter'),
+            endDate: moment().utc().endOf('quarter')
         },
         {
             label:  'Year To Date',
-            startDate:  moment().startOf('year'),
-            endDate:  moment()
+            startDate:  moment().utc().startOf('year'),
+            endDate:  moment().utc().endOf('day')
         },
         {
             label:  'This Year',
-            startDate:  moment().startOf('year'),
-            endDate:  moment().endOf('year')
+            startDate:  moment().utc().startOf('year'),
+            endDate:  moment().utc().endOf('year')
         }
     ];
 
@@ -94,6 +95,9 @@ function picker(){
         setClearLabel : function(param){
             clearLabel = param;
         },
+        setCustomRangeLabel : function(param){
+            customRangeLabel = param;
+        },
         setRangeDefaultList : function(array){
             rangeDefaultList = array;
         },
@@ -117,6 +121,7 @@ function picker(){
                 cancelLabel: cancelLabel,
                 okLabel : okLabel,
                 clearLabel : clearLabel,
+                customRangeLabel: customRangeLabel,
 
                 daysNames : daysNames,
                 monthNames:monthNames,
