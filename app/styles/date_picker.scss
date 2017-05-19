@@ -136,6 +136,13 @@ $aniimation-duration:			1s;
 .date-picker{
 	width: 300px;	
 	height: 270px;
+	.cal-link
+	{
+		font-size: 0.7em;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
 	.year-container{
 		width:300px;
 		animation: slideInDown 1s cubic-bezier(.06,.61,.04,1.03);
@@ -163,6 +170,11 @@ $aniimation-duration:			1s;
 					    line-height: 30px;
 					    margin: 3px;
 					    cursor: pointer;
+					    &.disabled
+						{
+							pointer-events:none;
+							color: rgba(0,0,0,0.38);
+						}
 					}
 					.month-list{
 		 				.month-row{
@@ -284,6 +296,7 @@ $aniimation-duration:			1s;
 
 .range-picker{
 	width: $range-picker-width;
+	overflow-x: hidden;
 	background-color:$calender-bg;
 	.md-toolbar-tools{
 		font-size:calc(#{$font-size} + 2);

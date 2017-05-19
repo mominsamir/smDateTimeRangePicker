@@ -64,12 +64,18 @@
         self.maxYear = 3000;
 
         if(self.restrictToMinDate){
+             if(!moment.isMoment(self.minDate)){
+                self.minDate = moment(self.minDate, self.format);
+            }
+            /* the below code is giving some errors. It was added by Pablo Reyes, but I still need to check what
+            he intended to fix.
             if(moment.isMoment(self.minDate)){
                 self.minDate = self.minDate.subtract(1, 'd').startOf('day');
             }else{
                 self.minDate = moment(self.minDate, self.format).subtract(1, 'd').startOf('day');
             }
             self.minYear = self.minDate.year();
+            */
         }
 
         if(self.restrictToMaxDate) {
@@ -96,6 +102,10 @@
                     this.currentIndex_ = index;
                     return this.START + index;                    
                 } 
+                if(this.currentIndex_ < index){
+                    this.currentIndex_ = index;
+                }
+                return this.START + index;
             },
             getLength: function() {
                 return this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2);
@@ -352,6 +362,27 @@
     }
 
     Calender.$inject = ['picker'];
+
+    CalenderCtrl.prototype.isPreviousDate = function(yearToCheck, monthToCheck)
+    {
+        var self = this;
+        if(angular.isUndefined(self.minDate) || angular.isUndefined(yearToCheck) || angular.isUndefined(monthToCheck))
+        {
+            return false;
+        }
+        var _current_year = self.minDate.year();
+        if(yearToCheck < _current_year)
+        {
+            return true;
+        }else if(yearToCheck === _current_year)
+        {
+            if(monthToCheck < self.minDate.month())
+            {
+                return true;
+            }
+        }
+        return false;
+    };
 
     var app = angular.module('smDateTimeRangePicker', []);
     app.directive('smCalender', Calender);
