@@ -1,13 +1,12 @@
 <div class="picker-container">
 	<md-content  layout-xs="column" layout="row"  class="container" >
-		<md-toolbar class="md-height" ng-class="{'portrait': !vm.$mdMedia('gt-xs'),'landscape': vm.$mdMedia('gt-xs')}" >			
+		<md-toolbar class="md-height {{vm.colorIntention}}" ng-class="{'portrait': !vm.$mdMedia('gt-xs'),'landscape': vm.$mdMedia('gt-xs')} " >			
 				<span class="year-header" layout="row" layout-xs="row">{{vm.currentDate.format('YYYY')}}</span>
 				<span class="date-time-header" layout="row" layout-xs="row">{{vm.currentDate.format(vm.headerDispalyFormat)}}</span>
 		</md-toolbar>
 		<div layout="column" class="picker-container" >
 			<div ng-show="vm.view==='DATE'" >
 				<sm-calender 
-
 					data-initial-date="vm.initialDate"					
 					data-id="{{vm.fname}}Picker" 
 					data-mode="{{vm.mode}}" 
@@ -29,8 +28,8 @@
 			</div>		
 			<div layout="row" ng-hide="vm.closeOnSelect">
 					<span flex></span>
-					<md-button class="md-button md-primary" ng-click="vm.closeDateTime()">{{vm.cancelLabel}}</md-button>
-					<md-button class="md-button md-primary" ng-click="vm.selectedDateTime()">{{vm.okLabel}}</md-button>
+					<md-button class="md-button buttonSelect {{vm.colorIntention}}" ng-click="vm.closeDateTime()">{{vm.cancelLabel}}</md-button>
+					<md-button class="md-button buttonCancel {{vm.colorIntention}}" ng-click="vm.selectedDateTime()">{{vm.okLabel}}</md-button>
 			</div>
 		</div>
 	</md-content>	
