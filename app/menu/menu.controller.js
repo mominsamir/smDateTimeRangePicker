@@ -45,7 +45,7 @@
         }
 
         function goToState(state){
-//            $state.go(state);
+            $state.go(state);
 
             $mdSidenav('left').close()
               .then(function () {

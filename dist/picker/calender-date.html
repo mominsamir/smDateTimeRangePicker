@@ -3,25 +3,26 @@
         <a href="javascript:void(0)" class="cal-link" ng-click="vm.view = 'DATE'">Back to calendar</a>
         <md-virtual-repeat-container class="year-md-repeat" id="year-container" md-top-index="vm.yearTopIndex">
             <div class="repeated-item" md-on-demand="" md-virtual-repeat="yr in vm.yearItems">
-                    <div class="year" ng-class="{'md-accent': yr === vm.currentDate.year(), 'selected-year md-primary':vm.initialDate.year()===yr}">
-                         <span class="year-num" ng-class="{disabled: yr <= vm.minDate.year()}" ng-click="vm.changeYear(yr,vm.currentDate.month())">{{yr - 1}}</span>
-                    </div>
-                    <div class="month-row">
-                        <span ng-click="vm.changeYear(yr,0)" ng-class="{disabled: vm.isPreviousDate(yr, 0)}" class="month">{{vm.monthList[0]}}</span>
-                        <span ng-click="vm.changeYear(yr,1)" ng-class="{disabled: vm.isPreviousDate(yr, 1)}" class="month">{{vm.monthList[1]}}</span>
-                        <span ng-click="vm.changeYear(yr,2)" ng-class="{disabled: vm.isPreviousDate(yr, 2)}" class="month">{{vm.monthList[2]}}</span>
-                        <span ng-click="vm.changeYear(yr,3)" ng-class="{disabled: vm.isPreviousDate(yr, 3)}" class="month">{{vm.monthList[3]}}</span>
-                        <span ng-click="vm.changeYear(yr,4)" ng-class="{disabled: vm.isPreviousDate(yr, 4)}" class="month">{{vm.monthList[4]}}</span>
-                        <span ng-click="vm.changeYear(yr,5)" ng-class="{disabled: vm.isPreviousDate(yr, 5)}" class="month">{{vm.monthList[5]}}</span>
-                    </div>
-                    <div  class="month-row">
-                        <span ng-click="vm.changeYear(yr,6)" ng-class="{disabled: vm.isPreviousDate(yr, 6)}" class="month">{{vm.monthList[6]}}</span>
-                        <span ng-click="vm.changeYear(yr,7)" ng-class="{disabled: vm.isPreviousDate(yr, 7)}" class="month">{{vm.monthList[7]}}</span>
-                        <span ng-click="vm.changeYear(yr,8)" ng-class="{disabled: vm.isPreviousDate(yr, 8)}" class="month">{{vm.monthList[8]}}</span>
-                        <span ng-click="vm.changeYear(yr,9)" ng-class="{disabled: vm.isPreviousDate(yr, 9)}" class="month">{{vm.monthList[9]}}</span>
-                        <span ng-click="vm.changeYear(yr,10)" ng-class="{disabled: vm.isPreviousDate(yr, 10)}" class="month">{{vm.monthList[10]}}</span>
-                        <span ng-click="vm.changeYear(yr,11)" ng-class="{disabled: vm.isPreviousDate(yr, 11)}" class="month">{{vm.monthList[11]}}</span>
-
+                    <div class="year" ng-class="{'md-accent': yr === vm.currentDate.year(), 'selected-year md-primary ':vm.initialDate.year()===yr}">
+                         <span class="year-num" ng-click="vm.changeYear(yr,vm.currentDate.month())">{{yr}}</span> 
+                         <div class="month-list">
+                            <div class="month-row" >
+                                <span ng-click="vm.changeYear(yr,0)" class="month">{{vm.monthList[0]}}</span>
+                                <span ng-click="vm.changeYear(yr,1)" class="month">{{vm.monthList[1]}}</span>
+                                <span ng-click="vm.changeYear(yr,2)" class="month">{{vm.monthList[2]}}</span>
+                                <span ng-click="vm.changeYear(yr,3)" class="month">{{vm.monthList[3]}}</span>
+                                <span ng-click="vm.changeYear(yr,4)" class="month">{{vm.monthList[4]}}</span>
+                                <span ng-click="vm.changeYear(yr,5)" class="month">{{vm.monthList[5]}}</span>
+                            </div>
+                                <div  class="month-row">
+                                <span ng-click="vm.changeYear(yr,6)" class="month">{{vm.monthList[6]}}</span>
+                                <span ng-click="vm.changeYear(yr,7)" class="month">{{vm.monthList[7]}}</span>
+                                <span ng-click="vm.changeYear(yr,8)" class="month">{{vm.monthList[8]}}</span>
+                                <span ng-click="vm.changeYear(yr,9)" class="month">{{vm.monthList[9]}}</span>
+                                <span ng-click="vm.changeYear(yr,10)" class="month">{{vm.monthList[10]}}</span>
+                                <span ng-click="vm.changeYear(yr,11)" class="month">{{vm.monthList[11]}}</span>
+                            </div>
+                         </div>                  
                     </div>
                     <md-divider></md-divider>
             </div>
