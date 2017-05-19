@@ -118,6 +118,9 @@
             line-height: 30px;
             margin: 3px;
             cursor: pointer; }
+            .date-picker .year-container .year-md-repeat .repeated-item .year .year-num.disabled {
+              pointer-events: none;
+              color: rgba(0, 0, 0, 0.38); }
           .date-picker .year-container .year-md-repeat .repeated-item .year .month-list .month-row {
             display: flex;
             height: 35px;
@@ -476,6 +479,9 @@
             line-height: 30px;
             margin: 3px;
             cursor: pointer; }
+            .date-picker .year-container .year-md-repeat .repeated-item .year .year-num.disabled {
+              pointer-events: none;
+              color: rgba(0, 0, 0, 0.38); }
           .date-picker .year-container .year-md-repeat .repeated-item .year .month-list .month-row {
             display: flex;
             height: 35px;
