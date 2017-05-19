@@ -13,7 +13,7 @@
 		 </md-button>
 		<md-button aria-label="Custom Range"  ng-click="vm.showCustomView()">{{vm.customRangeLabel}}</md-button>
 	</div>
-	<div layout="column" class="custom-select" ng-show="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
+	<div layout="column" class="custom-select" ng-if="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
 		<div layout="row"   class="tab-head">
 			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>
 			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>
