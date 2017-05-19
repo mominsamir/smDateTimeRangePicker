@@ -19,7 +19,10 @@ angular
     pickerProvider.setDayHeader('single');
 
     pickerProvider.setOkLabel('Save');
-    
+   
+    pickerProvider.setColorIntention('md-accent');
+   
+
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider.state('home', {

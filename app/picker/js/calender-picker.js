@@ -37,6 +37,7 @@
 		self.okLabel = picker.okLabel;
 		self.cancelLabel = picker.cancelLabel;
 		self.picker = picker;
+		self.colorIntention = picker.colorIntention;
 		self.$mdMedia =$mdMedia;
 		self.init();
 
@@ -147,9 +148,10 @@
 
 
 	PickerCtrl.prototype.closeDateTime = function(){
-		this.view = 'DATE';
-		this.scope.$emit('calender:close');
-	}
+		var self = this;
+		self.view = 'DATE';
+		self.scope.$emit('calender:close');
+	};
 
 	function TimePickerDir($timeout, picker, $mdMedia, $window) {
 		return {

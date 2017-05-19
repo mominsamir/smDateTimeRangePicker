@@ -12,7 +12,7 @@
 				format:'@',
 				timeSelectCall : '&'
 			},
-			controller:['$scope', '$timeout', TimePickerCtrl],
+			controller:['$scope', 'picker', TimePickerCtrl],
 			controllerAs : 'vm',
 			templateUrl:'picker/calender-hour.html',
 			link : function(scope, element, att, ctrls){
@@ -24,12 +24,13 @@
 		}
 	}
 
-	var TimePickerCtrl = function($scope, $timeout){
+	var TimePickerCtrl = function($scope, picker){
 		var self = this;
 		self.uid = Math.random().toString(36).substr(2, 5);
 		self.$scope = $scope;
-		self.$timeout = $timeout;
+		self.picker = picker;
 		self.initialDate = $scope.initialTime; 	//if calender to be  initiated with specific date
+		self.colorIntention = picker.colorIntention;		
 		self.format = $scope.format;
 		self.hourItems =[];
 		self.minuteCells =[];

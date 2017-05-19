@@ -19,44 +19,46 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
             closeOnSelect: '@',
             onDateSelectedCall: '&'
         },
-        controller: ['$scope', '$element', '$mdUtil', '$mdMedia', '$document', SMDateTimePickerCtrl],
+        controller: ['$scope', '$element', '$mdUtil', '$mdMedia', '$document','$parse', SMDateTimePickerCtrl],
         controllerAs: 'vm',
         bindToController:true,
         template: function (element, attributes){
             var inputType = '';
             if(attributes.hasOwnProperty('onFocus')) {
                 inputType = '<input name="{{vm.fname}}" ng-model="vm.value" '
-                + '  type="text" placeholder="{{vm.label}}"'
-                + '  aria-label="{{vm.fname}}" ng-focus="vm.show()" data-ng-required="vm.isRequired"  ng-disabled="vm.disable"'
-                + '  server-error class="sm-input-container" />' ;
+                            + 'type="text" placeholder="{{vm.label}}"'
+                            + ' aria-label="{{vm.fname}}" ng-focus="vm.show()" data-ng-required="vm.isRequired"  ng-disabled="vm.disable"'
+                            + ' server-error class="sm-input-container" />' ;
             } else {
-                inputType = '      <input class="" name="{{vm.fname}}" ng-model="vm.value" '
-                + '             type="text" placeholder="{{vm.label}}" '
-                + '             aria-label="{{vm.fname}}" aria-hidden="true" data-ng-required="vm.isRequired"  ng-disabled="vm.disable"/>'
-                + '     <md-button tabindex="-1" class="sm-picker-icon md-icon-button" aria-label="showCalender" ng-disabled="vm.disable" aria-hidden="true" type="button" ng-click="vm.show()">'
-                + '         <svg  fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'
-                + '     </md-button>' ;
+                inputType = 
+                    '<input class="" name="{{vm.fname}}" ng-model="vm.value" '
+                    + '             type="text" placeholder="{{vm.label}}" '
+                    + '             aria-label="{{vm.fname}}" aria-hidden="true" data-ng-required="vm.isRequired" ng-disabled="vm.disable"/>'
+                    + '     <md-button tabindex="-1" class="sm-picker-icon md-icon-button" aria-label="showCalender" ng-disabled="vm.disable" aria-hidden="true" type="button" ng-click="vm.show()">'
+                    + '         <svg  fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'
+                    + '     </md-button>' ;
             }
 
             return '<md-input-container class="sm-input-container md-icon-float md-block" md-no-float="vm.noFloatingLabel">' +
-            inputType +
-            '     <div id="picker" class="sm-calender-pane md-whiteframe-z2">' +
-            '          <sm-date-picker ' +
-            '              id="{{vm.fname}}Picker" ' +
-            '              initial-date="vm.initialDate"' +
-            '              ng-model="vm.value"' +
-            '              mode="{{vm.mode}}" ' +
-            '              disable-year-selection={{vm.disableYearSelection}}' +
-            '              close-on-select="{{vm.closeOnSelect}}"' +
-            '              start-view="{{vm.startView}}" ' +
-            '              data-min-date="vm.minDate" ' +
-            '              data-max-date="vm.maxDate"  ' +
-            '              data-format="{{vm.format}}"  ' +
-            '              data-on-select-call="vm.onDateSelected(date)"' +
-            '              data-week-start-day="{{vm.weekStartDay}}" > ' +
-            '         </sm-date-picker>' +
-            '     </div>' +
-            ' </md-input-container>';
+                    inputType +
+                    '     <div id="picker" class="sm-calender-pane md-whiteframe-z2">' +
+                    '          <sm-date-picker ' +
+                    '              id="{{vm.fname}}Picker" ' +
+                    '              initial-date="vm.initialDate"' +
+                    '              ng-model="vm.value"' +
+                    '              mode="{{vm.mode}}" ' +
+                    '              disable-year-selection={{vm.disableYearSelection}}' +
+                    '              close-on-select="{{vm.closeOnSelect}}"' +
+                    '              start-view="{{vm.startView}}" ' +
+                    '              data-min-date="vm.minDate" ' +
+                    '              data-max-date="vm.maxDate"  ' +
+                    '              data-format="{{vm.format}}"  ' +
+                    '              data-on-select-call="vm.onDateSelected(date)"' +
+                    '              data-week-start-day="{{vm.weekStartDay}}" > ' +
+                    '         </sm-date-picker>' +
+                    '     </div>' +
+                    '     <div></div>'
+                    ' </md-input-container>';
         },
         link: function(scope, $element, attr, ctrl) {
             var ngModelCtrl = ctrl[0];
@@ -65,7 +67,7 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
         }
     }
 }
-var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $document) {
+var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $document,$parse) {
     var self = this;
     self.$scope = $scope;
     self.$element = $element;
@@ -107,6 +109,7 @@ var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $docume
         self.calenderPane.parentNode.removeChild(self.calenderPane);
     });
 
+
     // if tab out hide key board
     angular.element(self.inputPane).on('keydown', function(e) {
         switch(e.which){
@@ -117,22 +120,15 @@ var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $docume
         }
     });
 
-}
-
+};
 
 SMDateTimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
     var self = this;
     self.ngModelCtrl = ngModelCtrl;
-
     self.ngModelCtrl.$formatters.push(function(dateValue) {
-
         if(!dateValue && angular.isUndefined(dateValue)) {
             self.value='';
             self.onDateSelectedCall({date: null});
-            return
-        }
-        if (!dateValue ){
-            self.value='';
             return;
         }
         self.setNgModelValue(dateValue);
@@ -152,12 +148,13 @@ SMDateTimePickerCtrl.prototype.setNgModelValue = function(date) {
     self.ngModelCtrl.$setViewValue(d);
     self.ngModelCtrl.$render();
     self.value = d;
+
 };
 
 SMDateTimePickerCtrl.prototype.onDateSelected = function(date){
     var self = this;
     self.setNgModelValue(date);
-}
+};
 
 
 

@@ -9,8 +9,8 @@
 			<div ng-repeat="h in vm.hourItems" class="repeated-item">
 						<md-button class="md-icon-button" 
 							ng-click="vm.setHour(h.hour)" 							
-							ng-class="{'md-primary': h.isCurrent,
-									'md-primary md-raised' :h.hour===vm.currentDate.hour()}">
+							ng-class="{'{{vm.colorIntention}}': h.isCurrent,
+									'{{vm.colorIntention}} md-raised' :h.hour===vm.currentDate.hour()}">
 							{{h.hour}}
 						</md-button>
 			</div>
@@ -19,8 +19,8 @@
 				<div ng-repeat="m in vm.minuteCells"  class="repeated-item">
 						<md-button class="md-icon-button" 
 							ng-click="vm.setMinute(m.minute)" 							
-							ng-class="{'md-primary': m.isCurrent,
-								'md-primary md-raised' :m.minute===vm.currentDate.minute()}">
+							ng-class="{'{{vm.colorIntention}}': m.isCurrent,
+								'{{vm.colorIntention}} md-raised' :m.minute===vm.currentDate.minute()}">
 							{{m.minute}}
 						</md-button>
 				</div>

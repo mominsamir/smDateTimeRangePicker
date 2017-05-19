@@ -4,7 +4,7 @@
 function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog, smDateTimePicker) {
     var vm = this;
     vm.minDate = moment().add(10, 'd').format('MM-DD-YYYY');
-    vm.maxDate = moment().add(1, 'M').format('MM-DD-YYYY');
+    vm.maxDate =  '03-01-2017';//moment().add(1, 'M').format('MM-DD-YYYY');
     vm.dateOfBirth = moment();
     vm.dateOfPay2 = {
         startDate: new Date(),
@@ -19,6 +19,10 @@ function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog
         startDate: moment(),
         endDate: moment()
     }]
+
+    vm.dateChanged = function(date){
+        vm.dateOnNgChange =date;
+    }
 
     vm.clearInput = function() {
         vm.dateOfBirth = '';
