@@ -2,7 +2,7 @@
 (function(){
     'use strict';
 
-    function Calender(){
+    function Calender(picker){
         return {
             restrict : 'E',
             replace:false,
@@ -25,6 +25,7 @@
                 var ngModelCtrl = ctrls[0];
                 var calCtrl = ctrls[1];
                 calCtrl.configureNgModel(ngModelCtrl);
+
             }
         }
     }
@@ -36,6 +37,7 @@
         self.$timeout = $timeout;
         self.picker = picker;
         self.dayHeader = self.picker.dayHeader;
+        self.colorIntention = picker.colorIntention;        
         self.initialDate = $scope.initialDate;
         self.viewModeSmall = $mdMedia('xs');
         self.startDay = angular.isUndefined($scope.weekStartDay) || $scope.weekStartDay==='' ? 'Sunday' : $scope.weekStartDay ;
@@ -58,6 +60,9 @@
         self.initialDate =	angular.isUndefined(self.initialDate) ? moment() : moment(self.initialDate, self.format);
 
         self.currentDate = self.initialDate.clone();
+        self.minYear = 1900;
+        self.maxYear = 3000;
+
         if(self.restrictToMinDate){
              if(!moment.isMoment(self.minDate)){
                 self.minDate = moment(self.minDate, self.format);
@@ -65,24 +70,38 @@
             /* the below code is giving some errors. It was added by Pablo Reyes, but I still need to check what
             he intended to fix.
             if(moment.isMoment(self.minDate)){
-                self.minDate = self.minDate.subtract(1, 'd');
+                self.minDate = self.minDate.subtract(1, 'd').startOf('day');
             }else{
-                self.minDate = moment(self.minDate, self.format).subtract(1, 'd');
+                self.minDate = moment(self.minDate, self.format).subtract(1, 'd').startOf('day');
             }
+            self.minYear = self.minDate.year();
             */
         }
 
         if(self.restrictToMaxDate) {
             if(!moment.isMoment(self.maxDate)){
-                self.maxDate = moment(self.maxDate, self.format);
+                self.maxDate = moment(self.maxDate, self.format).startOf('day');
+                self.maxYear = self.maxDate.year();
             }
         }
 
+
+
         self.yearItems = {
-            currentIndex_: 0,
+            currentIndex_: 1,
             PAGE_SIZE: 7,
-            START: 1900,
+            START: self.minYear,
             getItemAtIndex: function(index) {
+                if(!this.START+ index<=(self.maxYear)) {
+                    return (this.START+ index); 
+                }else{
+                    return this.START ;
+                }
+
+                if(this.currentIndex_ < index){
+                    this.currentIndex_ = index;
+                    return this.START + index;                    
+                } 
                 if(this.currentIndex_ < index){
                     this.currentIndex_ = index;
                 }
@@ -104,16 +123,17 @@
 
     CalenderCtrl.prototype.configureNgModel = function(ngModelCtrl) {
         var self = this;
-
         self.ngModelCtrl = ngModelCtrl;
 
         self.ngModelCtrl.$formatters.push(function(dateValue) {
+
             if(self.format){
                 if(dateValue){
                     if(moment.isMoment(dateValue)){
                         self.initialDate = dateValue;
                     }else{
                         self.initialDate = moment(dateValue, self.format);
+
                     }
                 }
                 self.currentDate = self.initialDate.clone();
@@ -125,8 +145,8 @@
 
     CalenderCtrl.prototype.setNgModelValue = function(date) {
         var self = this;
-        self.ngModelCtrl.$setViewValue(date);
-        self.ngModelCtrl.$render();
+    //        self.ngModelCtrl.$setViewValue(date);
+    //       self.ngModelCtrl.$render();
     };
 
     CalenderCtrl.prototype.init = function(){
@@ -161,7 +181,7 @@
     CalenderCtrl.prototype.showYear = function() {
         var self = this;
         self.yearTopIndex = (self.initialDate.year() - self.yearItems.START) + Math.floor(self.yearItems.PAGE_SIZE / 2);
-        self.yearItems.currentIndex_ = (self.initialDate.year() - self.yearItems.START) + 1;
+        self.yearItems.currentIndex_ = (self.initialDate.year() - self.yearItems.START)-1;
     };
 
 
@@ -173,7 +193,8 @@
     CalenderCtrl.prototype.buildDateCells = function(){
         var self = this;
         var currentMonth = self.initialDate.month();
-        var calStartDate = self.initialDate.clone().date(0).day(self.startDay);
+        var calStartDate = self.initialDate.clone().date(0).day(self.startDay).startOf('day');
+        var lastDayOfMonth = self.initialDate.clone().endOf('month');
         var weekend = false;
         var isDisabledDate =false;
         /*
@@ -181,7 +202,7 @@
         if true than set stopScrollPrevious=true
         */
         if(!angular.isUndefined(self.minDate)){
-            self.stopScrollPrevious	 = self.minDate.unix() > calStartDate.unix();
+            self.stopScrollPrevious	 = self.minDate.unix() >= calStartDate.unix();
         }
         self.dateCells =[];
         for (var i = 0; i < 6; i++) {
@@ -210,7 +231,6 @@
                     isDisabledDate : isDisabledDate,
                     isCurrentMonth : isCurrentMonth
                 };
-
                 week.push(day);
                 calStartDate.add(1, 'd')
             }
@@ -220,8 +240,9 @@
         Check if max date is greater than first date of month
         if true than set stopScrollPrevious=true
         */
+
         if(self.restrictToMaxDate && !angular.isUndefined(self.maxDate)){
-            self.stopScrollNext	= self.maxDate.unix() < calStartDate.unix();
+            self.stopScrollNext	=  self.maxDate.isBefore(lastDayOfMonth);
         }
 
         if(self.dateCells[0][6].isDisabledDate && !self.dateCells[0][6].isCurrentMonth){
@@ -236,6 +257,7 @@
             self.moveCalenderAnimation='slideLeft';
             self.initialDate.subtract(1, 'M');
         }else{
+            console.log(self.stopScrollNext);            
             if(self.stopScrollNext) return;
             self.moveCalenderAnimation='slideRight';
             self.initialDate.add(1, 'M');
@@ -339,6 +361,8 @@
         self.$scope.$emit('calender:close');
     }
 
+    Calender.$inject = ['picker'];
+
     CalenderCtrl.prototype.isPreviousDate = function(yearToCheck, monthToCheck)
     {
         var self = this;
@@ -361,5 +385,5 @@
     };
 
     var app = angular.module('smDateTimeRangePicker', []);
-    app.directive('smCalender', [Calender]);
+    app.directive('smCalender', Calender);
 })();

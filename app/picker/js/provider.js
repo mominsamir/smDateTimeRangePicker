@@ -23,6 +23,8 @@ function picker(){
         {'single':'S', 'shortName':'Sa', 'fullName':'Saturday'}
     ];
 
+    var colorIntention = 'md-primary';    
+
     var dayHeader = 'single';
 
     var monthNames = moment.months();
@@ -104,6 +106,9 @@ function picker(){
         setRangeCustomStartEnd : function(array){
             rangeCustomStartEnd = array;
         },
+        setColorIntention : function(theme){
+            colorIntention = theme;
+        },
         setCustomHeader : function(obj){
             if(!angular.isUndefined(obj.date)){
                 customHeader.date= obj.date;
@@ -131,7 +136,8 @@ function picker(){
                 rangeDivider : rangeDivider,
                 rangeCustomStartEnd : rangeCustomStartEnd,
                 rangeDefaultList :rangeDefaultList,
-                format : format
+                format : format,
+                colorIntention :colorIntention
             }
         }
     }

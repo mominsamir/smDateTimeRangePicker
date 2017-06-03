@@ -40,31 +40,9 @@
                         {
                             if(typeof newVal === 'object')
                             {
-                                if(newVal.__$toString)
-                                {
-                                    scope.vm.valueAsText = newVal.__$toString;
-                                    delete newVal.__$toString;
-                                }else
-                                {
-                                    var _temp = [];
-                                    if(newVal.startDate)
-                                    {
-                                        _temp.push(moment(newVal.startDate).format(scope.vm.format || 'YYYY-MM-DD'));
-                                    }else
-                                    {
-                                        _temp.push('Any');
-                                    }
-                                    _temp.push(scope.vm.divider);
-                                    if(newVal.endDate)
-                                    {
-                                        _temp.push(moment(newVal.endDate).format(scope.vm.format || 'YYYY-MM-DD'));
-                                    }else
-                                    {
-                                        _temp.push('Any');
-                                    }
-
-                                    scope.vm.valueAsText = _temp.join(' ');
-                                }
+                                
+                                scope.vm.valueAsText = newVal.__$toString;
+                                delete newVal.__$toString;
                                 
                             }else //it must be removed in future releases once the input cannot be a string anymore.
                             {

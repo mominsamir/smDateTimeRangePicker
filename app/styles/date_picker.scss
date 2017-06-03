@@ -176,31 +176,29 @@ $aniimation-duration:			1s;
 							color: rgba(0,0,0,0.38);
 						}
 					}
- 				}
- 				.month-row{
- 					display: flex;
- 					height: 35px;
- 					float: right;
- 					.month{
- 						outline: none;
-					    width: 30px;
-					    height: 30px;
-					    border-radius: 50%;
-					    text-align: center;
-					    line-height: 30px;
-					    margin: 3px;
-					    font-size: 12px;
-					    cursor: pointer;
-					    &:hover{
-					    	background-color:#E0E0E0;
-					    }
-					    &.disabled
-						{
-							pointer-events:none;
-							color: rgba(0,0,0,0.38);
-						}
+					.month-list{
+		 				.month-row{
+		 					display: flex;
+		 					height: 35px;
+		 					float: right;
+		 					.month{
+		 						outline: none;
+							    width: 30px;
+							    height: 30px;
+							    border-radius: 50%;
+							    text-align: center;
+							    line-height: 30px;
+							    margin: 3px;
+							    font-size: 12px;
+							    cursor: pointer;
+							    &:hover{
+							    	background-color:#E0E0E0;
+							    }
+							}
+		 				}
 					}
- 				}
+				}
+
  				.selected-year{
 					font-size: 18px;
 					color:blue;
