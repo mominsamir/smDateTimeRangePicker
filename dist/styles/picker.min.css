@@ -218,6 +218,12 @@
     height: 43px;
     text-align: center;
     line-height: 35px; }
+    .range-picker .custom-select.show-calender > .tab-head .start-btn {
+      width: 50%;
+      text-decoration: inherit;
+      color: inherit; }
+      .range-picker .custom-select.show-calender > .tab-head .start-btn > span {
+        color: inherit; }
     .range-picker .custom-select.show-calender > .tab-head span {
       color: #ccc1c1;
       width: 50%; }
@@ -579,6 +585,12 @@
     height: 43px;
     text-align: center;
     line-height: 35px; }
+    .range-picker .custom-select.show-calender > .tab-head .start-btn {
+      width: 50%;
+      text-decoration: inherit;
+      color: inherit; }
+      .range-picker .custom-select.show-calender > .tab-head .start-btn > span {
+        color: inherit; }
     .range-picker .custom-select.show-calender > .tab-head span {
       color: #ccc1c1;
       width: 50%; }

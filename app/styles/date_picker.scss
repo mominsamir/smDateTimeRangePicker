@@ -324,6 +324,16 @@ $aniimation-duration:			1s;
 				height: 43px;
 				text-align: center;
 				line-height: 35px;
+				.start-btn
+				{
+					width: 50%;
+					text-decoration: inherit;
+					color: inherit;
+					>span
+					{
+						color:inherit;
+					}
+				}
 				span{
 					color:$disabled-date-text-color;
 					width: 50%;
