@@ -15,7 +15,10 @@
 	</div>
 	<div layout="column" class="custom-select" ng-if="vm.showCustom" ng-class="{'show-calender': vm.showCustom}">
 		<div layout="row"   class="tab-head">
-			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>
+			<!--<span  ng-class="{'active moveLeft':vm.selectedTabIndex===0}">{{vm.rangeCustomStartEnd[0]}}</span>-->
+			<a class="start-btn" href="javascript:void(0)" ng-click="vm.selectedTabIndex = 0;">
+				<span>{{vm.rangeCustomStartEnd[0]}}</span>
+			</a>
 			<span  ng-class="{'active moveLeft':vm.selectedTabIndex===1}">{{vm.rangeCustomStartEnd[1]}}</span>
 		</div>
 		<div ng-show="vm.selectedTabIndex===0" ng-model="vm.startDate" >
