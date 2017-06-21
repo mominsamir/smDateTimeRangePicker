@@ -40,10 +40,8 @@
                         {
                             if(typeof newVal === 'object')
                             {
-                                
                                 scope.vm.valueAsText = newVal.__$toString;
                                 delete newVal.__$toString;
-                                
                             }else //it must be removed in future releases once the input cannot be a string anymore.
                             {
                                 scope.vm.valueAsText = scope.vm.value || '';
@@ -133,6 +131,7 @@
 
     SMRangePickerCtrl.prototype.rangeSelected = function(range){
         var self = this;
+        console.log('RANGE WAS SELECTED', range);
         self.onRangeSelect({range: range});
         self.value = {startDate: range.startDateAsMoment, endDate: range.endDateAsMoment, __$toString: range.text};
     }
