@@ -37,7 +37,7 @@ if (typeof moment === 'undefined') {
                 calCtrl.configureNgModel(ngModelCtrl);
 
             }
-        }
+        };
     }
 
     var CalenderCtrl = function($scope, $timeout, picker, $mdMedia){
@@ -123,7 +123,7 @@ if (typeof moment === 'undefined') {
         };
 
         self.init();
-    }
+    };
 
     CalenderCtrl.prototype.setInitDate = function(dt) {
         var self = this;
@@ -155,8 +155,8 @@ if (typeof moment === 'undefined') {
 
     CalenderCtrl.prototype.setNgModelValue = function(date) {
         var self = this;
-    //        self.ngModelCtrl.$setViewValue(date);
-    //       self.ngModelCtrl.$render();
+        self.ngModelCtrl.$setViewValue(date);
+        self.ngModelCtrl.$render();
     };
 
     CalenderCtrl.prototype.init = function(){
@@ -164,7 +164,7 @@ if (typeof moment === 'undefined') {
         self.buildDateCells();
         self.buildDateCellHeader();
         self.buildMonthCells();
-        self.setView()
+        self.setView();
         self.showYear();
 
 
@@ -175,7 +175,7 @@ if (typeof moment === 'undefined') {
         self.headerDispalyFormat = 'ddd, MMM DD';
         switch(self.mode) {
             case 'date-time':
-            self.view = 'DATE'
+            self.view = 'DATE';
             self.headerDispalyFormat = 'ddd, MMM DD HH:mm';
             break;
             case 'time':
@@ -185,7 +185,7 @@ if (typeof moment === 'undefined') {
             default:
             self.view = 'DATE';
         }
-    }
+    };
 
 
     CalenderCtrl.prototype.showYear = function() {
@@ -242,7 +242,7 @@ if (typeof moment === 'undefined') {
                     isCurrentMonth : isCurrentMonth
                 };
                 week.push(day);
-                calStartDate.add(1, 'd')
+                calStartDate.add(1, 'd');
             }
             self.dateCells.push(week);
         }
@@ -290,25 +290,25 @@ if (typeof moment === 'undefined') {
         self.setNgModelValue(d);
         self.$scope.$emit('calender:date-selected');
 
-    }
+    };
 
 
     CalenderCtrl.prototype.buildDateCellHeader = function(startFrom) {
         var self = this;
         var daysByName = self.picker.daysNames;
         var keys = [];
-        
-        for (var key in daysByName) {
-            keys.push(key)
-        };
+        var key;
+        for (key in daysByName) {
+            keys.push(key);
+        }
         
         var startIndex = moment().day(self.startDay).day(), count = 0;
         
-        for (var key in daysByName) {
+        for (key in daysByName) {
             self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
             count++; // Don't forget to increase count.
         }
-    }
+    };
     /*
     Month Picker
     */
@@ -323,7 +323,7 @@ if (typeof moment === 'undefined') {
             }
             self.view =view;
         }
-    }
+    };
 
     /*
     Year Picker
@@ -335,7 +335,7 @@ if (typeof moment === 'undefined') {
         self.initialDate.year(yr).month(mn);
         self.buildDateCells();
         self.view='DATE';
-    }
+    };
 
     /*
     Hour and Time
@@ -345,31 +345,31 @@ if (typeof moment === 'undefined') {
     CalenderCtrl.prototype.setHour = function(h){
         var self = this;
         self.currentDate.hour(h);
-    }
+    };
 
     CalenderCtrl.prototype.setMinute = function(m){
         var self = this;
         self.currentDate.minute(m);
-    }
+    };
 
     CalenderCtrl.prototype.selectedDateTime = function(){
         var self = this;
         self.setNgModelValue(self.currentDate);
         if(self.mode === 'time')
-        self.view='HOUR'
+        self.view='HOUR';
         else
         self.view='DATE';
         self.$scope.$emit('calender:close');
-    }
+    };
 
     CalenderCtrl.prototype.closeDateTime = function(){
         var self = this;
         if(self.mode === 'time')
-        self.view='HOUR'
+        self.view='HOUR';
         else
         self.view='DATE';
         self.$scope.$emit('calender:close');
-    }
+    };
 
     Calender.$inject = ['picker'];
 
@@ -583,7 +583,7 @@ if (typeof moment === 'undefined') {
 				var calCtrl = ctrls[1];
 				calCtrl.configureNgModel(ngModelCtrl);
 			}
-		}
+		};
 	}
 
 	var PickerCtrl = function($scope, picker, $mdMedia){
@@ -596,7 +596,7 @@ if (typeof moment === 'undefined') {
 		self.$mdMedia =$mdMedia;
 		self.init();
 
-	}
+	};
 
 	PickerCtrl.prototype.init = function() {
 		var self = this;
@@ -628,7 +628,7 @@ if (typeof moment === 'undefined') {
 			self.headerDispalyFormat = self.picker.customHeader.date;
 			break;
 			case 'date-time':
-			self.view = 'DATE'
+			self.view = 'DATE';
 			self.headerDispalyFormat = self.picker.customHeader.dateTime;
 			break;
 			case 'time':
@@ -639,7 +639,7 @@ if (typeof moment === 'undefined') {
 			self.headerDispalyFormat = 'ddd, MMM DD ';
 			self.view = 'DATE';
 		}
-	}
+	};
 
 	PickerCtrl.prototype.setNextView = function(){
 		var self = this;
@@ -653,7 +653,7 @@ if (typeof moment === 'undefined') {
 			default:
 			self.view = 'DATE';
 		}
-	}
+	};
 
 	PickerCtrl.prototype.selectedDateTime = function(){
 		var self = this;
@@ -667,7 +667,7 @@ if (typeof moment === 'undefined') {
 		}
 		self.setNgModelValue(date);
 
-	}
+	};
 
 	PickerCtrl.prototype.dateSelected = function(date){
 		var self = this;
@@ -679,7 +679,7 @@ if (typeof moment === 'undefined') {
 		}else{
 			self.setNextView();
 		}
-	}
+	};
 
 	PickerCtrl.prototype.timeSelected = function(time){
 		var self = this;
@@ -690,7 +690,7 @@ if (typeof moment === 'undefined') {
 			self.selectedDateTime();
 		else
 			self.setNextView();
-	}
+	};
 
 	PickerCtrl.prototype.setNgModelValue = function(date) {
 		var self = this;
@@ -721,7 +721,7 @@ if (typeof moment === 'undefined') {
 			},
 			templateUrl:'picker/time-picker.html',
 			link : function(scope, element, att, ngModelCtrl){
-				setViewMode(scope.mode)
+				setViewMode(scope.mode);
 
 				scope.okLabel = picker.okLabel;
 				scope.cancelLabel = picker.cancelLabel;
@@ -732,7 +732,7 @@ if (typeof moment === 'undefined') {
 				function setViewMode(mode){
 					switch(mode) {
 						case 'date-time':
-						scope.view = 'DATE'
+						scope.view = 'DATE';
 						scope.headerDispalyFormat = 'ddd, MMM DD HH:mm';
 						break;
 						case 'time':
@@ -757,11 +757,11 @@ if (typeof moment === 'undefined') {
 						scope.currentDate =scope.selectedDate;
 						ngModelCtrl.$setViewValue(date.format(scope.format));
 						ngModelCtrl.$render();
-						setViewMode(scope.mode)
+						setViewMode(scope.mode);
 						scope.$emit('calender:close');
 
 					}
-				})
+				});
 
 				scope.selectedDateTime = function(){
 					var date = moment(scope.selectedDate, scope.format);
@@ -775,17 +775,17 @@ if (typeof moment === 'undefined') {
 					scope.currentDate =scope.selectedDate;
 					ngModelCtrl.$setViewValue(date.format(scope.format));
 					ngModelCtrl.$render();
-					setViewMode(scope.mode)
+					setViewMode(scope.mode);
 					scope.$emit('calender:close');
-				}
+				};
 
 
 				scope.closeDateTime = function(){
 					scope.$emit('calender:close');
-				}
+				};
 
 			}
-		}
+		};
 	}
 
 	var app = angular.module('smDateTimeRangePicker');
@@ -1374,10 +1374,8 @@ app.provider('picker', [picker]);
                         {
                             if(typeof newVal === 'object')
                             {
-                                
                                 scope.vm.valueAsText = newVal.__$toString;
                                 delete newVal.__$toString;
-                                
                             }else //it must be removed in future releases once the input cannot be a string anymore.
                             {
                                 scope.vm.valueAsText = scope.vm.value || '';
@@ -1387,7 +1385,7 @@ app.provider('picker', [picker]);
 
                 //
             }
-        }
+        };
     }
 
     var SMRangePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $document) {
@@ -1441,7 +1439,7 @@ app.provider('picker', [picker]);
             }
         });
 
-    }
+    };
 
 
     /*get visiable port
@@ -1463,13 +1461,13 @@ app.provider('picker', [picker]);
             top: top,
             left: left
         };
-    }
+    };
 
     SMRangePickerCtrl.prototype.rangeSelected = function(range){
         var self = this;
         self.onRangeSelect({range: range});
         self.value = {startDate: range.startDateAsMoment, endDate: range.endDateAsMoment, __$toString: range.text};
-    }
+    };
 
 
     SMRangePickerCtrl.prototype.show = function($event) {
@@ -1499,7 +1497,7 @@ app.provider('picker', [picker]);
 
         self.isCalenderOpen =true;
         self.$document.on('click', self.bodyClickHandler);
-    }
+    };
 
 
     SMRangePickerCtrl.prototype.tabOutEvent= function(element){
@@ -1507,7 +1505,7 @@ app.provider('picker', [picker]);
         if (element.which === 9) {
             self.hideElement();
         }
-    }
+    };
 
     SMRangePickerCtrl.prototype.hideElement= function() {
         var self = this;
@@ -1520,7 +1518,7 @@ app.provider('picker', [picker]);
         }
         self.$document.off('click');
         self.isCalenderOpen =false;
-    }
+    };
 
 
     SMRangePickerCtrl.prototype.clickOutSideHandler = function(e){
@@ -1535,7 +1533,7 @@ app.provider('picker', [picker]);
                 self.hideElement();
             }
         }
-    }
+    };
 
     var app = angular.module('smDateTimeRangePicker');
     app.directive('smRangePickerInput', ['$document', '$mdMedia', '$mdUtil', 'picker', RangePickerInput]);
@@ -1571,7 +1569,7 @@ function smRangePicker (picker){
             var calCtrl = ctrls[1];
             calCtrl.configureNgModel(ngModelCtrl);
         }
-    }
+    };
 }
 
 var RangePickerCtrl = function($scope, picker){
@@ -1618,7 +1616,7 @@ var RangePickerCtrl = function($scope, picker){
         self.cancel();
     });
 
-}
+};
 
 RangePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
     this.ngModelCtrl = ngModelCtrl;
@@ -1633,7 +1631,7 @@ RangePickerCtrl.prototype.setNextView = function(){
         case 'date':
         this.view = 'DATE';
         if(this.selectedTabIndex ===0 ){
-            this.selectedTabIndex =1
+            this.selectedTabIndex =1;
         }
         break;
         case 'date-time':
@@ -1642,23 +1640,23 @@ RangePickerCtrl.prototype.setNextView = function(){
         }else{
             this.view = 'DATE';
             if(this.selectedTabIndex ===0 ){
-                this.selectedTabIndex =1
+                this.selectedTabIndex =1;
             }
         }
         break;
         default:
         this.view = 'DATE';
         if(this.selectedTabIndex ===0 ){
-            this.selectedTabIndex =1
+            this.selectedTabIndex =1;
         }
     }
-}
+};
 
 RangePickerCtrl.prototype.showCustomView = function(){
     this.showCustom=true;
-    this.selectedTabIndex=0
+    this.selectedTabIndex=0;
 
-}
+};
 
 RangePickerCtrl.prototype.dateRangeSelected = function(){
     var self = this;
@@ -1670,7 +1668,7 @@ RangePickerCtrl.prototype.dateRangeSelected = function(){
         self.showCustom=false;
     }
     self.setNgModelValue(self.startDate, self.divider, self.endDate);
-}
+};
 
 /* sets an empty value on dates. */
 RangePickerCtrl.prototype.clearDateRange = function(){
@@ -1683,7 +1681,7 @@ RangePickerCtrl.prototype.clearDateRange = function(){
         self.showCustom=false;
     }
     self.setNgModelValue('', self.divider, '');
-}
+};
 
 
 RangePickerCtrl.prototype.startDateSelected = function(date){
@@ -1695,7 +1693,7 @@ RangePickerCtrl.prototype.startDateSelected = function(date){
     if (this.endDate && this.endDate.diff(this.startDate, 'ms') < 0) {
         this.endDate = date;
     }
-}
+};
 
 RangePickerCtrl.prototype.startTimeSelected = function(time){
 
@@ -1703,7 +1701,7 @@ RangePickerCtrl.prototype.startTimeSelected = function(time){
     this.minStartToDate = angular.copy(this.startDate);
     this.scope.$emit('range-picker:startTimeSelected');
     this.setNextView();
-}
+};
 
 
 RangePickerCtrl.prototype.endDateSelected = function(date){
@@ -1714,7 +1712,7 @@ RangePickerCtrl.prototype.endDateSelected = function(date){
     }else{
         this.setNextView();
     }
-}
+};
 
 RangePickerCtrl.prototype.endTimeSelected = function(time){
     this.endDate.hour(time.hour()).minute(time.minute());
@@ -1722,7 +1720,7 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
     if(this.closeOnSelect && this.mode==='date-time'){
         this.setNgModelValue(this.startDate, this.divider, this.endDate);
     }
-}
+};
 
 
 
@@ -1786,7 +1784,7 @@ RangePickerCtrl.prototype.cancel = function() {
         self.showCustom=false;
         self.scope.$emit('range-picker:close');
     }
-}
+};
 
 var app = angular.module('smDateTimeRangePicker');
 app.directive('smRangePicker', ['picker', smRangePicker]);

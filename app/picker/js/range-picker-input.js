@@ -51,7 +51,7 @@
 
                 //
             }
-        }
+        };
     }
 
     var SMRangePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $document) {
@@ -105,7 +105,7 @@
             }
         });
 
-    }
+    };
 
 
     /*get visiable port
@@ -127,14 +127,13 @@
             top: top,
             left: left
         };
-    }
+    };
 
     SMRangePickerCtrl.prototype.rangeSelected = function(range){
         var self = this;
-        console.log('RANGE WAS SELECTED', range);
         self.onRangeSelect({range: range});
         self.value = {startDate: range.startDateAsMoment, endDate: range.endDateAsMoment, __$toString: range.text};
-    }
+    };
 
 
     SMRangePickerCtrl.prototype.show = function($event) {
@@ -164,7 +163,7 @@
 
         self.isCalenderOpen =true;
         self.$document.on('click', self.bodyClickHandler);
-    }
+    };
 
 
     SMRangePickerCtrl.prototype.tabOutEvent= function(element){
@@ -172,7 +171,7 @@
         if (element.which === 9) {
             self.hideElement();
         }
-    }
+    };
 
     SMRangePickerCtrl.prototype.hideElement= function() {
         var self = this;
@@ -185,7 +184,7 @@
         }
         self.$document.off('click');
         self.isCalenderOpen =false;
-    }
+    };
 
 
     SMRangePickerCtrl.prototype.clickOutSideHandler = function(e){
@@ -200,7 +199,7 @@
                 self.hideElement();
             }
         }
-    }
+    };
 
     var app = angular.module('smDateTimeRangePicker');
     app.directive('smRangePickerInput', ['$document', '$mdMedia', '$mdUtil', 'picker', RangePickerInput]);

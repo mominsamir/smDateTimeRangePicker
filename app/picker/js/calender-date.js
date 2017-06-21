@@ -27,7 +27,7 @@
                 calCtrl.configureNgModel(ngModelCtrl);
 
             }
-        }
+        };
     }
 
     var CalenderCtrl = function($scope, $timeout, picker, $mdMedia){
@@ -113,7 +113,7 @@
         };
 
         self.init();
-    }
+    };
 
     CalenderCtrl.prototype.setInitDate = function(dt) {
         var self = this;
@@ -145,8 +145,8 @@
 
     CalenderCtrl.prototype.setNgModelValue = function(date) {
         var self = this;
-    //        self.ngModelCtrl.$setViewValue(date);
-    //       self.ngModelCtrl.$render();
+        self.ngModelCtrl.$setViewValue(date);
+        self.ngModelCtrl.$render();
     };
 
     CalenderCtrl.prototype.init = function(){
@@ -154,7 +154,7 @@
         self.buildDateCells();
         self.buildDateCellHeader();
         self.buildMonthCells();
-        self.setView()
+        self.setView();
         self.showYear();
 
 
@@ -165,7 +165,7 @@
         self.headerDispalyFormat = 'ddd, MMM DD';
         switch(self.mode) {
             case 'date-time':
-            self.view = 'DATE'
+            self.view = 'DATE';
             self.headerDispalyFormat = 'ddd, MMM DD HH:mm';
             break;
             case 'time':
@@ -175,7 +175,7 @@
             default:
             self.view = 'DATE';
         }
-    }
+    };
 
 
     CalenderCtrl.prototype.showYear = function() {
@@ -232,7 +232,7 @@
                     isCurrentMonth : isCurrentMonth
                 };
                 week.push(day);
-                calStartDate.add(1, 'd')
+                calStartDate.add(1, 'd');
             }
             self.dateCells.push(week);
         }
@@ -280,25 +280,25 @@
         self.setNgModelValue(d);
         self.$scope.$emit('calender:date-selected');
 
-    }
+    };
 
 
     CalenderCtrl.prototype.buildDateCellHeader = function(startFrom) {
         var self = this;
         var daysByName = self.picker.daysNames;
         var keys = [];
-        
-        for (var key in daysByName) {
-            keys.push(key)
-        };
+        var key;
+        for (key in daysByName) {
+            keys.push(key);
+        }
         
         var startIndex = moment().day(self.startDay).day(), count = 0;
         
-        for (var key in daysByName) {
+        for (key in daysByName) {
             self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
             count++; // Don't forget to increase count.
         }
-    }
+    };
     /*
     Month Picker
     */
@@ -313,7 +313,7 @@
             }
             self.view =view;
         }
-    }
+    };
 
     /*
     Year Picker
@@ -325,7 +325,7 @@
         self.initialDate.year(yr).month(mn);
         self.buildDateCells();
         self.view='DATE';
-    }
+    };
 
     /*
     Hour and Time
@@ -335,31 +335,31 @@
     CalenderCtrl.prototype.setHour = function(h){
         var self = this;
         self.currentDate.hour(h);
-    }
+    };
 
     CalenderCtrl.prototype.setMinute = function(m){
         var self = this;
         self.currentDate.minute(m);
-    }
+    };
 
     CalenderCtrl.prototype.selectedDateTime = function(){
         var self = this;
         self.setNgModelValue(self.currentDate);
         if(self.mode === 'time')
-        self.view='HOUR'
+        self.view='HOUR';
         else
         self.view='DATE';
         self.$scope.$emit('calender:close');
-    }
+    };
 
     CalenderCtrl.prototype.closeDateTime = function(){
         var self = this;
         if(self.mode === 'time')
-        self.view='HOUR'
+        self.view='HOUR';
         else
         self.view='DATE';
         self.$scope.$emit('calender:close');
-    }
+    };
 
     Calender.$inject = ['picker'];
 
