@@ -28,7 +28,7 @@
 				var calCtrl = ctrls[1];
 				calCtrl.configureNgModel(ngModelCtrl);
 			}
-		}
+		};
 	}
 
 	var PickerCtrl = function($scope, picker, $mdMedia){
@@ -41,7 +41,7 @@
 		self.$mdMedia =$mdMedia;
 		self.init();
 
-	}
+	};
 
 	PickerCtrl.prototype.init = function() {
 		var self = this;
@@ -73,7 +73,7 @@
 			self.headerDispalyFormat = self.picker.customHeader.date;
 			break;
 			case 'date-time':
-			self.view = 'DATE'
+			self.view = 'DATE';
 			self.headerDispalyFormat = self.picker.customHeader.dateTime;
 			break;
 			case 'time':
@@ -84,7 +84,7 @@
 			self.headerDispalyFormat = 'ddd, MMM DD ';
 			self.view = 'DATE';
 		}
-	}
+	};
 
 	PickerCtrl.prototype.setNextView = function(){
 		var self = this;
@@ -98,7 +98,7 @@
 			default:
 			self.view = 'DATE';
 		}
-	}
+	};
 
 	PickerCtrl.prototype.selectedDateTime = function(){
 		var self = this;
@@ -112,7 +112,7 @@
 		}
 		self.setNgModelValue(date);
 
-	}
+	};
 
 	PickerCtrl.prototype.dateSelected = function(date){
 		var self = this;
@@ -124,7 +124,7 @@
 		}else{
 			self.setNextView();
 		}
-	}
+	};
 
 	PickerCtrl.prototype.timeSelected = function(time){
 		var self = this;
@@ -135,7 +135,7 @@
 			self.selectedDateTime();
 		else
 			self.setNextView();
-	}
+	};
 
 	PickerCtrl.prototype.setNgModelValue = function(date) {
 		var self = this;
@@ -166,7 +166,7 @@
 			},
 			templateUrl:'picker/time-picker.html',
 			link : function(scope, element, att, ngModelCtrl){
-				setViewMode(scope.mode)
+				setViewMode(scope.mode);
 
 				scope.okLabel = picker.okLabel;
 				scope.cancelLabel = picker.cancelLabel;
@@ -177,7 +177,7 @@
 				function setViewMode(mode){
 					switch(mode) {
 						case 'date-time':
-						scope.view = 'DATE'
+						scope.view = 'DATE';
 						scope.headerDispalyFormat = 'ddd, MMM DD HH:mm';
 						break;
 						case 'time':
@@ -202,11 +202,11 @@
 						scope.currentDate =scope.selectedDate;
 						ngModelCtrl.$setViewValue(date.format(scope.format));
 						ngModelCtrl.$render();
-						setViewMode(scope.mode)
+						setViewMode(scope.mode);
 						scope.$emit('calender:close');
 
 					}
-				})
+				});
 
 				scope.selectedDateTime = function(){
 					var date = moment(scope.selectedDate, scope.format);
@@ -220,17 +220,17 @@
 					scope.currentDate =scope.selectedDate;
 					ngModelCtrl.$setViewValue(date.format(scope.format));
 					ngModelCtrl.$render();
-					setViewMode(scope.mode)
+					setViewMode(scope.mode);
 					scope.$emit('calender:close');
-				}
+				};
 
 
 				scope.closeDateTime = function(){
 					scope.$emit('calender:close');
-				}
+				};
 
 			}
-		}
+		};
 	}
 
 	var app = angular.module('smDateTimeRangePicker');
