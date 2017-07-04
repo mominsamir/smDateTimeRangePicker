@@ -36,6 +36,12 @@ function MainCtrl($scope, $timeout, $mdSidenav, $mdUtil, $log, $state, $mdDialog
         vm.dateOfBirth = '10-10-2016 10:10';
     }
 
+    vm.employee = {};
+    vm.employee.default = {
+        startDate: moment(),
+        endDate: moment().add(1, 'days')
+    };
+
     vm.currentDate = '10-15-2015';
     var options = {
         mode : 'date',
