@@ -185,8 +185,8 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
 
 RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate) {
     var self = this;
-    var momentStartDate = startDate || null;
-    var momentEndDate = endDate || null;
+    var momentStartDate = self.startDate = startDate || null;
+    var momentEndDate = self.endDate = endDate || null;
 
 
     if(startDate)
@@ -202,7 +202,6 @@ RangePickerCtrl.prototype.setNgModelValue = function(startDate, divider, endDate
   var range = {startDate: startDate, endDate: endDate, startDateAsMoment: momentStartDate, endDateAsMoment: momentEndDate};
 
     //var range = {startDate: startDate, endDate: endDate};
-    
     var _ng_model_value;
 
     //if no startDate && endDate, then empty the model.
