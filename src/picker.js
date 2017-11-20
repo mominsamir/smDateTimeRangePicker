@@ -299,14 +299,18 @@ if (typeof moment === 'undefined') {
         var keys = [];
         var key;
         for (key in daysByName) {
-            keys.push(key);
+            if (daysByName.hasOwnProperty(key)) {
+                keys.push(key);
+            }
         }
         
         var startIndex = moment().day(self.startDay).day(), count = 0;
         
         for (key in daysByName) {
-            self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
-            count++; // Don't forget to increase count.
+            if (daysByName.hasOwnProperty(key)) {
+                self.dateCellHeader.push(daysByName[ keys[ (count + startIndex) % (keys.length)] ]);
+                count++; // Don't forget to increase count.
+            }
         }
     };
     /*
