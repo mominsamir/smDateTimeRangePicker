@@ -1,0 +1,23 @@
+With these settings:
+
+<sm-date-time-picker 
+  fname="field" 
+  label="Date of Birth"
+  ng-model="vm.employee.dateOfBirth" 
+  flex="50"
+  flex-sm="100"
+  flex-xs="100"    
+  format="DD-MM-YYYY"                      
+  is-required="{{true}}" 
+  mode="date" 
+  week-start-day="Monday">
+</sm-date-time-picker>
+
+When I test it like this:
+Open date picker -> click on a date (Now time won't appear because of mode) -> select "Cancel"
+Result is ---------->>> Wed Oct 03 2018 00:00:00 GMT+0530
+Result should be --->>> 04-10-2018 |OR| Blank -> as I have cancelled it.
+
+Is there any option to achieve the desired output on cancel? Please respond as I have tried everything to contact you even the API reference files are blank.
+
+Thank you.
