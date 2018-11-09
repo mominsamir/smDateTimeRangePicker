@@ -46,7 +46,7 @@ function DateTimePicker($mdUtil, $mdMedia, $document, picker) {
                     '              id="{{vm.fname}}Picker" ' +
                     '              initial-date="vm.initialDate"' +
                     '              ng-model="vm.value"' +
-                    '              mode="{{vm.mode}}" ' +
+                    '              mode="{{vm.mode || \'date\'}}" ' +
                     '              disable-year-selection={{vm.disableYearSelection}}' +
                     '              close-on-select="{{vm.closeOnSelect}}"' +
                     '              start-view="{{vm.startView}}" ' +
@@ -91,8 +91,6 @@ var SMDateTimePickerCtrl = function($scope, $element, $mdUtil, $mdMedia, $docume
 
     self.calenderPan = angular.element(self.calenderPane);
 
-    //check if mode is undefied set to date mode
-    self.mode = angular.isUndefined($scope.mode) ? 'date' : $scope.mode;
     // check if Pre defined format is supplied
     self.format = angular.isUndefined($scope.format) ? 'MM-DD-YYYY' : $scope.format;
 

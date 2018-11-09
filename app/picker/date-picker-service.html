@@ -5,7 +5,7 @@
 				<span class="date-time-header" layout="row" layout-xs="row">{{vm.viewDate.format(vm.headerDispalyFormat)}}</span>
 		</md-toolbar>
 		<div layout="column" class="picker-container" >
-			<div ng-show="vm.view==='DATE'" >
+			<div ng-if="vm.view==='DATE'" >
 				<sm-calender 
 					ng-model="vm.selectedDate"
 					initial-date="vm.initialDate"

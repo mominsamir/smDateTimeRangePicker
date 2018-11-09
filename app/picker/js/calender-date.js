@@ -277,7 +277,11 @@
         }
         self.currentDate = d;
         self.$scope.dateSelectCall({date:d});
-        self.setNgModelValue(d);
+        /*
+        * No need to save the model yet. It must be stored until "save" is clicked.
+        * @see bug #147.
+        * self.setNgModelValue(d);
+        */
         self.$scope.$emit('calender:date-selected');
 
     };
@@ -358,6 +362,7 @@
         self.view='HOUR';
         else
         self.view='DATE';
+
         self.$scope.$emit('calender:close');
     };
 
