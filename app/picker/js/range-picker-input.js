@@ -127,7 +127,6 @@
                 break;
             }
         });
-
     };
 
 
@@ -182,22 +181,7 @@
 
         self.calenderPan.addClass('show');
         self.$mdUtil.disableScrollAround(self.calenderPane);
-
-
-        self.isCalenderOpen =true;
-        //self.$document.on('click', self.bodyClickHandler);
-        /* In chrome v73.0.3683.75  the popup immediately closes after it is opened.
-        It seems that a "click" event is triggered when the popup opens. To prevent it,
-        a delay is added. */
-        self._$delayApplied = self._$delayApplied || false;
-        if(!self._$delayApplied)
-        {
-            setTimeout(function()
-            {
-                    self._$delayApplied = true;
-                    self.$document.on('click', self.bodyClickHandler);
-            }, 1000);
-        }
+        self.$document.on('click', self.bodyClickHandler);
     };
 
 
@@ -224,13 +208,22 @@
 
     SMRangePickerCtrl.prototype.clickOutSideHandler = function(e){
         var self = this;
+        if(e.target && e.target.nodeName === 'BODY')
+        {
+            return;
+        }
+
         if(!self.button){
-            if ((self.calenderPane !== e.target && self.inputPane !== e.target ) && (!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target))) {
+            if (( self.calenderPane !== e.target && self.inputPane !== e.target ) &&
+                (!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target) ) )
+            {
+                //(!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target))) {
                 self.$scope.$broadcast('range-picker-input:blur');
                 self.hideElement();
             }
         }else{
-            if ((self.calenderPane !== e.target && self.button !== e.target ) && (!self.calenderPane.contains(e.target) && !self.button.contains(e.target))) {
+            if ((self.calenderPane !== e.target && self.button !== e.target ) &&
+                (!self.calenderPane.contains(e.target) && !self.button.contains(e.target))) {
                 self.hideElement();
             }
         }

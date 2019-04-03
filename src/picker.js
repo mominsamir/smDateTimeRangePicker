@@ -267,7 +267,6 @@ if (typeof moment === 'undefined') {
             self.moveCalenderAnimation='slideLeft';
             self.initialDate.subtract(1, 'M');
         }else{
-            console.log(self.stopScrollNext);            
             if(self.stopScrollNext) return;
             self.moveCalenderAnimation='slideRight';
             self.initialDate.add(1, 'M');
@@ -285,14 +284,20 @@ if (typeof moment === 'undefined') {
         if (isDisabled) {
             return;
         }
-        self.currentDate = d;
-        self.$scope.dateSelectCall({date:d});
-        /*
-        * No need to save the model yet. It must be stored until "save" is clicked.
-        * @see bug #147.
-        * self.setNgModelValue(d);
-        */
-        self.$scope.$emit('calender:date-selected');
+
+        /* Related to issue #173. After chrome v73, the calendar started to fail. I did not find
+        any explanation yet but this delay fix the issue. */
+        self.$timeout(function(){
+            self.currentDate = d;
+            self.$scope.dateSelectCall({date:d});
+            /*
+            * No need to save the model yet. It must be stored until "save" is clicked.
+            * @see bug #147.
+            * self.setNgModelValue(d);
+            */
+            self.$scope.$emit('calender:date-selected');
+        }, 0);
+
 
     };
 
@@ -1464,7 +1469,6 @@ app.provider('picker', [picker]);
                 break;
             }
         });
-
     };
 
 
@@ -1519,22 +1523,7 @@ app.provider('picker', [picker]);
 
         self.calenderPan.addClass('show');
         self.$mdUtil.disableScrollAround(self.calenderPane);
-
-
-        self.isCalenderOpen =true;
-        //self.$document.on('click', self.bodyClickHandler);
-        /* In chrome v73.0.3683.75  the popup immediately closes after it is opened.
-        It seems that a "click" event is triggered when the popup opens. To prevent it,
-        a delay is added. */
-        self._$delayApplied = self._$delayApplied || false;
-        if(!self._$delayApplied)
-        {
-            setTimeout(function()
-            {
-                    self._$delayApplied = true;
-                    self.$document.on('click', self.bodyClickHandler);
-            }, 1000);
-        }
+        self.$document.on('click', self.bodyClickHandler);
     };
 
 
@@ -1561,13 +1550,22 @@ app.provider('picker', [picker]);
 
     SMRangePickerCtrl.prototype.clickOutSideHandler = function(e){
         var self = this;
+        if(e.target && e.target.nodeName === 'BODY')
+        {
+            return;
+        }
+
         if(!self.button){
-            if ((self.calenderPane !== e.target && self.inputPane !== e.target ) && (!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target))) {
+            if (( self.calenderPane !== e.target && self.inputPane !== e.target ) &&
+                (!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target) ) )
+            {
+                //(!self.calenderPane.contains(e.target) && !self.inputPane.contains(e.target))) {
                 self.$scope.$broadcast('range-picker-input:blur');
                 self.hideElement();
             }
         }else{
-            if ((self.calenderPane !== e.target && self.button !== e.target ) && (!self.calenderPane.contains(e.target) && !self.button.contains(e.target))) {
+            if ((self.calenderPane !== e.target && self.button !== e.target ) &&
+                (!self.calenderPane.contains(e.target) && !self.button.contains(e.target))) {
                 self.hideElement();
             }
         }

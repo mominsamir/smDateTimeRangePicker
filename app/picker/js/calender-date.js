@@ -257,7 +257,6 @@
             self.moveCalenderAnimation='slideLeft';
             self.initialDate.subtract(1, 'M');
         }else{
-            console.log(self.stopScrollNext);            
             if(self.stopScrollNext) return;
             self.moveCalenderAnimation='slideRight';
             self.initialDate.add(1, 'M');
@@ -275,14 +274,20 @@
         if (isDisabled) {
             return;
         }
-        self.currentDate = d;
-        self.$scope.dateSelectCall({date:d});
-        /*
-        * No need to save the model yet. It must be stored until "save" is clicked.
-        * @see bug #147.
-        * self.setNgModelValue(d);
-        */
-        self.$scope.$emit('calender:date-selected');
+
+        /* Related to issue #173. After chrome v73, the calendar started to fail. I did not find
+        any explanation yet but this delay fix the issue. */
+        self.$timeout(function(){
+            self.currentDate = d;
+            self.$scope.dateSelectCall({date:d});
+            /*
+            * No need to save the model yet. It must be stored until "save" is clicked.
+            * @see bug #147.
+            * self.setNgModelValue(d);
+            */
+            self.$scope.$emit('calender:date-selected');
+        }, 0);
+
 
     };
 
