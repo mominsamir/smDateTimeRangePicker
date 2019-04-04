@@ -1391,7 +1391,7 @@ app.provider('picker', [picker]);
                                     var _temp = [];
                                     if(newVal.startDate)
                                     {
-                                        _temp.push(moment(newVal.startDate).format(scope.vm.format || 'YYYY-MM-DD'));
+                                        _temp.push(moment.utc(newVal.startDate).format(scope.vm.format || 'YYYY-MM-DD'));
                                     }else
                                     {
                                         _temp.push('Any');
@@ -1399,7 +1399,7 @@ app.provider('picker', [picker]);
                                     _temp.push(scope.vm.divider);
                                     if(newVal.endDate)
                                     {
-                                        _temp.push(moment(newVal.endDate).format(scope.vm.format || 'YYYY-MM-DD'));
+                                        _temp.push(moment.utc(newVal.endDate).format(scope.vm.format || 'YYYY-MM-DD'));
                                     }else
                                     {
                                         _temp.push('Any');
