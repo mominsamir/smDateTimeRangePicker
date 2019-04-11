@@ -1635,11 +1635,6 @@ var RangePickerCtrl = function($scope, picker){
     var defaultList = [];
     angular.copy(picker.rangeDefaultList, defaultList);
     self.rangeDefaultList = defaultList;
-    if(self.customList){
-        for (var i = 0; i < self.customList.length; i++) {
-            self.rangeDefaultList[self.customList[i].position] = self.customList[i];
-        }
-    }
 
     if(self.showCustom){
         self.selectedTabIndex=0;
@@ -1654,12 +1649,24 @@ var RangePickerCtrl = function($scope, picker){
 
 };
 
+RangePickerCtrl.prototype.configureRangeList = function()
+{
+    var self = this;
+    if(self.customList){
+        self.rangeDefaultList = [];
+        for (var i = 0; i < self.customList.length; i++) {
+            self.rangeDefaultList[self.customList[i].position] = self.customList[i];
+        }
+    }
+};
+
 RangePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
     this.ngModelCtrl = ngModelCtrl;
     var self = this;
     ngModelCtrl.$render = function() {
         //self.ngModelCtrl.$viewValue= self.startDate+' '+ self.divider +' '+self.endDate;
     };
+    self.configureRangeList();
 };
 
 RangePickerCtrl.prototype.setNextView = function(){
