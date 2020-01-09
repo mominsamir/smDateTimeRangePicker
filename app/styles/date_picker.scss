@@ -313,6 +313,7 @@ $aniimation-duration:			1s;
 	}
 	.pre-select{
 		height: 307px;
+		overflow-y: auto;
 		.md-button{
 			padding:3px;
 			margin:0;

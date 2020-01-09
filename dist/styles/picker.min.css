@@ -210,7 +210,8 @@
       font-size: 13px;
       padding: 2px; }
   .range-picker .pre-select {
-    height: 307px; }
+    height: 307px;
+    overflow-y: auto; }
     .range-picker .pre-select .md-button {
       padding: 3px;
       margin: 0; }
@@ -577,7 +578,8 @@
       font-size: 13px;
       padding: 2px; }
   .range-picker .pre-select {
-    height: 307px; }
+    height: 307px;
+    overflow-y: auto; }
     .range-picker .pre-select .md-button {
       padding: 3px;
       margin: 0; }
